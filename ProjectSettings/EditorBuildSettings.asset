@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GameCafe.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Town.unity
+    guid: 54e9644b66e21b441b9a6eb04b6dad58
+  - enabled: 1
+    path: Assets/Scenes/House1.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/House2.unity
+    guid: 9cc910de33124c343ae5281c25d39427
+  - enabled: 1
+    path: Assets/Scenes/ExpressStation.unity
+    guid: 92b2d8b0f63f7324c88ddd0edf3bdc07
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 60e57014d6eda24469f479f4722eb139
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d2a6e56cb1129eb4d9da7ea3fe4f3291,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 87ed298a50072514d8c0e146e20a2c3b,
+      type: 2}

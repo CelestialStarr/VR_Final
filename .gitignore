@@ -1,0 +1,78 @@
+# =========================
+# Unity generated folders
+# =========================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+[Bb]uild/
+[Bb]uilds/
+il2cppOutput/
+
+# Local per-user settings (usually don't commit)
+[Uu]serSettings/
+
+# =========================
+# Unity Package Manager / caches
+# =========================
+# lock file is optional; ignore if you don't care about pinning exact versions
+Packages/packages-lock.json
+
+# (rare) npm-style folders if a tool generates them
+**/node_modules/
+
+# =========================
+# Addressables / generated artifacts
+# =========================
+Assets/AddressableAssetsData/*/*.bin*
+Assets/AddressableAssetsData/*/*.json
+Assets/AddressableAssetsData/*/*.hash
+
+# =========================
+# IDE / Editor files
+# =========================
+# Visual Studio
+.vs/
+*.sln
+*.csproj
+*.unityproj
+*.user
+*.userprefs
+*.pidb
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+*.suo
+*.tmp
+
+# Rider / JetBrains
+.idea/
+*.DotSettings.user
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# =========================
+# OS junk
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Misc crash / diagnostics
+# =========================
+sysinfo.txt
+
+# =========================
+# "Annoying JSON" that is usually NOT worth committing
+# (safe-ish ignores: editor/workspace caches, NOT Unity assets)
+# =========================
+# VS/Rider workspace metadata
+*.sln.iml
+*.idea.json
