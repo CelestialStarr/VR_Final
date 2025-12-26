@@ -1,35 +1,122 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AISpawner : MonoBehaviour
 {
-    public GameObject[] AiPrefab;
-    public int AiToSpawn;
+    [Header("AI Prefabs")]
+    public GameObject[] aiPrefabs;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Spawn Control")]
+    public int targetPopulation = 10;
+    public float spawnInterval = 2f;
+
+    [Tooltip("If false, no new NPCs will be spawned.")]
+    public bool spawningEnabled = true;
+
+    [Header("Night Behavior")]
+    [Tooltip("Maximum NPCs allowed to remain at night.")]
+    public int nightMaxPopulation = 2;
+
+    [Tooltip("Seconds between removing one NPC at night.")]
+    public float nightDespawnInterval = 6f;
+
+    private readonly List<GameObject> spawnedAgents = new List<GameObject>();
+    private Coroutine nightDespawnRoutine;
+
     void Start()
     {
-        StartCoroutine(Spawn());
+        StartCoroutine(SpawnLoop());
     }
 
-    IEnumerator Spawn()
+    public void SetTargetPopulation(int target)
     {
-        int count = 0;
-        while (count < AiToSpawn)
+        targetPopulation = Mathf.Max(0, target);
+        CleanupDestroyedAgents();
+    }
+
+    public void SetSpawningEnabled(bool enabled)
+    {
+        spawningEnabled = enabled;
+    }
+
+    public void EnterNightMode()
+    {
+        spawningEnabled = false;
+
+        if (nightDespawnRoutine == null)
+            nightDespawnRoutine = StartCoroutine(NightDespawnLoop());
+    }
+
+    public void ExitNightMode()
+    {
+        spawningEnabled = true;
+
+        if (nightDespawnRoutine != null)
         {
-            int randomIndex = Random.Range(0, AiPrefab.Length);
+            StopCoroutine(nightDespawnRoutine);
+            nightDespawnRoutine = null;
+        }
+    }
 
-            GameObject obj = Instantiate(AiPrefab[randomIndex]);
+    IEnumerator SpawnLoop()
+    {
+        while (true)
+        {
+            CleanupDestroyedAgents();
 
-            Transform child = transform.GetChild(Random.Range(0, transform.childCount - 1));
+            if (spawningEnabled && spawnedAgents.Count < targetPopulation)
+                SpawnOneAgent();
 
-            obj.GetComponent<WaypointNavigator>().currentWaypoint = child.GetComponent<Waypoint>();
+            yield return new WaitForSeconds(Mathf.Max(0.2f, spawnInterval));
+        }
+    }
 
-            obj.transform.position = child.position;
+    IEnumerator NightDespawnLoop()
+    {
+        while (true)
+        {
+            CleanupDestroyedAgents();
 
-            yield return new WaitForSeconds(2f);
+            if (spawnedAgents.Count > nightMaxPopulation)
+            {
+                int index = spawnedAgents.Count - 1;
+                GameObject agent = spawnedAgents[index];
+                spawnedAgents.RemoveAt(index);
 
-            count++;
+                if (agent != null)
+                    Destroy(agent);
+            }
+
+            yield return new WaitForSeconds(Mathf.Max(1f, nightDespawnInterval));
+        }
+    }
+
+    void SpawnOneAgent()
+    {
+        if (aiPrefabs == null || aiPrefabs.Length == 0) return;
+        if (transform.childCount == 0) return;
+
+        int prefabIndex = Random.Range(0, aiPrefabs.Length);
+        GameObject agent = Instantiate(aiPrefabs[prefabIndex]);
+
+        Transform spawnPoint = transform.GetChild(Random.Range(0, transform.childCount));
+        agent.transform.position = spawnPoint.position;
+
+        WaypointNavigator navigator = agent.GetComponent<WaypointNavigator>();
+        Waypoint waypoint = spawnPoint.GetComponent<Waypoint>();
+        if (navigator != null && waypoint != null)
+            navigator.currentWaypoint = waypoint;
+
+        spawnedAgents.Add(agent);
+    }
+
+    void CleanupDestroyedAgents()
+    {
+        for (int i = spawnedAgents.Count - 1; i >= 0; i--)
+        {
+            if (spawnedAgents[i] == null)
+                spawnedAgents.RemoveAt(i);
         }
     }
 }
