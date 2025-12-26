@@ -61,15 +61,24 @@ public class DayNightCycleURP_Final : MonoBehaviour
     private ShadowsMidtonesHighlights smh;
 
     private bool lastIsNight;
+    private bool lastSpawnWindowActive;
 
     void Start()
     {
         CacheVolumeOverrides();
 
         lastIsNight = IsNight();
+        lastSpawnWindowActive = IsSpawnWindowActive();
+
         ApplyVisuals();
         ApplyNPCPopulation();
     }
+
+    private bool IsSpawnWindowActive()
+    {
+        return (time01 >= spawnWindowStart && time01 <= spawnWindowEnd);
+    }
+
 
     void Update()
     {
@@ -79,10 +88,20 @@ public class DayNightCycleURP_Final : MonoBehaviour
         if (time01 > 1f) time01 -= 1f;
 
         bool isNight = IsNight();
-        if (isNight != lastIsNight)
+        bool spawnWindowActive = IsSpawnWindowActive();
+
+        bool nightChanged = (isNight != lastIsNight);
+        bool spawnWindowChanged = (spawnWindowActive != lastSpawnWindowActive);
+
+        if (nightChanged)
         {
             lastIsNight = isNight;
             OnNightStateChanged?.Invoke(isNight);
+        }
+
+        if (nightChanged || spawnWindowChanged)
+        {
+            lastSpawnWindowActive = spawnWindowActive;
             ApplyNPCPopulation();
         }
 
