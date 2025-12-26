@@ -9,7 +9,7 @@ public class CharacterNavigating : MonoBehaviour
     public NPCInfo npcInfo;
 
     [Header("Character Info")]
-    public float movingSpeed;
+    public float movingSpeed = 1;
     public float turningSpeed = 300f;
     public float stopSpeed = 1f;
 
