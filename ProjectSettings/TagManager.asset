@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Fluid
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Stealable
   - Water
   - UI
   - 
