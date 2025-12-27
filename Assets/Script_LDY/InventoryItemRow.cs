@@ -48,4 +48,17 @@ public class InventoryItemRow : MonoBehaviour
         // 否则返回：单价 * 数量
         return _myPrice * _myAmount;
     }
+
+    public void SellThisItem()
+    {
+        int value = GetTotalValue();
+        if (value <= 0) return;
+
+        MoneyManager.Instance.AddMoney(value);
+
+        // TODO: 通知 InventoryManager 减少或移除该物品
+    }
+
+
+
 }

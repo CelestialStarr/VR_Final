@@ -49,6 +49,18 @@ public class StoryFlowController : MonoBehaviour
         }
     }
 
+    public void CheckMoneyProgress()
+    {
+        var gs = GameState.Instance;
+
+        if (gs.money >= 100 && gs.mentorStage == MentorStage.Stage1_GoStreet)
+        {
+            gs.mentorStage = MentorStage.Stage2_LockpickUnlocked;
+            TriggerMentorDialogue();
+        }
+    }
+
+
     // ===== External Triggers =====
 
     public void OnMentorInteraction()
