@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7568160292206935616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5711875071855011433}
+  - component: {fileID: 2777775055448870621}
+  m_Layer: 0
+  m_Name: GestureManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5711875071855011433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568160292206935616}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.13200425, y: 0.96232724, z: 1.3018833}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2777775055448870621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568160292206935616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7592615d9e6c3c64a9341fa0de562ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasRoot: {fileID: 0}
+  timerSlider: {fileID: 0}
+  progressText: {fileID: 0}
+  gestureLibrary:
+  - gestureName: ThumbsUp
+    gestureObject: {fileID: 0}
+  - gestureName: ThumbsDown
+    gestureObject: {fileID: 0}
+  - gestureName: PalmUp
+    gestureObject: {fileID: 0}
+  - gestureName: Shaka
+    gestureObject: {fileID: 0}
+  - gestureName: Fist
+    gestureObject: {fileID: 0}
+  - gestureName: Point
+    gestureObject: {fileID: 0}
+  - gestureName: Grab
+    gestureObject: {fileID: 0}
+  defaultGestureColor: {r: 0, g: 0, b: 0, a: 0.5}
+  successColor: {r: 0, g: 1, b: 0, a: 1}
+  failureColor: {r: 1, g: 0, b: 0, a: 1}
+  timeLimitPerGesture: 3
+  feedbackDelay: 0.4
