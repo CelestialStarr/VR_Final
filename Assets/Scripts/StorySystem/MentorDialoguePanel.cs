@@ -11,11 +11,15 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
     public StoryFlowController storyController;
 
     [Header("Dialogue Lines")]
-    [TextArea(2, 4)]
-    public string[] lines;
+    [TextArea(2, 4)] public string[] stage0Lines; // first time (teach + send to street)
+    [TextArea(2, 4)] public string[] stage1Lines; // return after mission (new lesson)
 
+    private string[] activeLines;
     private int index = 0;
     private bool finished = false;
+
+    private float lastAdvanceTime = -999f;
+    public float clickCooldown = 0.35f;
 
     void Start()
     {
@@ -23,27 +27,65 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
         {
             continueButton.onClick.RemoveAllListeners();
             continueButton.onClick.AddListener(Advance);
+            continueButton.interactable = true;
         }
 
-        if (lines != null && lines.Length > 0)
+        PickDialogueByStage();
+        index = 0;
+        finished = false;
+
+        if (activeLines != null && activeLines.Length > 0)
             ShowLine(0);
         else if (dialogueText != null)
-            dialogueText.text = "бн";
+            dialogueText.text = "...";
+    }
+
+    void PickDialogueByStage()
+    {
+        var gs = GameState.Instance;
+
+        // Default: stage0
+        activeLines = stage0Lines;
+
+        if (gs == null) return;
+
+        // If mission done, switch to stage1 dialogue
+        if (gs.mentorStage >= 1 || gs.firstMissionDone)
+        {
+            if (stage1Lines != null && stage1Lines.Length > 0)
+                activeLines = stage1Lines;
+        }
     }
 
     public void Advance()
     {
         if (finished) return;
-        if (lines == null || lines.Length == 0) return;
+        if (Time.unscaledTime - lastAdvanceTime < clickCooldown) return;
+        lastAdvanceTime = Time.unscaledTime;
+
+        if (activeLines == null || activeLines.Length == 0) return;
 
         index++;
 
-        if (index >= lines.Length)
+        if (index >= activeLines.Length)
         {
             finished = true;
 
+            var gs = GameState.Instance;
+
+            // Stage0 ended -> allow leaving
+            if (gs != null && gs.mentorStage == 0)
+            {
+                gs.mentorStage = 1;
+            }
+
             if (dialogueText != null)
-                dialogueText.text = "Go to the street. First lesson: steal from a passerby.";
+            {
+                if (gs != null && gs.firstMissionDone)
+                    dialogueText.text = "Good. Next lesson unlocked.";
+                else
+                    dialogueText.text = "Objective: Go to the street and steal one item.";
+            }
 
             if (continueButton != null)
                 continueButton.interactable = false;
@@ -61,7 +103,7 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
     {
         if (dialogueText == null) return;
 
-        i = Mathf.Clamp(i, 0, lines.Length - 1);
-        dialogueText.text = lines[i];
+        i = Mathf.Clamp(i, 0, activeLines.Length - 1);
+        dialogueText.text = activeLines[i];
     }
 }
