@@ -5,14 +5,16 @@ public class CafeDoorToStreet : MonoBehaviour
 {
     public string streetSceneName = "Town";
 
-    void OnTriggerEnter(Collider other)
+    // Call this from UI Button OnClick()
+    public void GoToStreet()
     {
-        if (!other.CompareTag("Player")) return;
-
         var gs = GameState.Instance;
-        if (gs == null) return;
+        if (gs == null)
+        {
+            Debug.LogWarning("GameState not found.");
+            return;
+        }
 
-        // Allow leaving when mentorStage >= 1 (mentor already sent you out)
         if (gs.mentorStage >= 1)
         {
             SceneManager.LoadScene(streetSceneName);
@@ -23,4 +25,3 @@ public class CafeDoorToStreet : MonoBehaviour
         }
     }
 }
-
