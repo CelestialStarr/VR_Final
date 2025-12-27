@@ -821,7 +821,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &64568977
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2201,11 +2200,18 @@ MonoBehaviour:
   methodToCall:
     m_PersistentCalls:
       m_Calls:
-      - {m_Target: {fileID: 0}, m_TargetAssemblyTypeName: , m_MethodName: HandleCoverCloseClick, m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0},
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
-  m_collider: {fileID: 0}
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: HandleCoverCloseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!64 &153934058
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2789,7 +2795,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &176154533
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3141,7 +3146,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &219300720
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3947,7 +3951,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &267185793
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4486,7 +4489,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &313000063
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5455,7 +5457,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &346196562
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5642,149 +5643,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 361180905}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &361276351
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 936876442}
-    m_Modifications:
-    - target: {fileID: 597534027161338010, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.2820773
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.2574069
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 4.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7754471635766211341, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7754471635766211341, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7754471635766211341, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903289412132970050, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903289412132970050, guid: 0a6c50b092a6802449e661d51dc258d4,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.054354515
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0a6c50b092a6802449e661d51dc258d4, type: 3}
 --- !u!1 &364918586
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,7 +5697,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &364918589
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5966,7 +5823,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &365940523
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7364,7 +7220,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &494519372
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7803,7 +7658,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &517246686
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8375,7 +8229,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &572610939
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8606,9 +8459,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513cd37d4e91577468974ca5083f6968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
-  moneyTargetForReward: 100
-  rewardUnlocked: 0
   mentorStage: 0
   firstMissionDone: 0
 --- !u!114 &578748961
@@ -9513,7 +9363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4373470899499762, guid: 021643be3dd38f242b4d6b7cb806da8c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.498
+      value: -2.449
       objectReference: {fileID: 0}
     - target: {fileID: 4373470899499762, guid: 021643be3dd38f242b4d6b7cb806da8c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9521,7 +9371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4373470899499762, guid: 021643be3dd38f242b4d6b7cb806da8c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.674
+      value: -9.691
       objectReference: {fileID: 0}
     - target: {fileID: 4373470899499762, guid: 021643be3dd38f242b4d6b7cb806da8c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11573,11 +11423,18 @@ MonoBehaviour:
   methodToCall:
     m_PersistentCalls:
       m_Calls:
-      - {m_Target: {fileID: 0}, m_TargetAssemblyTypeName: , m_MethodName: HandleCoverCloseClick, m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0},
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
-  m_collider: {fileID: 0}
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: HandleCoverCloseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!64 &750031222
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12055,7 +11912,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &788033836
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12182,7 +12038,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &808759655
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12309,7 +12164,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &809805282
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13027,7 +12881,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &849993713
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13522,7 +13375,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &883086103
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14485,11 +14337,8 @@ RectTransform:
   m_Children:
   - {fileID: 906160607}
   - {fileID: 882827944}
-  - {fileID: 1772441451}
   - {fileID: 2137255513}
   - {fileID: 1555129579}
-  - {fileID: 1574844126}
-  - {fileID: 1143420047}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 24.834, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -15604,7 +15453,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1013351766
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16156,7 +16004,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1040472164
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16949,7 +16796,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1098762042
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17932,12 +17778,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1142849238}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1143420047 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1171976709411830958, guid: 0a6c50b092a6802449e661d51dc258d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 361276351}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1148847691
 GameObject:
   m_ObjectHideFlags: 0
@@ -18331,7 +18171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4038884252934940, guid: 5477fd809d93fd642b0e59c389e8cc07, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.253
+      value: -2.2080002
       objectReference: {fileID: 0}
     - target: {fileID: 4038884252934940, guid: 5477fd809d93fd642b0e59c389e8cc07, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18339,7 +18179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4038884252934940, guid: 5477fd809d93fd642b0e59c389e8cc07, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.875
+      value: -9.813
       objectReference: {fileID: 0}
     - target: {fileID: 4038884252934940, guid: 5477fd809d93fd642b0e59c389e8cc07, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19076,7 +18916,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1238038885
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19523,7 +19362,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1258864346
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20840,7 +20678,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1317198813
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22209,7 +22046,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1409481272
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23139,11 +22975,18 @@ MonoBehaviour:
   methodToCall:
     m_PersistentCalls:
       m_Calls:
-      - {m_Target: {fileID: 0}, m_TargetAssemblyTypeName: , m_MethodName: HandleCoverCloseClick, m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0},
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
-  m_collider: {fileID: 0}
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: HandleCoverCloseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!64 &1463095850
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24739,12 +24582,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574231484}
   m_Mesh: {fileID: 4300000, guid: 3c8691a473ec0453b8cbea2687e2f120, type: 3}
---- !u!4 &1574844126 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-    type: 3}
-  m_PrefabInstance: {fileID: 1885148407}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1576165850
 GameObject:
   m_ObjectHideFlags: 0
@@ -24799,7 +24636,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1576165853
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26708,7 +26544,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1665847650
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27341,7 +27176,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1692583185
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27873,11 +27707,18 @@ MonoBehaviour:
   methodToCall:
     m_PersistentCalls:
       m_Calls:
-      - {m_Target: {fileID: 0}, m_TargetAssemblyTypeName: , m_MethodName: HandleCoverCloseClick, m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0},
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
-  m_collider: {fileID: 0}
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: HandleCoverCloseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!64 &1725664799
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28000,11 +27841,18 @@ MonoBehaviour:
   methodToCall:
     m_PersistentCalls:
       m_Calls:
-      - {m_Target: {fileID: 0}, m_TargetAssemblyTypeName: , m_MethodName: HandleCoverCloseClick, m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0},
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
-  m_collider: {fileID: 0}
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: HandleCoverCloseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!64 &1758362632
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28127,11 +27975,18 @@ MonoBehaviour:
   methodToCall:
     m_PersistentCalls:
       m_Calls:
-      - {m_Target: {fileID: 0}, m_TargetAssemblyTypeName: , m_MethodName: HandleCoverCloseClick, m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0},
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
-  m_collider: {fileID: 0}
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: HandleCoverCloseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!64 &1758740372
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28518,7 +28373,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1768641415
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28674,99 +28528,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769477042}
   m_Mesh: {fileID: 4300004, guid: 060ed304ddda74972a30b203db0581c2, type: 3}
---- !u!1 &1772441450
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1772441451}
-  - component: {fileID: 1772441454}
-  - component: {fileID: 1772441453}
-  - component: {fileID: 1772441452}
-  m_Layer: 5
-  m_Name: Money
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1772441451
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772441450}
-  m_LocalRotation: {x: -0, y: 0.124809325, z: -0, w: 0.99218076}
-  m_LocalPosition: {x: 0, y: 0, z: -1039}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 936876442}
-  m_LocalEulerAnglesHint: {x: 0, y: 14.339, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5814, y: -917}
-  m_SizeDelta: {x: 3000, y: 1400}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1772441452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772441450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96302f412142e294fa45395c4a43447a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyText: {fileID: 1772441453}
---- !u!114 &1772441453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772441450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.9482429, g: 0.9685534, b: 0.30762222, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 200
-    m_FontStyle: 3
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 300
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'Current Balance: '
---- !u!222 &1772441454
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772441450}
-  m_CullTransparentMesh: 1
 --- !u!1 &1776137789
 GameObject:
   m_ObjectHideFlags: 0
@@ -29324,7 +29085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4798153273156544, guid: 94b71dbe7c75f5c46b056c1ceb10909e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.002
+      value: -2.8569999
       objectReference: {fileID: 0}
     - target: {fileID: 4798153273156544, guid: 94b71dbe7c75f5c46b056c1ceb10909e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -29966,74 +29727,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1876186241}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1885148407
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 936876442}
-    m_Modifications:
-    - target: {fileID: 3050168788462742897, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_Name
-      value: Inventory
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.64180136
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.9699676
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.5893722
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132041180056632732, guid: 5af65b5a7a1bc0c408708ea1033448ed,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5af65b5a7a1bc0c408708ea1033448ed, type: 3}
 --- !u!1001 &1888083048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30814,7 +30507,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1933973850
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31387,7 +31079,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1973708574
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31514,7 +31205,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &1974288809
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32255,7 +31945,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &2013553599
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32611,7 +32300,7 @@ PrefabInstance:
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.094
+      value: -0.039
       objectReference: {fileID: 0}
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185,
         type: 3}
@@ -32621,12 +32310,12 @@ PrefabInstance:
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -24.144
+      value: -22.612
       objectReference: {fileID: 0}
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9995846
+      value: -0.028818583
       objectReference: {fileID: 0}
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185,
         type: 3}
@@ -32636,7 +32325,7 @@ PrefabInstance:
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.028821437
+      value: -0.9995847
       objectReference: {fileID: 0}
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185,
         type: 3}
@@ -32651,7 +32340,7 @@ PrefabInstance:
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -3.303
+      value: -183.303
       objectReference: {fileID: 0}
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185,
         type: 3}
@@ -33298,7 +32987,6 @@ MonoBehaviour:
   RegenerateProduct: 1
   platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
     type: 3}
-  m_collider: {fileID: 0}
 --- !u!64 &2079648727
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34049,7 +33737,7 @@ PrefabInstance:
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 186
+      value: -53
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
@@ -34074,12 +33762,12 @@ PrefabInstance:
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -168
+      value: -158
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -783
+      value: -824
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
