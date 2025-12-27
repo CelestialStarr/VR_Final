@@ -4,6 +4,11 @@ public class GameState : MonoBehaviour
 {
     public static GameState Instance { get; private set; }
 
+    public int money = 0;
+    public int moneyTargetForReward = 100;
+    public bool rewardUnlocked = false;
+
+
     // 0 = first mentor dialogue (send to street)
     // 1 = returned after first mission (new mentor dialogue)
     // 2 = next stages (you can expand later)
