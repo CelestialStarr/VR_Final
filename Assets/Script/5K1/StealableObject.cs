@@ -1,12 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using System.Collections;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class StealableObject : UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
+public class StealableObject : XRGrabInteractable
 {
     [Header("Steal Difficulty")]
     [Range(1, 10)]
     public int difficultyLevel = 3; // 该物品需要的手势数量
+
+    [Header("Objects to Disable During Gesture")]
+    public List<GameObject> objectsToDisable; // 拖进去需要在手势期间禁用的对象
 
     private Vector3 _originalPosition;
     private Quaternion _originalRotation;
@@ -43,8 +48,13 @@ public class StealableObject : UnityEngine.XR.Interaction.Toolkit.Interactables.
         _isStealing = true;
         Debug.Log("开始手势验证...");
 
+        // 禁用所有需要在手势期间禁用的对象
+        SetObjectsActive(false);
+
         // 开启手势小游戏
         GestureGameManager.Instance.StartValidation(this, difficultyLevel);
+
+        // 等待手势完成（这里假设手势完成后会调用 HandleSuccess 或 HandleFailure）
         yield return null;
     }
 
@@ -53,12 +63,18 @@ public class StealableObject : UnityEngine.XR.Interaction.Toolkit.Interactables.
         _isStealing = false;
         Debug.Log("偷窃成功！");
         gameObject.SetActive(false);
+
+        // 手势结束，恢复所有对象
+        SetObjectsActive(true);
     }
 
     public void HandleFailure()
     {
         _isStealing = false;
         StopAllCoroutines();
+
+        // 手势结束，恢复所有对象
+        SetObjectsActive(true);
 
         StartCoroutine(ReturnToOriginalPosition());
     }
@@ -85,4 +101,12 @@ public class StealableObject : UnityEngine.XR.Interaction.Toolkit.Interactables.
         }
     }
 
+    private void SetObjectsActive(bool active)
+    {
+        foreach (var obj in objectsToDisable)
+        {
+            if (obj != null)
+                obj.SetActive(active);
+        }
+    }
 }
