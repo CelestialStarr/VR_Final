@@ -22,7 +22,7 @@ public class UIFollowHead : MonoBehaviour
         transform.position = Vector3.Lerp(
             transform.position,
             targetPos,
-            Time.deltaTime * smoothSpeed
+            Time.unscaledDeltaTime * smoothSpeed
         );
 
         // 始终朝向头部（不仰不俯）
