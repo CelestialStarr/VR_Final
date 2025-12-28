@@ -3397,34 +3397,6 @@
                     "isPartOfComposite": true
                 }
             ]
-        },
-        {
-            "name": "TestFunction",
-            "id": "2aa10af6-50cc-424c-b6f4-fef51c9d67fb",
-            "actions": [
-                {
-                    "name": "TestA",
-                    "type": "Button",
-                    "id": "2044e396-2090-4bd8-91b1-eb14a27204c2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "744902c0-87ac-49f0-9c8c-b5919a447539",
-                    "path": "<XRController>{RightHand}/{PrimaryButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TestA",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
         }
     ],
     "controlSchemes": []
