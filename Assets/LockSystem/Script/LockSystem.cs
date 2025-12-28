@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class LockSystem : MonoBehaviour
 {
-    // 1. 定义一个枚举，列出所有的 Paddle 编号
-    // 这会在 Inspector 里生成一个下拉菜单
+    // --- 新增部分开始 ---
+    [Header("绑定门控制器")]
+    [Tooltip("请把挂有 LockedDoor 脚本的门物体拖到这里")]
+    public LockedDoor targetDoor;
+
+    // 添加一个标记，防止重复调用解锁
+    private bool hasUnlocked = false;
+    // --- 新增部分结束 ---
+
     public enum PaddleID
     {
         Paddle1,
@@ -17,7 +24,6 @@ public class LockSystem : MonoBehaviour
         Paddle7
     }
 
-    // 2. 将 bool 改为 public，这样你在 Inspector 里能看到它们是否变成了 true
     public bool paddle1;
     public bool paddle2;
     public bool paddle3;
@@ -26,9 +32,11 @@ public class LockSystem : MonoBehaviour
     public bool paddle6;
     public bool paddle7;
 
-    // 3. 提供一个公共方法，供子物体调用
     public void SetPaddleActive(PaddleID id)
     {
+        // 如果已经解锁了，就不需要再进行逻辑判断了 (可选优化)
+        if (hasUnlocked) return;
+
         switch (id)
         {
             case PaddleID.Paddle1: paddle1 = true; break;
@@ -41,16 +49,32 @@ public class LockSystem : MonoBehaviour
         }
 
         Debug.Log(id + " 已激活！");
-        CheckUnlock(); // 这里可以顺便检查一下是否全部解锁
+        CheckUnlock();
     }
 
     void CheckUnlock()
     {
+        // 如果已经解锁过，直接返回，防止重复触发
+        if (hasUnlocked) return;
+
         // 检查是否所有 bool 都为 true
         if (paddle1 && paddle2 && paddle3 && paddle4 && paddle5 && paddle6 && paddle7)
         {
-            Debug.Log("全部解锁！");
-            // 这里写解锁后的逻辑
+            Debug.Log("全部 Paddle 已激活，正在执行解锁...");
+
+            // 标记为已解锁
+            hasUnlocked = true;
+
+            // --- 核心修改：调用 LockedDoor 的功能 ---
+            if (targetDoor != null)
+            {
+                // 调用我们在上一个脚本里写的公共方法
+                targetDoor.UnlockTheDoor();
+            }
+            else
+            {
+                Debug.LogError("请在 Inspector 面板中给 LockSystem 脚本赋值 Target Door！");
+            }
         }
     }
 }
