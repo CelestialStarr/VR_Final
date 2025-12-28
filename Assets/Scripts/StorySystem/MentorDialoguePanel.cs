@@ -3,107 +3,95 @@ using UnityEngine.UI;
 
 public class MentorDialoguePanel_Legacy : MonoBehaviour
 {
-    [Header("UI (Legacy)")]
+    [Header("UI")]
     public Text dialogueText;
     public Button continueButton;
 
-    [Header("Story")]
-    public StoryFlowController storyController;
+    [Header("Rewards")]
+    public ItemData lockpickItem; // DRAG LOCKPICK ITEM DATA HERE
 
     [Header("Dialogue Lines")]
-    [TextArea(2, 4)] public string[] stage0Lines; // first time (teach + send to street)
-    [TextArea(2, 4)] public string[] stage1Lines; // return after mission (new lesson)
+    [TextArea] public string[] normalLines;       // Default chat
+    [TextArea] public string[] finalRewardLines;  // Ending chat (Stage 3)
 
     private string[] activeLines;
     private int index = 0;
-    private bool finished = false;
-
-    private float lastAdvanceTime = -999f;
-    public float clickCooldown = 0.35f;
 
     void Start()
     {
         if (continueButton != null)
-        {
-            continueButton.onClick.RemoveAllListeners();
             continueButton.onClick.AddListener(Advance);
-            continueButton.interactable = true;
-        }
 
-        PickDialogueByStage();
-        index = 0;
-        finished = false;
-
-        if (activeLines != null && activeLines.Length > 0)
-            ShowLine(0);
-        else if (dialogueText != null)
-            dialogueText.text = "...";
+        CheckStoryState();
     }
 
-    void PickDialogueByStage()
+    void CheckStoryState()
     {
         var gs = GameState.Instance;
-
-        // Default: stage0
-        activeLines = stage0Lines;
-
         if (gs == null) return;
 
-        // If mission done, switch to stage1 dialogue
-        if (gs.mentorStage >= 1 || gs.firstMissionDone)
+        // Check Stage
+        if (gs.storyStage == 3) // Player returned with the Safe
         {
-            if (stage1Lines != null && stage1Lines.Length > 0)
-                activeLines = stage1Lines;
+            activeLines = finalRewardLines;
         }
+        else if (gs.storyStage == 4) // Already got the reward
+        {
+            activeLines = new string[] { "Go use your new tools." };
+        }
+        else
+        {
+            activeLines = normalLines;
+        }
+
+        // Start Dialogue
+        index = 0;
+        ShowLine(0);
     }
 
     public void Advance()
     {
-        if (finished) return;
-        if (Time.unscaledTime - lastAdvanceTime < clickCooldown) return;
-        lastAdvanceTime = Time.unscaledTime;
-
-        if (activeLines == null || activeLines.Length == 0) return;
+        if (activeLines == null) return;
 
         index++;
-
         if (index >= activeLines.Length)
         {
-            finished = true;
-
-            var gs = GameState.Instance;
-
-            // Stage0 ended -> allow leaving
-            if (gs != null && gs.mentorStage == 0)
-            {
-                gs.mentorStage = 1;
-            }
-
-            if (dialogueText != null)
-            {
-                if (gs != null && gs.firstMissionDone)
-                    dialogueText.text = "Good. Next lesson unlocked.";
-                else
-                    dialogueText.text = "Objective: Go to the street and steal one item.";
-            }
-
-            if (continueButton != null)
-                continueButton.interactable = false;
-
-            if (storyController != null)
-                storyController.OnMentorInteraction();
-
+            EndDialogue();
             return;
         }
-
         ShowLine(index);
     }
 
     void ShowLine(int i)
     {
-        if (dialogueText == null) return;
+        if (dialogueText != null)
+            dialogueText.text = activeLines[i];
+    }
 
-        i = Mathf.Clamp(i, 0, activeLines.Length - 1);
-        dialogueText.text = activeLines[i];
+    void EndDialogue()
+    {
+        // Give Reward ONLY if finishing Stage 3
+        if (GameState.Instance != null && GameState.Instance.storyStage == 3)
+        {
+            GiveRewards();
+        }
+
+        if (dialogueText != null)
+            dialogueText.text = "--- End ---";
+    }
+
+    void GiveRewards()
+    {
+        Debug.Log("Story: Giving Lockpicks...");
+
+        if (lockpickItem != null && InventoryManager.Instance != null)
+        {
+            // Give 2 Lockpicks
+            InventoryManager.Instance.AddItem(lockpickItem);
+            InventoryManager.Instance.AddItem(lockpickItem);
+        }
+
+        // Set Stage to 4 so we don't give rewards again
+        GameState.Instance.storyStage = 4;
     }
 }
