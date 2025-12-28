@@ -8,6 +8,7 @@ public class GameState : MonoBehaviour
     // 1 = returned after first mission (new mentor dialogue)
     // 2 = next stages (you can expand later)
     public int mentorStage = 0;
+    public int money = 0;
 
     // Mission flags
     public bool firstMissionDone = false;
