@@ -6694,6 +6694,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1376961315}
     m_Modifications:
+    - target: {fileID: 4241339742266258292, guid: 88ef467e0af46984da4d81f36a784538,
+        type: 3}
+      propertyPath: m_PermittedDisplacementAxes
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 9203396486403076747, guid: 88ef467e0af46984da4d81f36a784538,
         type: 3}
       propertyPath: m_RootOrder
@@ -25374,6 +25379,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1376961315}
     m_Modifications:
+    - target: {fileID: 4241339742266258292, guid: 88ef467e0af46984da4d81f36a784538,
+        type: 3}
+      propertyPath: m_PermittedDisplacementAxes
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 9203396486403076747, guid: 88ef467e0af46984da4d81f36a784538,
         type: 3}
       propertyPath: m_RootOrder
