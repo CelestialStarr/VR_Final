@@ -5,66 +5,85 @@ public class HandGestureModeController : MonoBehaviour
     public enum HandMode
     {
         None,
-        Point,
         Palm
     }
 
-    [Header("Mode Objects")]
-    public GameObject teleportObject;   // Teleport Ray / Teleport Interactor
-    public GameObject menuObject;       // Menu Root
+    [Header("Controlled Objects")]
+    public GameObject teleportObject;
+    public GameObject menuObject;
 
-    [Header("Current State (Debug)")]
-    [SerializeField]
-    private HandMode currentMode = HandMode.None;
+    [Header("Two-Hand Point Settings")]
+    public float simultaneousThreshold = 0.25f; // 同时判定时间窗口（秒）
 
-    //  Point Gesture Performed
-    public void OnPointPerformed()
+    [Header("Debug")]
+    [SerializeField] private HandMode currentMode = HandMode.None;
+
+    private float leftPointTime = -1f;
+    private float rightPointTime = -1f;
+
+    //  Left Hand Point Performed
+    public void OnLeftHandPoint()
     {
-        // 如果已经在 Palm 模式，Point 无效
-        if (currentMode == HandMode.Palm)
-            return;
-
-        currentMode = HandMode.Point;
-
-        teleportObject.SetActive(true);
-        menuObject.SetActive(false);
-
-        Debug.Log("[Gesture] Point → Teleport ON");
+        leftPointTime = Time.time;
+        EvaluateTeleport();
     }
 
-    //  Palm Gesture Performed
-    public void OnPalmPerformed()
+    //  Right Hand Point Performed
+    public void OnRightHandPoint()
     {
-        // 如果已经在 Point 模式，Palm 无效
-        if (currentMode == HandMode.Point)
-            return;
+        rightPointTime = Time.time;
+        EvaluateTeleport();
+    }
 
+    //  Fist（统一关闭）
+    public void OnFist()
+    {
+        ResetAll();
+        Debug.Log("[Gesture] Fist → Reset");
+    }
+
+    //  Palm（打开菜单，强制退出 teleport）
+    public void OnPalm()
+    {
         currentMode = HandMode.Palm;
 
-        menuObject.SetActive(true);
         teleportObject.SetActive(false);
+        menuObject.SetActive(true);
+
+        ResetPointTimes();
 
         Debug.Log("[Gesture] Palm → Menu ON");
     }
 
-    //  Fist Gesture Performed（统一关闭）
-    public void OnFistPerformed()
+    private void EvaluateTeleport()
     {
+        // Palm 模式下禁止 teleport
+        if (currentMode == HandMode.Palm)
+            return;
+
+        // 两只手是否在时间窗口内同时 Point
+        if (Mathf.Abs(leftPointTime - rightPointTime) <= simultaneousThreshold)
+        {
+            teleportObject.SetActive(true);
+            Debug.Log("Two Hands SIMULTANEOUS Point → Teleport ON");
+        }
+        else
+        {
+            teleportObject.SetActive(false);
+        }
+    }
+
+    private void ResetAll()
+    {
+        ResetPointTimes();
         teleportObject.SetActive(false);
         menuObject.SetActive(false);
-
         currentMode = HandMode.None;
-
-        Debug.Log("[Gesture] Fist → Reset to None");
     }
 
-    public bool IsInMode(HandMode mode)
+    private void ResetPointTimes()
     {
-        return currentMode == mode;
-    }
-
-    public HandMode GetCurrentMode()
-    {
-        return currentMode;
+        leftPointTime = -1f;
+        rightPointTime = -1f;
     }
 }
