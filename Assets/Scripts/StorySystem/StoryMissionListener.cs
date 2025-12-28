@@ -70,11 +70,11 @@ public class StoryMissionListener : MonoBehaviour
         if (!enableDebugLogs) return;
 
         // 使用 LogError (红色) 强行让这行字在 Console 显示出来
-        //Debug.LogError($"【检查中】 目标: {targetGoldAmount} | 当前: {currentGold} | 剧情阶段: {(GameState.Instance != null ? GameState.Instance.storyStage.ToString() : "空")}");
+        Debug.LogError($"【检查中】 目标: {targetGoldAmount} | 当前: {currentGold} | 剧情阶段: {(GameState.Instance != null ? GameState.Instance.storyStage.ToString() : "空")}");
 
         if (GameState.Instance == null)
         {
-            //Debug.LogError("【致命错误】GameState 是空的！无法读取剧情阶段！");
+            Debug.LogError("【致命错误】GameState 是空的！无法读取剧情阶段！");
             return;
         }
 
