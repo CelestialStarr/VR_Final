@@ -32,7 +32,7 @@ public class GestureGameManager : MonoBehaviour
         public GameObject gestureObject; // 挂载了 Image 的手势图标物体
     }
 
-    private string[] availableGestureNames = { "ThumbsUp", "ThumbsDown", "Shaka", "Fist", "OK", "Grab", "Yeah", "Gun", "Spider" };
+    private string[] availableGestureNames = { "ThumbsUp", "ThumbsDown", "PalmUp", "Shaka", "Fist", "Point", "Grab" };
     private List<string> _requiredSequence = new List<string>();
     private int _currentIndex = 0;
     private bool _isValidating = false;
@@ -56,13 +56,10 @@ public class GestureGameManager : MonoBehaviour
         _remainingTime -= Time.deltaTime;
         if (timerSlider) timerSlider.value = _remainingTime;
 
-        if (_remainingTime <= 0 && !_isTransitioning)
+        if (_remainingTime <= 0)
         {
-            _isTransitioning = true;
-            _isValidating = false;
             StartCoroutine(HandleFeedback(false));
         }
-
     }
 
     // 由 StealableObject 拿起时触发
@@ -92,21 +89,12 @@ public class GestureGameManager : MonoBehaviour
     private void GenerateRandomSequence(int count)
     {
         _requiredSequence.Clear();
-        string lastGesture = "";
-
         for (int i = 0; i < count; i++)
         {
-            string nextGesture;
-            do
-            {
-                nextGesture = gestureLibrary[Random.Range(0, gestureLibrary.Count)].gestureName;
-            } while (nextGesture == lastGesture); // 确保不与上一个手势重复
-
-            _requiredSequence.Add(nextGesture);
-            lastGesture = nextGesture;
+            string randomGesture = availableGestureNames[Random.Range(0, availableGestureNames.Length)];
+            _requiredSequence.Add(randomGesture);
         }
     }
-
 
     // 手势识别器触发此方法
     public void OnGestureDetected(string gestureName)
