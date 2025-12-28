@@ -1,8 +1,8 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-// Èç¹ûÄãÊÇ XRI 2.x »ò 3.x£¬Çë±£Áô/É¾³ıÏÂĞĞ
+// å¦‚æœä½ æ˜¯ XRI 2.x æˆ– 3.xï¼Œè¯·ä¿ç•™/åˆ é™¤ä¸‹è¡Œ
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class StealableObject : XRGrabInteractable
@@ -12,10 +12,10 @@ public class StealableObject : XRGrabInteractable
     public int difficultyLevel = 3;
 
     [Header("Objects Disabled During Gesture")]
-    [Tooltip("×¢Òâ£ºÖ»ÍÏÈë¡¾´«ËÍµã¡¢ÉäÏß¡¢²Ëµ¥¼ü¡¿µÈ»·¾³ÎïÌå¡£\n²»ÒªÍÏÈëÊÖÊÆUI»òµ¯´°£¬·ñÔò³É¹¦ºó»á±»Ç¿ÖÆÏÔÊ¾³öÀ´£¡")]
+    [Tooltip("âš ï¸æ³¨æ„ï¼šåªæ‹–å…¥ã€ä¼ é€ç‚¹ã€å°„çº¿ã€èœå•é”®ã€‘ç­‰ç¯å¢ƒç‰©ä½“ã€‚\nâŒä¸è¦æ‹–å…¥æ‰‹åŠ¿UIæˆ–å¼¹çª—ï¼Œå¦åˆ™æˆåŠŸåä¼šè¢«å¼ºåˆ¶æ˜¾ç¤ºå‡ºæ¥ï¼")]
     public List<GameObject> objectsToDisable;
 
-    // --- ×´Ì¬±äÁ¿ ---
+    // --- çŠ¶æ€å˜é‡ ---
     private Vector3 _originalPosition;
     private Quaternion _originalRotation;
     private bool _isStealing = false;
@@ -43,7 +43,7 @@ public class StealableObject : XRGrabInteractable
     {
         base.OnSelectExited(args);
 
-        // Íæ¼ÒÖĞÍ¾×Ô¼ºËÉÊÖ ¡ú ÅĞÎªÊ§°Ü
+        // ç©å®¶ä¸­é€”è‡ªå·±æ¾æ‰‹ â†’ åˆ¤ä¸ºå¤±è´¥
         if (_isStealing)
         {
             HandleFailure(false);
@@ -53,90 +53,90 @@ public class StealableObject : XRGrabInteractable
     private IEnumerator StartStealingProcess()
     {
         _isStealing = true;
-        Debug.Log($"[{gameObject.name}] ¿ªÊ¼ÍµÇÔÑéÖ¤...");
+        Debug.Log($"[{gameObject.name}] å¼€å§‹å·çªƒéªŒè¯...");
 
-        // 1. ¹Ø±Õ¸ÉÈÅÎïÌå£¨´«ËÍ¡¢ÉäÏßµÈ£©
+        // 1. å…³é—­å¹²æ‰°ç‰©ä½“ï¼ˆä¼ é€ã€å°„çº¿ç­‰ï¼‰
         SetObjectsActive(false);
 
-        // 2. Æô¶¯ÊÖÊÆÓÎÏ·
+        // 2. å¯åŠ¨æ‰‹åŠ¿æ¸¸æˆ
         if (GestureGameManager.Instance != null)
         {
             GestureGameManager.Instance.StartValidation(this, difficultyLevel);
         }
         else
         {
-            Debug.LogError("³¡¾°È±ÉÙ GestureGameManager£¡");
+            Debug.LogError("åœºæ™¯ç¼ºå°‘ GestureGameManagerï¼");
             HandleFailure();
         }
 
         yield return null;
     }
 
-    // ================== ºËĞÄÂß¼­ĞŞÕıÇø ==================
+    // ================== æ ¸å¿ƒé€»è¾‘ä¿®æ­£åŒº ==================
 
     public void HandleSuccess()
     {
         if (!_isStealing) return;
         _isStealing = false;
 
-        Debug.Log($"[{gameObject.name}] ÍµÇÔ³É¹¦£¡");
+        Debug.Log($"[{gameObject.name}] å·çªƒæˆåŠŸï¼");
 
-        // 1. ¡¾ĞÂÔö¡¿ÏÈÇ¿ÖÆËÉÊÖ¡£ÎïÌåÒªÏûÊ§ÁË£¬ÊÖ±ØĞëÏÈ·Å¿ª£¬·ñÔò»á¿¨×¡ÊÖµÄ×´Ì¬
+        // 1. ã€æ–°å¢ã€‘å…ˆå¼ºåˆ¶æ¾æ‰‹ã€‚ç‰©ä½“è¦æ¶ˆå¤±äº†ï¼Œæ‰‹å¿…é¡»å…ˆæ”¾å¼€ï¼Œå¦åˆ™ä¼šå¡ä½æ‰‹çš„çŠ¶æ€
         if (isSelected && interactionManager != null)
         {
             interactionManager.SelectExit(firstInteractorSelecting, this);
         }
 
-        // 2. Í¨Öª Manager ÈÎÎñÍê³É£¨ÈÃËüÈ¥¹Ø±ÕÊÖÊÆ UI£©
-        // ÕâÒ»²½±ØĞëÔÚ SetObjectsActive Ö®Ç°£¬·ÀÖ¹ UI ³åÍ»
+        // 2. é€šçŸ¥ Manager ä»»åŠ¡å®Œæˆï¼ˆè®©å®ƒå»å…³é—­æ‰‹åŠ¿ UIï¼‰
+        // è¿™ä¸€æ­¥å¿…é¡»åœ¨ SetObjectsActive ä¹‹å‰ï¼Œé˜²æ­¢ UI å†²çª
         if (GestureGameManager.Instance != null)
         {
-            // ´« true ´ú±í³É¹¦£¬Manager ÄÚ²¿Ó¦¸Ã´¦Àí¹Ø±Õ UI µÄÂß¼­
+            // ä¼  true ä»£è¡¨æˆåŠŸï¼ŒManager å†…éƒ¨åº”è¯¥å¤„ç†å…³é—­ UI çš„é€»è¾‘
             GestureGameManager.Instance.CompleteChallenge(true);
         }
 
-        // 3. »Ö¸´»·¾³ÎïÌå£¨ÉäÏß¡¢´«ËÍµÈ£©
+        // 3. æ¢å¤ç¯å¢ƒç‰©ä½“ï¼ˆå°„çº¿ã€ä¼ é€ç­‰ï¼‰
         SetObjectsActive(true);
 
-        // 4. ÎïÌåÏûÊ§
+        // 4. ç‰©ä½“æ¶ˆå¤±
         gameObject.SetActive(false);
     }
 
     public void HandleFailure(bool forceDrop = true)
     {
-        // ·ÀÖ¹µİ¹éËÀËø£ºÈç¹ûÒÑ¾­´¦Àí¹ıÊ§°Ü£¬Ö±½Ó·µ»Ø
+        // é˜²æ­¢é€’å½’æ­»é”ï¼šå¦‚æœå·²ç»å¤„ç†è¿‡å¤±è´¥ï¼Œç›´æ¥è¿”å›
         if (!_isStealing) return;
 
         _isStealing = false;
-        Debug.Log($"[{gameObject.name}] ÍµÇÔÊ§°Ü/±»×¥£¡");
+        Debug.Log($"[{gameObject.name}] å·çªƒå¤±è´¥/è¢«æŠ“ï¼");
 
-        // 1. ¡¾¹Ø¼üĞŞ¸Ä¡¿ÓÅÏÈÖ´ĞĞÎïÀíËÉÊÖ£¡
-        // ²»¹ÜºóÃæÂß¼­ÓĞÃ»ÓĞ±¨´í£¬ÏÈÈÃÍæ¼Ò°Ñ¶«Î÷µôÏÂÀ´
+        // 1. ã€å…³é”®ä¿®æ”¹ã€‘ä¼˜å…ˆæ‰§è¡Œç‰©ç†æ¾æ‰‹ï¼
+        // ä¸ç®¡åé¢é€»è¾‘æœ‰æ²¡æœ‰æŠ¥é”™ï¼Œå…ˆè®©ç©å®¶æŠŠä¸œè¥¿æ‰ä¸‹æ¥
         if (forceDrop && isSelected && interactionManager != null)
         {
             interactionManager.SelectExit(firstInteractorSelecting, this);
         }
 
-        // 2. Í¨Öª Manager ¹Ø±ÕÊÖÊÆ UI
+        // 2. é€šçŸ¥ Manager å…³é—­æ‰‹åŠ¿ UI
         if (GestureGameManager.Instance != null)
         {
-            // ¸æËß Manager Ê§°ÜÁË£¬Çë¹Ø±Õ UI
+            // å‘Šè¯‰ Manager å¤±è´¥äº†ï¼Œè¯·å…³é—­ UI
             GestureGameManager.Instance.CompleteChallenge(false);
         }
 
-        // 3. Í£Ö¹ËùÓĞĞ­³Ì£¨·ÀÖ¹»¹ÓĞ¼ÆÊ±Æ÷ÔÚÅÜ£©
+        // 3. åœæ­¢æ‰€æœ‰åç¨‹ï¼ˆé˜²æ­¢è¿˜æœ‰è®¡æ—¶å™¨åœ¨è·‘ï¼‰
         StopAllCoroutines();
 
-        // 4. »Ö¸´»·¾³ÎïÌå
+        // 4. æ¢å¤ç¯å¢ƒç‰©ä½“
         SetObjectsActive(true);
 
-        // 5. ÎïÌå¹éÎ»
+        // 5. ç‰©ä½“å½’ä½
         StartCoroutine(ReturnToOriginalPositionRoutine());
     }
 
     private IEnumerator ReturnToOriginalPositionRoutine()
     {
-        // µÈ´ıÎïÀíÖ¡½áÊø£¬È·±£ËÉÊÖ¶¯×÷Íê³É
+        // ç­‰å¾…ç‰©ç†å¸§ç»“æŸï¼Œç¡®ä¿æ¾æ‰‹åŠ¨ä½œå®Œæˆ
         yield return new WaitForFixedUpdate();
 
         transform.position = _originalPosition;
@@ -150,7 +150,7 @@ public class StealableObject : XRGrabInteractable
         }
     }
 
-    // ================== ¹¤¾ßº¯Êı ==================
+    // ================== å·¥å…·å‡½æ•° ==================
 
     private void SetObjectsActive(bool active)
     {
@@ -160,12 +160,11 @@ public class StealableObject : XRGrabInteractable
         {
             if (obj != null)
             {
-                // ÕâÀï¼Ó¸ö±£ÏÕ£ºÈç¹ûÕâ¸öÎïÌå±¾À´¾ÍÊÇ UI µÄÒ»²¿·Ö£¬
-                // ÔÚ active=true (»Ö¸´) Ê±£¬¿ÉÄÜ»á´íÎóµØ¿ªÆô UI¡£
-                // ½¨Òé£º¼ì²é objectsToDisable ÁĞ±í£¬²»Òª°Ñ UI Ãæ°åÍÏ½øÈ¥£¡
+                // è¿™é‡ŒåŠ ä¸ªä¿é™©ï¼šå¦‚æœè¿™ä¸ªç‰©ä½“æœ¬æ¥å°±æ˜¯ UI çš„ä¸€éƒ¨åˆ†ï¼Œ
+                // åœ¨ active=true (æ¢å¤) æ—¶ï¼Œå¯èƒ½ä¼šé”™è¯¯åœ°å¼€å¯ UIã€‚
+                // å»ºè®®ï¼šæ£€æŸ¥ objectsToDisable åˆ—è¡¨ï¼Œä¸è¦æŠŠ UI é¢æ¿æ‹–è¿›å»ï¼
                 obj.SetActive(active);
             }
         }
     }
 }
-

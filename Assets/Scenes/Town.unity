@@ -31006,6 +31006,7 @@ MonoBehaviour:
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
   difficultyLevel: 3
+  objectsToDisable: []
 --- !u!1001 &345115670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204390,22 +204391,22 @@ PrefabInstance:
     - target: {fileID: 2452315683632888434, guid: 71a2b29ded789694a87c9b90723898d4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2618733634838822799, guid: 71a2b29ded789694a87c9b90723898d4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3240951532111135853, guid: 71a2b29ded789694a87c9b90723898d4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4362062079111323337, guid: 71a2b29ded789694a87c9b90723898d4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4938011088576507944, guid: 71a2b29ded789694a87c9b90723898d4,
         type: 3}
@@ -204462,7 +204463,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7492862248531560717, guid: 71a2b29ded789694a87c9b90723898d4, type: 3}
+    - {fileID: 1902245149769780211, guid: 71a2b29ded789694a87c9b90723898d4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

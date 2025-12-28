@@ -54,7 +54,7 @@ public class NPCVision : MonoBehaviour
                     {
                         Debug.Log("NPC: 来人啊！抓小偷！");
                         // 通知管理器，传入当前 NPC 的位置作为案发现场
-                        //PoliceManager.Instance.DispatchNearestPolice(transform.position);
+                        PoliceManager.Instance.DispatchNearestPolice(transform.position);
 
                         hasAlertedPolice = true;
                         // 建议：开启一个协程，5秒后重置 hasAlertedPolice = false，以便下次还能报警
