@@ -133533,6 +133533,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1294314862}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1294318870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1294318872}
+  - component: {fileID: 1294318871}
+  m_Layer: 0
+  m_Name: Scene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1294318871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294318870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03da5068d022e5c4a979a26f92d349f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1294318872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294318870}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.76859295, y: 0.7740367, z: 7.944893}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1294425468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229822,7 +229866,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 573998638}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1294318871}
+        m_TargetAssemblyTypeName: GameSceneManager, Assembly-CSharp
+        m_MethodName: GoToGameCafe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &2021188109
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -289257,19 +289313,20 @@ SceneRoots:
   - {fileID: 1357699849}
   - {fileID: 1698272424}
   - {fileID: 1771073948}
-  - {fileID: 347796270}
-  - {fileID: 1640826350}
-  - {fileID: 847310019}
-  - {fileID: 1754345833}
   - {fileID: 989151691}
   - {fileID: 1902983786}
-  - {fileID: 1878894364}
-  - {fileID: 33640337}
-  - {fileID: 1005438494}
   - {fileID: 1354038985}
   - {fileID: 493941863}
   - {fileID: 1798472140}
-  - {fileID: 1199311184}
   - {fileID: 344989407}
-  - {fileID: 734945229}
+  - {fileID: 1878894364}
   - {fileID: 1431711921}
+  - {fileID: 847310019}
+  - {fileID: 1754345833}
+  - {fileID: 1640826350}
+  - {fileID: 347796270}
+  - {fileID: 33640337}
+  - {fileID: 1005438494}
+  - {fileID: 1199311184}
+  - {fileID: 734945229}
+  - {fileID: 1294318872}
