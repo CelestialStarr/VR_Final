@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 1445200731882560920}
   - component: {fileID: 1445200731881594712}
   - component: {fileID: 7019385131216940946}
-  - component: {fileID: 808682158894157081}
-  - component: {fileID: 3966811977119526499}
-  - component: {fileID: 4943553995835432624}
-  - component: {fileID: 6830218874535205637}
-  - component: {fileID: 6487114501819335060}
-  - component: {fileID: 1247022808256944850}
+  - component: {fileID: 6608393501663353209}
+  - component: {fileID: 7070200234899339916}
+  - component: {fileID: 731699391392167373}
+  - component: {fileID: 361928536838772806}
+  - component: {fileID: 42568988536171830}
+  - component: {fileID: 279460144455481941}
   m_Layer: 0
   m_Name: CoffeeCup
   m_TagString: Untagged
@@ -106,13 +106,13 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 53f772c8f5c39124493372569d3ab413, type: 3}
---- !u!54 &808682158894157081
+--- !u!54 &6608393501663353209
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3966811977119526499
+--- !u!114 &7070200234899339916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,8 +268,21 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
-  itemData: {fileID: 11400000, guid: 5d195571ecd8ca64f8435efe829c99ec, type: 2}
---- !u!114 &4943553995835432624
+  itemData: {fileID: 11400000, guid: 3f3aaa82bd126db438149bb90cebc246, type: 2}
+--- !u!114 &731699391392167373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445200731879326104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ad7d8f39abba64b905bdd322a9b0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRange: 2
+--- !u!114 &361928536838772806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,20 +305,7 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
---- !u!114 &6830218874535205637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445200731879326104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2ad7d8f39abba64b905bdd322a9b0f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkRange: 2
---- !u!114 &6487114501819335060
+--- !u!114 &42568988536171830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -323,7 +323,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1247022808256944850
+--- !u!114 &279460144455481941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

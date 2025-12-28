@@ -5,7 +5,7 @@ public class StoryMissionListener : MonoBehaviour
     [Header("Mission Configuration")]
     public ItemData safeItemData; // DRAG THE SAFE ITEM DATA HERE
     public StreetPhoneSystem phoneSystem; // DRAG YOUR PHONE UI SCRIPT HERE
-    public int targetGoldAmount = 10;
+    public int targetGoldAmount = 50;
     void Start()
     {
         // Wait a bit to ensure InventoryManager is initialized
