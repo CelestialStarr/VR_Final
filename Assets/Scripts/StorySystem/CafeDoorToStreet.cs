@@ -15,7 +15,7 @@ public class CafeDoorToStreet : MonoBehaviour
             return;
         }
 
-        if (gs.storyStage >= 1)
+        if (gs.mentorStage >= 1)
         {
             SceneManager.LoadScene(streetSceneName);
         }
