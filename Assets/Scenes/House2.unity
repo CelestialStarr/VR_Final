@@ -846,10 +846,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 307391363043993411, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241025152269030667, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594121184781882269, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377811832766651297, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636212472161933803, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771615030769230669, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4028305480003292416, guid: 19e682e4775e48140b69463d4eb9bfe3,
         type: 3}
       propertyPath: m_Name
       value: XR Origin Hands (XR Rig) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028305480003292416, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028305480003292416, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4028305480003292419, guid: 19e682e4775e48140b69463d4eb9bfe3,
         type: 3}
@@ -901,10 +941,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4492180416709268323, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460253026824364454, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910105663276194218, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4028305480003292416, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1741077381}
+    - targetCorrespondingSourceObject: {fileID: 4028305480003292416, guid: 19e682e4775e48140b69463d4eb9bfe3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1741077380}
   m_SourcePrefab: {fileID: 100100000, guid: 19e682e4775e48140b69463d4eb9bfe3, type: 3}
 --- !u!1 &1376961314
 GameObject:
@@ -970,6 +1033,49 @@ Transform:
   - {fileID: 7051925371861821331}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1741077371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4028305480003292416, guid: 19e682e4775e48140b69463d4eb9bfe3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1267514256}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1741077380
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741077371}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Height: 1.6436768
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.82891965, z: 0}
+--- !u!114 &1741077381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741077371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8c1e7b3106bbc4fb6ce4c21aef2e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instruction: "\u8FD0\u884C\u6E38\u620F\u540E\uFF0C\u6309\u4E0B\u952E\u76D8\u4E0A\u7684
+    'T' \u952E\u6A21\u62DF\u62A5\u8B66\u3002\n\u6309\u4E0B 'R' \u952E\u5F3A\u884C\u91CD\u7F6E\u6240\u6709\u8B66\u5BDF\uFF08\u53EF\u9009\uFF09\u3002"
 --- !u!114 &1742149210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25677,7 +25783,7 @@ Transform:
   m_GameObject: {fileID: 8931002198743326435}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9998972, z: -0, w: 0.014343463}
-  m_LocalPosition: {x: -1.083, y: 0.149, z: -18.118}
+  m_LocalPosition: {x: -1.069, y: 0.149, z: -18.619}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27369,6 +27475,8 @@ GameObject:
   - component: {fileID: 583584879}
   - component: {fileID: 583584876}
   - component: {fileID: 6102494256760202189}
+  - component: {fileID: 6102494256760202190}
+  - component: {fileID: 6102494256760202191}
   m_Layer: 0
   m_Name: house2floor1
   m_TagString: Untagged
@@ -40805,6 +40913,55 @@ MonoBehaviour:
   stopSpeed: 1
   destination: {x: 0, y: 0, z: 0}
   destinationReached: 0
+--- !u!136 &6102494256760202190
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4018724819498998341}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.4880052
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.74400234, z: 0}
+--- !u!114 &6102494256760202191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4018724819498998341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e00a95484fd994997c078dbca8395b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stealableLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  eyesPoint: {fileID: 7928115610925529799}
+  visionRadius: 0.3
+  alertController: {fileID: 0}
+  detectRange: 10
+  alertIncreaseAmount: 30
+  alertInterval: 0.5
+  isInPrivateArea: 0
+  alertUIPrefab: {fileID: 0}
 --- !u!4 &6105580447785552898
 Transform:
   m_ObjectHideFlags: 0
@@ -46453,6 +46610,7 @@ GameObject:
   - component: {fileID: 353654931}
   - component: {fileID: 7107034456386212525}
   - component: {fileID: 7107034456386212526}
+  - component: {fileID: 7107034456386212527}
   m_Layer: 0
   m_Name: house2floor2
   m_TagString: Untagged
@@ -46493,12 +46651,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e00a95484fd994997c078dbca8395b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectRange: 10
   stealableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1
   eyesPoint: {fileID: 8671419383044827063}
   visionRadius: 0.3
+  alertController: {fileID: 0}
+  detectRange: 10
+  alertIncreaseAmount: 30
+  alertInterval: 0.5
+  isInPrivateArea: 0
+  alertUIPrefab: {fileID: 0}
+--- !u!136 &7107034456386212527
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7107034456386212524}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.449464
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.72473204, z: 0}
 --- !u!4 &7108370048711038817
 Transform:
   m_ObjectHideFlags: 0
@@ -52301,7 +52490,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1895094045995667748}
   - component: {fileID: 7657489181126580549}
-  - component: {fileID: 8081565381194579961}
   m_Layer: 0
   m_Name: Character_Female_Jacket
   m_TagString: Untagged
@@ -52309,24 +52497,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8081565381194579961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8081565381194579960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1e00a95484fd994997c078dbca8395b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectRange: 10
-  stealableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  eyesPoint: {fileID: 7928115610925529799}
-  visionRadius: 0.3
 --- !u!1001 &8094970051536234299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58607,6 +58777,7 @@ GameObject:
   - component: {fileID: 8931002198743326437}
   - component: {fileID: 8931002198743326436}
   - component: {fileID: 8931002198743326438}
+  - component: {fileID: 8931002198743326439}
   m_Layer: 0
   m_Name: house2sit
   m_TagString: Untagged
@@ -58665,12 +58836,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e00a95484fd994997c078dbca8395b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectRange: 10
   stealableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1
   eyesPoint: {fileID: 9024896696007711669}
   visionRadius: 0.3
+  alertController: {fileID: 0}
+  detectRange: 10
+  alertIncreaseAmount: 30
+  alertInterval: 0.5
+  isInPrivateArea: 0
+  alertUIPrefab: {fileID: 0}
+--- !u!136 &8931002198743326439
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931002198743326435}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.9414308
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.47071624, z: 0}
 --- !u!114 &8935650038681511246
 MonoBehaviour:
   m_ObjectHideFlags: 0
