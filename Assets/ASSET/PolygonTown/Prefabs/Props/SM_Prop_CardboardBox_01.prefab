@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6638414363813285526}
   - component: {fileID: 3345692947707609102}
   - component: {fileID: 7618438738608551988}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Prop_CardboardBox_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4632255, y: 0.46322548, z: 0.4632255}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a1302d0d134fa8a2a5b3bf4aec3c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PermittedDisplacementAxes: 7
+  m_PermittedDisplacementAxes: -1
   m_ConstrainedAxisDisplacementMode: 1
   m_TwoHandedRotationMode: 1
   m_AllowOneHandedScaling: 1
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
-  itemData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: 8c43dc1e1d3987c47a6e180dc464ae06, type: 2}
 --- !u!114 &6638414363813285526
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,12 +15,15 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
+    // [核心修改 1] 静态变量保险箱：保存金币和背包内容
+    private static int _savedGold = -1;
+    private static List<InventorySlot> _savedBackpack = null;
+
     [Header("金钱系统")]
     public int currentGold = 0;
     public event Action<int> onGoldChanged;
 
     [Header("限制/不可售卖设置")]
-    // ★ 修改点1：这里改成 ItemData 类型，你可以直接把 Parcle 的数据文件拖进来
     public ItemData unsellableItem;
     public int maxLimitedItemCount = 5;
 
@@ -37,62 +40,81 @@ public class InventoryManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) Destroy(gameObject);
         else Instance = this;
+
+        // [核心修改 2] 读取数据逻辑
+        // 如果 _savedGold 大于等于0，说明不是第一次运行，有存档
+        if (_savedGold >= 0)
+        {
+            currentGold = _savedGold;
+
+            // 恢复背包列表 (如果保险箱里有列表，就直接拿来用)
+            if (_savedBackpack != null)
+                backpackContent = _savedBackpack;
+
+            Debug.Log($"<color=green>已从跨场景存档加载背包：金币 {currentGold}, 物品数 {backpackContent.Count}</color>");
+        }
+        else
+        {
+            // 第一次运行，初始化保险箱
+            _savedGold = currentGold;
+            _savedBackpack = backpackContent;
+        }
+    }
+
+    // [新增] 加上 Start 方法，确保进入新场景时 UI 能刷新
+    private void Start()
+    {
+        // 强制通知 UI 刷新一次，否则刚进场景 UI 显示的是 0
+        onGoldChanged?.Invoke(currentGold);
+        onInventoryChanged?.Invoke();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M)) onToggleBag?.Invoke();
+
+        // [核心修改 3] 每一帧都把数据同步到保险箱
+        _savedGold = currentGold;
+        // 列表是引用类型，只要把引用指过去就行
+        _savedBackpack = backpackContent;
     }
 
-    // ============================================
-    // ★ 一键出售逻辑
-    // ============================================
+    // [新增] 如果你有“开始新游戏”按钮，必须调用这个！
+    public void ResetInventoryData()
+    {
+        _savedGold = 0;
+        _savedBackpack = new List<InventorySlot>();
+
+        currentGold = 0;
+        backpackContent = new List<InventorySlot>();
+
+        onGoldChanged?.Invoke(0);
+        onInventoryChanged?.Invoke();
+
+        Debug.Log("背包数据已重置");
+    }
+
+    // --- 以下是你原有的逻辑，保持不变 ---
+
     public void SellAllItems()
     {
-        // ★ 调试第一步：只要点击按钮，Console里必须出现这句话。如果没有，说明按钮绑定坏了。
         Debug.Log("正在尝试出售物品...");
-
         int totalEarnings = 0;
-        int soldCount = 0; // 记录卖了多少个格子
-
         for (int i = backpackContent.Count - 1; i >= 0; i--)
         {
             InventorySlot slot = backpackContent[i];
-
-            // ★ 修改点2：直接对比数据引用，比对比名字更安全
-            // 如果你没在Inspector里拖拽 unsellableItem，这里可能会报错，记得要拖进去！
-            if (unsellableItem != null && slot.itemData == unsellableItem)
-            {
-                Debug.Log($"跳过不可售卖物品: {slot.itemData.itemName}");
-                continue;
-            }
-
-            // 计算价格
-            int value = slot.stackSize * slot.itemData.price;
-            totalEarnings += value;
-            soldCount++;
-
-            // 移除
+            if (unsellableItem != null && slot.itemData == unsellableItem) continue;
+            totalEarnings += slot.stackSize * slot.itemData.price;
             backpackContent.RemoveAt(i);
         }
-
         if (totalEarnings > 0)
         {
             currentGold += totalEarnings;
             onGoldChanged?.Invoke(currentGold);
             onInventoryChanged?.Invoke();
-
-            Debug.Log($"出售成功！卖出格子数: {soldCount}, 获得金币: {totalEarnings}");
-        }
-        else
-        {
-            Debug.Log("出售结束：没有可出售的物品，或者只剩下了不可卖的物品。");
         }
     }
 
-    // ============================================
-    // 添加物品逻辑 (也同步修改了判定逻辑)
-    // ============================================
     public bool AddItem(ItemData item)
     {
         int total = 0;
@@ -104,7 +126,6 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
 
-        // ★ 修改点3：这里的限制逻辑也同步改成用 item 对比
         if (unsellableItem != null && item == unsellableItem)
         {
             InventorySlot specificSlot = backpackContent.Find(s => s.itemData == item);
@@ -122,5 +143,25 @@ public class InventoryManager : MonoBehaviour
 
         onInventoryChanged?.Invoke();
         return true;
+    }
+
+    public bool TryConsumeItem(ItemData itemToConsume)
+    {
+        InventorySlot slot = backpackContent.Find(x => x.itemData == itemToConsume);
+
+        if (slot != null)
+        {
+            slot.stackSize--;
+            if (slot.stackSize <= 0)
+            {
+                backpackContent.Remove(slot);
+            }
+            onInventoryChanged?.Invoke();
+            Debug.Log($"成功消耗物品: {itemToConsume.itemName}");
+            return true;
+        }
+
+        Debug.Log("背包里没有这个物品，无法开包！");
+        return false;
     }
 }
