@@ -8,30 +8,33 @@ public class TimeGameplayManager : MonoBehaviour
     public DayNightCycleURP_Final dayCycleScript;
 
     [Header("UI - Clock")]
-    [Tooltip("UI Panel containing the clock text")]
+    [Tooltip("包含时间文字的Panel")]
     public GameObject clockPanel;
-    private TextMeshProUGUI clockText; // 自动获取
+    private TextMeshProUGUI clockText;
     public bool updateEveryHalfHourOnly = true;
+
+    // [新增] UI - Day Status (常驻天数显示)
+    [Header("UI - Day Status (Persistent)")]
+    [Tooltip("常驻显示天数的Panel (类似于时钟)")]
+    public GameObject dayStatusPanel;
+    private TextMeshProUGUI dayStatusText; // 自动获取
 
     [Header("UI - Popups")]
     public GameObject dayPopupPanel;
-    private TextMeshProUGUI dayPopupText; // 自动获取
+    private TextMeshProUGUI dayPopupText;
     public float dayPopupDuration = 3f;
 
     [Header("UI - Fatigue / Work")]
-    public GameObject workFatiguePopup; // 对应之前的 stealingWorkPopup
-    private TextMeshProUGUI workFatigueText; // 自动获取
+    public GameObject workFatiguePopup;
+    // private TextMeshProUGUI workFatigueText; // 方案一：代码不控制文字内容
 
     [Header("Settings")]
-    [Tooltip("连续游玩多少个'游戏小时'后提示？")]
     public float fatigueThresholdHours = 16f;
-    [Tooltip("睡觉一次跳过多少小时？")]
     public float sleepHours = 8f;
 
     // 内部变量
-    private bool isClockVisible = false; // 用于记录时钟当前是开还是关
+    private bool isClockVisible = false;
 
-    // [修改] 记录“连续清醒时间”（游戏小时）
     private float currentAwakeHours = 0f;
     private bool hasTriggeredFatiguePopup = false;
 
@@ -43,18 +46,27 @@ public class TimeGameplayManager : MonoBehaviour
         if (dayCycleScript == null)
             dayCycleScript = FindFirstObjectByType<DayNightCycleURP_Final>();
 
-        // 订阅天数变化事件（无论是自然过天，还是睡觉跳过天，都会触发这个）
         dayCycleScript.OnDayChanged += HandleDayChanged;
 
-        // 自动查找UI组件
+        // --- 1. 自动查找组件 ---
         if (clockPanel != null) clockText = clockPanel.GetComponentInChildren<TextMeshProUGUI>();
-        if (dayPopupPanel != null) dayPopupText = dayPopupPanel.GetComponentInChildren<TextMeshProUGUI>();
-        if (workFatiguePopup != null) workFatigueText = workFatiguePopup.GetComponentInChildren<TextMeshProUGUI>();
 
-        // 初始化UI状态
-        if (clockPanel != null) clockPanel.SetActive(false); // 默认隐藏
+        // [新增] 查找常驻天数文字
+        if (dayStatusPanel != null) dayStatusText = dayStatusPanel.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (dayPopupPanel != null) dayPopupText = dayPopupPanel.GetComponentInChildren<TextMeshProUGUI>();
+
+        // [注意] workFatigueText在方案一中不需要获取，因为我们不改它的字
+
+        // --- 2. 初始化UI状态 (默认隐藏) ---
+
+
         if (dayPopupPanel != null) dayPopupPanel.SetActive(false);
         if (workFatiguePopup != null) workFatiguePopup.SetActive(false);
+
+        // --- 3. 初始化数据显示 ---
+        // 游戏刚开始，也要显示当前是第几天
+        UpdateDayStatusText(dayCycleScript.dayCount);
     }
 
     void OnDestroy()
@@ -69,56 +81,36 @@ public class TimeGameplayManager : MonoBehaviour
         UpdateFatigueLogic();
     }
 
-    // 1. 处理按键输入 (N 和 K)
     void HandleInput()
     {
-        // [修改] N键开关时钟 (Toggle)
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            if (clockPanel != null)
-            {
-                isClockVisible = !isClockVisible; // 状态取反
-                clockPanel.SetActive(isClockVisible);
-            }
-        }
+        // N键开关 HUD (时钟 + 天数)
+       
 
-        // [新增] K键睡觉
+        // K键睡觉
         if (Input.GetKeyDown(KeyCode.K))
         {
             PerformSleep();
         }
     }
 
-    // 2. 睡觉逻辑
     void PerformSleep()
     {
         if (dayCycleScript == null) return;
-
-        // 让时间系统跳过8小时
         dayCycleScript.SkipTime(sleepHours);
-
-        // 重置疲劳值
         currentAwakeHours = 0f;
         hasTriggeredFatiguePopup = false;
-
         Debug.Log("玩家睡觉了，体力恢复，疲劳计时清零。");
     }
 
-    // 3. 计算“连续游玩时间” (之前是偷窃时间)
     void UpdateFatigueLogic()
     {
-        // 计算这一帧过去了多少“游戏小时”
-        // Time.deltaTime 是现实秒
-        // dayCycleScript.dayLengthSeconds 是游戏一天对应的现实秒
         float gameHoursPassed = (Time.deltaTime / dayCycleScript.dayLengthSeconds) * 24f;
-
         currentAwakeHours += gameHoursPassed;
 
-        // 如果累计时间超过16小时，并且还没弹过窗
         if (currentAwakeHours >= fatigueThresholdHours && !hasTriggeredFatiguePopup)
         {
             TriggerFatiguePopup();
-            hasTriggeredFatiguePopup = true; // 锁定，防止一直弹
+            hasTriggeredFatiguePopup = true;
         }
     }
 
@@ -131,19 +123,14 @@ public class TimeGameplayManager : MonoBehaviour
     {
         if (workFatiguePopup != null)
         {
-            // if (workFatigueText != null)
-            //     workFatigueText.text = "你已经工作12小时"; // 按你要求的文案
-
             workFatiguePopup.SetActive(true);
             yield return new WaitForSeconds(3f);
             workFatiguePopup.SetActive(false);
         }
     }
 
-    // 4. 更新时钟UI (只在显示时更新)
     void UpdateClockDisplay()
     {
-        // 如果面板关着，就不浪费性能去算字了
         if (clockPanel == null || !clockPanel.activeSelf) return;
 
         int hour, minute;
@@ -151,7 +138,6 @@ public class TimeGameplayManager : MonoBehaviour
 
         if (updateEveryHalfHourOnly) minute = (minute < 30) ? 0 : 30;
 
-        // 只有数字变了才改Text，优化性能
         if (hour != lastDisplayedHour || minute != lastDisplayedMinute)
         {
             lastDisplayedHour = hour;
@@ -161,10 +147,25 @@ public class TimeGameplayManager : MonoBehaviour
         }
     }
 
-    // 5. 天数变化弹窗
+    // --- 天数相关逻辑 ---
+
     void HandleDayChanged(int newDayCount)
     {
+        // 1. 触发中间的大弹窗 (DAY 2)
         StartCoroutine(ShowDayPopupRoutine(newDayCount));
+
+        // 2. [新增] 更新常驻的 UI 文字
+        UpdateDayStatusText(newDayCount);
+    }
+
+    // [新增] 专门用来更新常驻天数文字的方法
+    void UpdateDayStatusText(int day)
+    {
+        if (dayStatusText != null)
+        {
+            // 你可以在这里自定义格式，比如 "Day: 1" 或 "第 1 天"
+            dayStatusText.text = $"Day {day}";
+        }
     }
 
     IEnumerator ShowDayPopupRoutine(int day)
@@ -172,7 +173,6 @@ public class TimeGameplayManager : MonoBehaviour
         if (dayPopupPanel != null)
         {
             if (dayPopupText != null) dayPopupText.text = $"DAY {day}";
-
             dayPopupPanel.SetActive(true);
             yield return new WaitForSeconds(dayPopupDuration);
             dayPopupPanel.SetActive(false);
