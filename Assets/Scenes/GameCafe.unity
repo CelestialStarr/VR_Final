@@ -8246,6 +8246,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 602002537}
     m_Modifications:
+    - target: {fileID: 2482363001952073328, guid: e5db301629853dd4a99835fa70099d79,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482363001952073328, guid: e5db301629853dd4a99835fa70099d79,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 3356991306335605903, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
       propertyPath: m_Text
@@ -24172,7 +24182,6 @@ GameObject:
   - component: {fileID: 1261026585}
   - component: {fileID: 1261026584}
   - component: {fileID: 1261026586}
-  - component: {fileID: 1261026587}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -24223,20 +24232,6 @@ MonoBehaviour:
   safeItemData: {fileID: 0}
   phoneSystem: {fileID: 0}
   targetGoldAmount: 10
---- !u!114 &1261026587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1261026583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 513cd37d4e91577468974ca5083f6968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storyStage: 0
-  money: 0
 --- !u!1001 &1261211403
 PrefabInstance:
   m_ObjectHideFlags: 0
