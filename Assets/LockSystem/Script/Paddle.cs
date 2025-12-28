@@ -7,6 +7,10 @@ public class Paddle : MonoBehaviour
     [Tooltip("Paddle Bool")]
     public LockSystem.PaddleID targetPaddleID;
 
+    [Header("音频设置")]
+    public AudioSource audioSource;
+    public AudioClip soundClip;
+
     public string clipName = "Unlock";
 
     private bool hasTriggered = false;
@@ -15,6 +19,18 @@ public class Paddle : MonoBehaviour
     void Start()
     {
         animComp = GetComponent<Animation>();
+    }
+    public void PlaySoundEvent()
+    {
+        if (audioSource != null && soundClip != null)
+        {
+            audioSource.PlayOneShot(soundClip);
+            Debug.Log("动画触发了音效！");
+        }
+        else
+        {
+            Debug.LogWarning("缺少 AudioSource 或 AudioClip！");
+        }
     }
     void OnTriggerEnter(Collider other)
     {

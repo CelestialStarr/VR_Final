@@ -3,22 +3,30 @@ using UnityEngine.UI;
 
 public class MentorDialoguePanel_Legacy : MonoBehaviour
 {
-    [Header("UI")]
+    [Header("UI Main")]
+    // бя NEW: Drag your entire UI Panel (the parent object) here
+    public GameObject uiPanel;
+
+    [Header("UI Elements")]
     public Text dialogueText;
     public Button continueButton;
 
     [Header("Rewards")]
-    public ItemData lockpickItem; // DRAG LOCKPICK ITEM DATA HERE
+    public ItemData lockpickItem;
 
     [Header("Dialogue Lines")]
-    [TextArea] public string[] normalLines;       // Default chat
-    [TextArea] public string[] finalRewardLines;  // Ending chat (Stage 3)
+    [TextArea] public string[] normalLines;
+    [TextArea] public string[] finalRewardLines;
 
     private string[] activeLines;
     private int index = 0;
 
     void Start()
     {
+        // бя Ensure the panel is visible when game starts
+        if (uiPanel != null)
+            uiPanel.SetActive(true);
+
         if (continueButton != null)
             continueButton.onClick.AddListener(Advance);
 
@@ -31,17 +39,24 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
         if (gs == null) return;
 
         // Check Stage
-        if (gs.storyStage == 3) // Player returned with the Safe
+        if (gs.storyStage == 3)
         {
             activeLines = finalRewardLines;
         }
-        else if (gs.storyStage == 4) // Already got the reward
+        else if (gs.storyStage == 4)
         {
             activeLines = new string[] { "Go use your new tools." };
         }
         else
         {
             activeLines = normalLines;
+        }
+
+        // Safety Check (Prevention for IndexOutOfRange)
+        if (activeLines == null || activeLines.Length == 0)
+        {
+            if (dialogueText != null) dialogueText.text = "...";
+            return;
         }
 
         // Start Dialogue
@@ -64,20 +79,39 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
 
     void ShowLine(int i)
     {
-        if (dialogueText != null)
-            dialogueText.text = activeLines[i];
+        if (dialogueText == null) return;
+
+        // Safety check
+        if (i < 0 || i >= activeLines.Length) return;
+
+        dialogueText.text = activeLines[i];
     }
 
     void EndDialogue()
     {
-        // Give Reward ONLY if finishing Stage 3
+        // 1. Give Rewards logic
         if (GameState.Instance != null && GameState.Instance.storyStage == 3)
         {
             GiveRewards();
         }
 
-        if (dialogueText != null)
-            dialogueText.text = "--- End ---";
+        // 2. бя Hide the UI
+        Debug.Log("Dialogue Finished. Closing UI.");
+
+        if (uiPanel != null)
+        {
+            // Option A: Hide the whole panel (Recommended)
+            uiPanel.SetActive(false);
+        }
+        else
+        {
+            // Option B: Fallback - Hide individual elements if panel is not assigned
+            if (dialogueText != null) dialogueText.gameObject.SetActive(false);
+            if (continueButton != null) continueButton.gameObject.SetActive(false);
+
+            // Option C: Hide this entire object (if the script is on the panel itself)
+            // gameObject.SetActive(false);
+        }
     }
 
     void GiveRewards()
@@ -86,12 +120,10 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
 
         if (lockpickItem != null && InventoryManager.Instance != null)
         {
-            // Give 2 Lockpicks
             InventoryManager.Instance.AddItem(lockpickItem);
             InventoryManager.Instance.AddItem(lockpickItem);
         }
 
-        // Set Stage to 4 so we don't give rewards again
         GameState.Instance.storyStage = 4;
     }
 }
