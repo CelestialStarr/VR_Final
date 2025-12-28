@@ -814,13 +814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 1
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &64568977
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2197,21 +2190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ee8fe204caf487eb793863066aef51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methodToCall:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: HandleCoverCloseClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!64 &153934058
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2788,13 +2766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 2
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &176154533
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3139,13 +3110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 2
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &219300720
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3944,13 +3908,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 2
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &267185793
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4482,13 +4439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 1
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &313000063
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5450,13 +5400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 2
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &346196562
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5690,13 +5633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 0
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &364918589
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5816,13 +5752,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 3
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &365940523
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7244,13 +7173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 3
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &494519372
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7682,13 +7604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 1
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &517246686
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8253,13 +8168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 3
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &572610939
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11535,21 +11443,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ee8fe204caf487eb793863066aef51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methodToCall:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: HandleCoverCloseClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!64 &750031222
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12020,13 +11913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 2
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &788033836
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12146,13 +12032,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 0
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &808759655
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12272,13 +12151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 1
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &809805282
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12989,13 +12861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 1
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &849993713
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13483,13 +13348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 0
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &883086103
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15561,13 +15419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 3
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1013351766
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16112,13 +15963,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 0
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1040472164
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16904,13 +16748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 2
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1098762042
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19024,13 +18861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 1
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1238038885
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19470,13 +19300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 2
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1258864346
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20786,13 +20609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 1
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1317198813
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22154,13 +21970,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 0
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1409481272
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23087,21 +22896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ee8fe204caf487eb793863066aef51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methodToCall:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: HandleCoverCloseClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!64 &1463095850
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24744,13 +24538,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 3
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1576165853
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26652,13 +26439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 2
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1665847650
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27284,13 +27064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 3
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1692583185
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27819,21 +27592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ee8fe204caf487eb793863066aef51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methodToCall:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: HandleCoverCloseClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!64 &1725664799
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27953,21 +27711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ee8fe204caf487eb793863066aef51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methodToCall:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: HandleCoverCloseClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!64 &1758362632
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28087,21 +27830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ee8fe204caf487eb793863066aef51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methodToCall:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: HandleCoverCloseClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!64 &1758740372
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28481,13 +28209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 3
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1768641415
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30615,13 +30336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 1
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1933973850
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31187,13 +30901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 1
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1973708574
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31313,13 +31020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 2
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &1974288809
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32053,13 +31753,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 1
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &2013553599
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33095,13 +32788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43584eefe0746458ccf235feda284d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serveAsDifferentGameObject: {fileID: 0}
-  orderID: 2
-  AddToPlateBeforeServed: 1
-  plateOffset: {x: 0, y: 0, z: 0}
-  RegenerateProduct: 1
-  platePrefab: {fileID: 1927874038934084, guid: 36aa94bb9e7364945ad8a487c4c3ee62,
-    type: 3}
 --- !u!64 &2079648727
 MeshCollider:
   m_ObjectHideFlags: 0
