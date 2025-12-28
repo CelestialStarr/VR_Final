@@ -5,8 +5,12 @@ using System;
 
 public class DayNightCycleURP_Final : MonoBehaviour
 {
+    // [核心修改 1] 静态变量：这是“全局保险箱”，切换场景不会消失
+    private static float _savedTime01 = -1f;
+    private static int _savedDayCount = -1;
+
     [Header("Time Settings")]
-    [Tooltip("游戏里一整天对应现实多少秒")]
+    [Tooltip("Real-time seconds for one in-game day")]
     public float dayLengthSeconds = 300f;
 
     [Range(0f, 1f)]
@@ -41,25 +45,42 @@ public class DayNightCycleURP_Final : MonoBehaviour
     [Range(0f, 1f)]
     public float spawnWindowEnd = 0.8f;
 
-    // 事件
     public event Action<int> OnDayChanged;
     public event Action<bool> OnNightStateChanged;
 
     private ColorAdjustments colorAdjustments;
     private LiftGammaGain liftGammaGain;
     private ShadowsMidtonesHighlights smh;
+
     private bool lastIsNight;
     private bool lastSpawnWindowActive;
 
     void Start()
     {
         CacheVolumeOverrides();
+
+        // [核心修改 2] 场景开始时，检查有没有存档数据
+        // 如果 savedTime01 大于等于0，说明我们是从别的场景过来的，需要读取数据
+        if (_savedTime01 >= 0f)
+        {
+            time01 = _savedTime01;
+            dayCount = _savedDayCount;
+            Debug.Log($"<color=green>已加载跨场景时间数据: Day {dayCount}, Time {time01}</color>");
+        }
+        else
+        {
+            // 如果是第一次运行游戏，就保存初始状态
+            _savedTime01 = time01;
+            _savedDayCount = dayCount;
+        }
+
         lastIsNight = IsNight();
         lastSpawnWindowActive = IsSpawnWindowActive();
 
-        // 初始刷新
         ApplyVisuals();
         ApplyNPCPopulation();
+
+        // 强制刷新一次UI，确保UI显示正确的天数
         OnDayChanged?.Invoke(dayCount);
     }
 
@@ -67,37 +88,45 @@ public class DayNightCycleURP_Final : MonoBehaviour
     {
         if (!autoRun) return;
 
-        // 正常时间流逝
         float timeStep = Time.deltaTime / Mathf.Max(1f, dayLengthSeconds);
         AdvanceTimeInternal(timeStep);
+
+        // [核心修改 3] 每一帧都把当前时间存入“保险箱”
+        // 这样无论什么时候切换场景，数据都是最新的
+        _savedTime01 = time01;
+        _savedDayCount = dayCount;
     }
 
-    // [新增] 核心方法：跳过时间（单位：游戏小时）
-    // 比如睡觉跳过8小时，就传 8.0f
+    // [新增] 如果你想在主菜单做“开始新游戏”按钮，必须调用这个方法！
+    // 否则新游戏开始时，时间还是旧的。
+    public void ResetGameTime()
+    {
+        _savedTime01 = 0f;
+        _savedDayCount = 1;
+        time01 = 0f;
+        dayCount = 1;
+        Debug.Log("游戏时间已重置！");
+    }
+
+    // --- 以下逻辑保持不变 ---
+
     public void SkipTime(float hoursToAdd)
     {
-        // 把小时换算成 0-1 的比例
-        // 8小时 = 8/24 = 0.3333...
         float timeStep = hoursToAdd / 24f;
         AdvanceTimeInternal(timeStep);
-
-        Debug.Log($"<color=yellow>睡觉！跳过了 {hoursToAdd} 小时</color>");
     }
 
-    // 内部处理时间增加、跨天、触发事件
     private void AdvanceTimeInternal(float amount)
     {
         time01 += amount;
 
-        // 如果超过1（即过了午夜）
         if (time01 >= 1f)
         {
-            time01 -= 1f; // 归位，比如 1.2 变成 0.2
-            dayCount++;   // 天数+1
-            OnDayChanged?.Invoke(dayCount); // 通知UI更新 "DAY X"
+            time01 -= 1f;
+            dayCount++;
+            OnDayChanged?.Invoke(dayCount);
         }
 
-        // 检查白天黑夜变化
         bool isNight = IsNight();
         bool spawnWindowActive = IsSpawnWindowActive();
 
@@ -126,7 +155,6 @@ public class DayNightCycleURP_Final : MonoBehaviour
     public bool IsNight() => time01 >= dayPortion;
     private bool IsSpawnWindowActive() => (time01 >= spawnWindowStart && time01 <= spawnWindowEnd);
 
-    // --- 视觉相关保持不变 ---
     private void CacheVolumeOverrides()
     {
         if (globalVolume == null || globalVolume.profile == null) return;
