@@ -109,3 +109,4 @@ public class ProximityAppearance : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, hideDistance);
     }
 }
+

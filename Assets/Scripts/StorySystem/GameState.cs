@@ -4,13 +4,15 @@ public class GameState : MonoBehaviour
 {
     public static GameState Instance { get; private set; }
 
-    // 0 = first mentor dialogue (send to street)
-    // 1 = returned after first mission (new mentor dialogue)
-    // 2 = next stages (you can expand later)
-    public int mentorStage = 0;
+    // STORY STAGES:
+    // 0 = Tutorial / Start
+    // 1 = Earning Money (Target: 50 Gold)
+    // 2 = Phone Call Received / Mission: Steal Safe
+    // 3 = Safe Stolen / Mission: Return to Cafe
+    // 4 = Mission Complete / Lockpick Reward Received
+    public int storyStage = 0;
 
-    // Mission flags
-    public bool firstMissionDone = false;
+    public int money = 0; // Syncs with InventoryManager
 
     void Awake()
     {
