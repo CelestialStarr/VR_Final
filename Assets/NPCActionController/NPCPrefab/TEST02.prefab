@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 6774274430778913878}
   - component: {fileID: 5048856481992609288}
   - component: {fileID: 3254373486707732102}
+  - component: {fileID: 144880767913071069}
   m_Layer: 0
   m_Name: TEST02
   m_TagString: Untagged
@@ -631,6 +632,23 @@ MonoBehaviour:
   OnExitAlert:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &144880767913071069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820457729128868181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e00a95484fd994997c078dbca8395b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRange: 10
+  stealableLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  eyesPoint: {fileID: 1285397761853519369}
 --- !u!1 &2962819089241619533
 GameObject:
   m_ObjectHideFlags: 0
