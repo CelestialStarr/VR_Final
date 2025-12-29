@@ -3422,6 +3422,7 @@ GameObject:
   - component: {fileID: 1824527430859198526}
   - component: {fileID: 1943610031383998334}
   - component: {fileID: 1687821681804438099}
+  - component: {fileID: 6607710691180212335}
   m_Layer: 0
   m_Name: Character_Gangster_01
   m_TagString: Untagged
@@ -3572,6 +3573,19 @@ MonoBehaviour:
   isInPrivateArea: 0
   alertUIPrefab: {fileID: 433503202671526683, guid: 25100592b59ca3041a9198d27eb74fc1,
     type: 3}
+--- !u!114 &6607710691180212335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470214635203965693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb73f6e746d61d42866878f1f6647ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWaypoint: {fileID: 0}
 --- !u!1 &6474047425834711589
 GameObject:
   m_ObjectHideFlags: 0
