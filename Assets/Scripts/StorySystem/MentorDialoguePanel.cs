@@ -101,10 +101,24 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
 
     void EndDialogue()
     {
-        // 1. Give Rewards logic
-        if (GameState.Instance != null && GameState.Instance.storyStage == 3)
+        // 获取当前阶段
+        int currentStage = (GameState.Instance != null) ? GameState.Instance.storyStage : -1;
+
+        // 逻辑 A：如果是 Stage 3 (交任务)，给奖励并进阶到 4
+        if (currentStage == 3)
         {
             GiveRewards();
+            // GiveRewards 里已经写了 storyStage = 4，所以这里不用重复写
+        }
+
+        // ★★★ 逻辑 B (新增)：如果是 Stage 0 (刚开始)，进阶到 1 (赚钱阶段) ★★★
+        else if (currentStage == 0)
+        {
+            if (GameState.Instance != null)
+            {
+                GameState.Instance.storyStage = 1;
+                Debug.Log("【剧情推进】新手对话结束，进入 Stage 1 (赚钱阶段)");
+            }
         }
 
         // 2. Hide the UI
@@ -115,6 +129,7 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
             uiPanel.SetActive(false);
         }
     }
+
 
     void GiveRewards()
     {
