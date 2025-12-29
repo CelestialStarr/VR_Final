@@ -66,14 +66,17 @@ public class AlertController : MonoBehaviour
     // 修改之前的 IncreaseAlert 函数，加入倍率计算
     public void IncreaseAlert(float amount)
     {
-        // 这里的 amount 是外部传入的基础增加量
-        // 最终增加量 = 基础量 * 特质倍率
         float finalAmount = amount * sensitivityMultiplier;
-
         currentAlertValue += finalAmount;
+        currentAlertValue = Mathf.Clamp(currentAlertValue, 0, maxAlertValue);
 
-        // ... (其余逻辑保持不变)
+        if (!isAlerted && currentAlertValue >= maxAlertValue)
+        {
+            EnterAlertState();
+            currentCooldownTimer = alertCooldownDuration;
+        }
     }
+
 
     /// <summary>
     /// 内部逻辑：处理自然降低
