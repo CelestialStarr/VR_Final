@@ -24,8 +24,8 @@ public class SafeLock : MonoBehaviour
     private AudioSource audioSource;
     private Rigidbody rb;
     private bool isInCorrectRange = false;
+    private Renderer myRenderer;
 
-    
 
 
 
@@ -33,11 +33,12 @@ public class SafeLock : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
+        // 获取渲染器
+        myRenderer = GetComponent<Renderer>();
 
         audioSource.loop = true;
         audioSource.playOnAwake = false;
     }
-
     void OnEnable()
     {
         ResetLock();
@@ -120,16 +121,20 @@ public class SafeLock : MonoBehaviour
     {
         isUnlocked = true;
         currentUnlockTimer = 0f;
-        audioSource.Stop();
+        if (audioSource.isPlaying) audioSource.Stop();
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.FreezeAll;
 
-        
+        // 【新增】视觉反馈：直接变成绿色！
+        if (myRenderer != null)
+        {
+            myRenderer.material.color = Color.green;
+        }
 
-        Debug.Log($"{name} 解锁成功！");
-
+        // 【新增】富文本 Log，让控制台信息更醒目
+        Debug.Log($"<color=green><b>【解锁成功】</b></color> 物体: {gameObject.name} 已开启！");
     }
 
 

@@ -840,7 +840,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 751
+  m_VersionIndex: 802
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -967,7 +967,7 @@ GameObject:
   - component: {fileID: 2992705104432346859}
   - component: {fileID: 2343419973880696802}
   - component: {fileID: 3935537058900093260}
-  - component: {fileID: 11642884999105308}
+  - component: {fileID: 2443213599562794404}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -1375,7 +1375,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &11642884999105308
+--- !u!114 &2443213599562794404
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1384,13 +1384,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1955953846946452152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e0cfd4c8391f154fbe1ccb17e88541f, type: 3}
+  m_Script: {fileID: 11500000, guid: cd0a80ff373c7394f88cccbc01fd9b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAngle: -15
-  rangeTolerance: 15
-  requiredTime: 3
-  maxSpeedMultiplier: 5
+  targetAngle: 150
+  rangeTolerance: 20
+  requiredTime: 1.5
+  maxSpeedMultiplier: 2
   currentUnlockTimer: 0
   isUnlocked: 0
 --- !u!1 &2508142926746994558
@@ -1578,7 +1578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6777483590438481515
 Transform:
   m_ObjectHideFlags: 0
@@ -1645,9 +1645,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locks:
-  - {fileID: 1126383572378660627}
-  - {fileID: 6404193765883698168}
-  - {fileID: 11642884999105308}
+  - {fileID: 5633648288981647341}
+  - {fileID: 1347848183579694828}
+  - {fileID: 2443213599562794404}
   safeDoor: {fileID: 0}
   lockPanel: {fileID: 3476598320360079918}
   hideDelay: 1
@@ -1668,7 +1668,7 @@ GameObject:
   - component: {fileID: 5080297348524891460}
   - component: {fileID: 7901665895211213000}
   - component: {fileID: 1269708945216066436}
-  - component: {fileID: 6404193765883698168}
+  - component: {fileID: 1347848183579694828}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -2076,7 +2076,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6404193765883698168
+--- !u!114 &1347848183579694828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2085,13 +2085,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5879810517045997711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e0cfd4c8391f154fbe1ccb17e88541f, type: 3}
+  m_Script: {fileID: 11500000, guid: cd0a80ff373c7394f88cccbc01fd9b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAngle: -150
-  rangeTolerance: 15
-  requiredTime: 3
-  maxSpeedMultiplier: 5
+  targetAngle: 180
+  rangeTolerance: 20
+  requiredTime: 1.5
+  maxSpeedMultiplier: 2
   currentUnlockTimer: 0
   isUnlocked: 0
 --- !u!1 &6811580711935377069
@@ -2111,7 +2111,7 @@ GameObject:
   - component: {fileID: 1047794008288716208}
   - component: {fileID: 2986461580724936955}
   - component: {fileID: 5530133815323618853}
-  - component: {fileID: 1126383572378660627}
+  - component: {fileID: 5633648288981647341}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -2519,7 +2519,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1126383572378660627
+--- !u!114 &5633648288981647341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2528,13 +2528,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6811580711935377069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e0cfd4c8391f154fbe1ccb17e88541f, type: 3}
+  m_Script: {fileID: 11500000, guid: cd0a80ff373c7394f88cccbc01fd9b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAngle: -90
-  rangeTolerance: 15
-  requiredTime: 3
-  maxSpeedMultiplier: 5
+  targetAngle: 45
+  rangeTolerance: 20
+  requiredTime: 1.5
+  maxSpeedMultiplier: 2
   currentUnlockTimer: 0
   isUnlocked: 0
 --- !u!1 &6827291975513917311
