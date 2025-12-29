@@ -1,144 +1,94 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
-public class FinalWallStop : MonoBehaviour
+[RequireComponent(typeof(CharacterController))]
+public class PlayerBodyController : MonoBehaviour
 {
-    [Header("必须设置")]
-    public CharacterController characterController;
-    public Transform headCamera;
-    public TeleportationProvider teleportProvider;
+    [Header("绑定")]
+    public Transform headCamera; // 拖入 Main Camera
 
-    [Header("防穿墙参数")]
-    public LayerMask wallLayers;
-    public float bodyRadius = 0.2f;
-    public float stepHeight = 0.35f;
-
-    [Header("重力参数")]
+    [Header("参数")]
+    public LayerMask wallLayers; // 设为 Default
     public float gravity = -9.81f;
-    public float stickToGroundForce = -2.0f;
+    public float bodyRadius = 0.2f;
 
-    // 内部状态
-    private bool _isTeleporting = false;
-    private float _teleportCooldown = 0f;
-    private Vector3 _verticalVelocity = Vector3.zero;
+    private CharacterController _cc;
+    private Vector3 _verticalVelocity;
+    private Vector3 _lastPos;
 
-    // --- 新增：用来记录上一帧的位置，用于手动检测传送 ---
-    private Vector3 _lastFramePos;
-    private bool _firstFrame = true;
-
-    private void OnEnable()
+    void Start()
     {
-        if (teleportProvider != null)
-            teleportProvider.endLocomotion += OnTeleportEnded;
+        _cc = GetComponent<CharacterController>();
+        _lastPos = transform.position;
     }
 
-    private void OnDisable()
+    void LateUpdate() // 使用 LateUpdate 确保在头动了之后再跟
     {
-        if (teleportProvider != null)
-            teleportProvider.endLocomotion -= OnTeleportEnded;
-    }
+        if (headCamera == null) return;
 
-    private void OnTeleportEnded(LocomotionSystem system)
-    {
-        _isTeleporting = true;
-        _teleportCooldown = 0.2f;
-        _verticalVelocity = Vector3.zero;
-    }
+        // 1. 【核心】手动同步胶囊体到头的位置
+        // 既然关掉了 XRBodyTransformer，我们必须自己做这一步！
+        Vector3 headLocalPos = transform.InverseTransformPoint(headCamera.position);
+        _cc.center = new Vector3(headLocalPos.x, _cc.center.y, headLocalPos.z);
 
-    private void Update()
-    {
-        if (_isTeleporting)
+        // 2. 检测是否发生了传送 (瞬移)
+        // 如果一帧内 Origin 移动超过 0.5米 (由上面的传送脚本触发)，这帧就不做物理检测
+        if (Vector3.Distance(transform.position, _lastPos) > 0.5f)
         {
-            _teleportCooldown -= Time.deltaTime;
-            if (_teleportCooldown <= 0) _isTeleporting = false;
-        }
-    }
-
-    private void LateUpdate()
-    {
-        if (headCamera == null || characterController == null) return;
-
-        // 初始化第一帧
-        if (_firstFrame)
-        {
-            _lastFramePos = transform.position;
-            _firstFrame = false;
+            _verticalVelocity = Vector3.zero;
+            _lastPos = transform.position;
             return;
         }
 
-        // =================================================================
-        // 1. 【核心修复】手动检测：这一帧是否发生了瞬移？
-        // =================================================================
-        // 这里的逻辑是：如果官方脚本在 Update 里把我们移到了远处，
-        // 那么在 LateUpdate 里，当前位置和上一帧位置的距离会非常大。
-        float moveDist = Vector3.Distance(transform.position, _lastFramePos);
-
-        // 如果一帧内移动超过 0.5米，说明肯定是传送了！
-        if (moveDist > 0.5f)
-        {
-            // 既然是传送，强制进入“无敌状态”
-            _isTeleporting = true;
-            _teleportCooldown = 0.2f; // 冷却一点时间
-            _verticalVelocity = Vector3.zero; // 清空重力速度
-
-            // 重要：更新上一帧位置，然后直接退出，不执行任何重力或推人！
-            _lastFramePos = transform.position;
-            return;
-        }
-
-        // 如果正在传送冷却期，只更新位置记录，不干活
-        if (_isTeleporting)
-        {
-            _lastFramePos = transform.position;
-            return;
-        }
-
-        // =================================================================
-        // 2. 只有确认没有传送，才执行重力和防穿墙
-        // =================================================================
-
+        // 3. 应用重力
         ApplyGravity();
-        CheckAndPushBackFromWalls();
 
-        // 这一帧结束，记录位置
-        _lastFramePos = transform.position;
+        // 4. 防穿墙推回
+        // 因为我们上面已经把 center 同步到了头的位置，
+        // 现在 _cc.bounds 就是你身体的真实位置
+        CheckCollision();
+
+        _lastPos = transform.position;
     }
 
-    private void ApplyGravity()
+    void ApplyGravity()
     {
-        if (characterController.isGrounded)
+        if (_cc.isGrounded && _verticalVelocity.y < 0)
         {
-            if (_verticalVelocity.y < 0)
-            {
-                _verticalVelocity.y = stickToGroundForce;
-            }
+            _verticalVelocity.y = -2f; // 吸附地面
         }
         else
         {
             _verticalVelocity.y += gravity * Time.deltaTime;
         }
-
-        characterController.Move(_verticalVelocity * Time.deltaTime);
+        _cc.Move(_verticalVelocity * Time.deltaTime);
     }
 
-    private void CheckAndPushBackFromWalls()
+    void CheckCollision()
     {
-        Vector3 feetPos = transform.position;
-        Vector3 currentHeadPos = headCamera.position;
-        Vector3 rayStart = feetPos + Vector3.up * stepHeight;
+        // 简单的防穿墙：如果胶囊体现在嵌在墙里，把它推出来
+        // 获取胶囊体的上下底圆心
+        Vector3 bottom = transform.TransformPoint(_cc.center + Vector3.down * (_cc.height / 2f - _cc.radius));
+        Vector3 top = transform.TransformPoint(_cc.center + Vector3.up * (_cc.height / 2f - _cc.radius));
 
-        Vector3 targetBodyPos = new Vector3(currentHeadPos.x, rayStart.y, currentHeadPos.z);
-        Vector3 direction = targetBodyPos - rayStart;
-        float dist = direction.magnitude;
+        // 稍微抬高一点 bottom 以免碰到地板
+        bottom += Vector3.up * 0.2f;
 
-        if (dist > 0.001f)
+        // 检测周围有没有墙
+        Collider[] hits = Physics.OverlapCapsule(bottom, top, bodyRadius, wallLayers);
+
+        foreach (var hit in hits)
         {
-            if (Physics.SphereCast(rayStart, bodyRadius, direction.normalized, out RaycastHit hit, dist + 0.05f, wallLayers))
+            // 如果撞墙，计算推离方向
+            if (Physics.ComputePenetration(
+                _cc, transform.position, transform.rotation,
+                hit, hit.transform.position, hit.transform.rotation,
+                out Vector3 dir, out float dist))
             {
-                Vector3 pushBack = -direction.normalized * (dist - hit.distance + 0.01f);
-                pushBack.y = 0;
-                characterController.Move(pushBack);
+                // 只在水平方向推，不把你推到天上去
+                dir.y = 0;
+                dir.Normalize();
+                _cc.Move(dir * (dist + 0.01f));
             }
         }
     }
