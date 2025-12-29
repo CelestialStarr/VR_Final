@@ -102827,6 +102827,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 41b05c896e50d234eae815a9d1ec8c25, type: 3}
+--- !u!1 &997834951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8327779124392276232, guid: 4ccd1af04a6669e439c01b6ebcae0415,
+    type: 3}
+  m_PrefabInstance: {fileID: 1878894364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &997989785 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1719411279065754, guid: ffe16f9903d0b604aab93d16dfb3281d,
@@ -221180,7 +221186,7 @@ PrefabInstance:
     - target: {fileID: 812159033186955054, guid: 4ccd1af04a6669e439c01b6ebcae0415,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1102284345164745456, guid: 4ccd1af04a6669e439c01b6ebcae0415,
         type: 3}
@@ -221211,6 +221217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PhysicsLayerMask.m_Bits
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482453975317545129, guid: 4ccd1af04a6669e439c01b6ebcae0415,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8800652464327470952, guid: 4ccd1af04a6669e439c01b6ebcae0415,
         type: 3}
@@ -221311,6 +221322,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 685866671}
+    - targetCorrespondingSourceObject: {fileID: 8327779124392276232, guid: 4ccd1af04a6669e439c01b6ebcae0415,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2086752747}
   m_SourcePrefab: {fileID: 100100000, guid: 4ccd1af04a6669e439c01b6ebcae0415, type: 3}
 --- !u!1 &1878894365 stripped
 GameObject:
@@ -221320,14 +221335,14 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1878894366 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8482453975317545129, guid: 4ccd1af04a6669e439c01b6ebcae0415,
+  m_CorrespondingSourceObject: {fileID: 3590304667755876125, guid: 4ccd1af04a6669e439c01b6ebcae0415,
     type: 3}
   m_PrefabInstance: {fileID: 1878894364}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fa7b4195685c3846be746c74f0ab2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1878894367 stripped
@@ -221366,12 +221381,6 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 1878894364}
   m_PrefabAsset: {fileID: 0}
---- !u!143 &1878894372 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 4290378622173113820, guid: 4ccd1af04a6669e439c01b6ebcae0415,
-    type: 3}
-  m_PrefabInstance: {fileID: 1878894364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1878894373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221384,16 +221393,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b84266c500e4c1469c116a9f0bf71ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 1878894372}
   headCamera: {fileID: 1878894370}
-  teleportProvider: {fileID: 1878894366}
   wallLayers:
     serializedVersion: 2
     m_Bits: 1
-  bodyRadius: 0.2
-  stepHeight: 0.35
   gravity: -9.81
-  stickToGroundForce: -2
+  bodyRadius: 0.2
 --- !u!114 &1878894374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251150,6 +251155,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f87d57168340fe24093f99cf92ad0cc4, type: 3}
+--- !u!114 &2086752747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997834951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41133798ac0aab43b84bc2f16b3295d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Mediator: {fileID: 1878894366}
+  m_TransformationPriority: 20
+  m_DelayTime: 0
 --- !u!1001 &2086807470
 PrefabInstance:
   m_ObjectHideFlags: 0
