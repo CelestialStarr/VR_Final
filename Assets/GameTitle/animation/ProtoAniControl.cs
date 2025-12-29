@@ -13,6 +13,6 @@ public class ProtoAniControl : MonoBehaviour
     }
     public void LoadTownScene()
     {
-        SceneManager.LoadScene("Town");
+        SceneManager.LoadScene("GameCafe");
     }
 }
