@@ -9,7 +9,7 @@ public class PoliceAI : MonoBehaviour
     public PoliceState currentState = PoliceState.Idle;
 
     [Header("…Ë÷√")]
-    [SerializeField] private float catchDistance = 1.5f;
+    [SerializeField] private float catchDistance = 2f;
     [SerializeField] private float chaseDuration = 30f;
     [SerializeField] private CatchUIManager uiManager;
 
