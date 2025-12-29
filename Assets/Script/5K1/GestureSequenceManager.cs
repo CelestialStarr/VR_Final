@@ -32,7 +32,7 @@ public class GestureGameManager : MonoBehaviour
         public GameObject gestureObject; // 挂载了 Image 的手势图标物体
     }
 
-    private string[] availableGestureNames = { "ThumbsUp", "ThumbsDown", "PalmUp", "Shaka", "Fist", "Point", "Grab" };
+    private string[] availableGestureNames = { "ThumbsUp", "ThumbsDown", "Shaka", "Fist", "OK", "Grab", "Gun", "Spider", "Yeah"};
     private List<string> _requiredSequence = new List<string>();
     private int _currentIndex = 0;
     private bool _isValidating = false;

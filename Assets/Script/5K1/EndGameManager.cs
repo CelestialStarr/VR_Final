@@ -4,7 +4,7 @@ public class EndGameManager : MonoBehaviour
 {
     [Header("结局条件设置")]
     [Tooltip("达成富有结局需要的金币")]
-    public int targetGold = 1000;
+    public int targetGold = 15000;
 
     [Tooltip("达成普通结局的天数 (例如填6，代表第5天结束进入第6天时触发)")]
     public int targetDayForNormalEnding = 6;

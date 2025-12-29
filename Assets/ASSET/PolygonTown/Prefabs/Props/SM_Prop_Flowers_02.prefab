@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8153978574220824398}
   - component: {fileID: 1983690907511791425}
   - component: {fileID: 8751642497085381220}
+  - component: {fileID: -3261418453304656308}
   m_Layer: 0
   m_Name: SM_Prop_Flowers_02
   m_TagString: Untagged
@@ -399,3 +400,16 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 4f54769146c6d0048b12aa4d94b3ea6a, type: 2}
   stealSuccessSound: {fileID: 0}
   stealDetection: {fileID: 0}
+--- !u!114 &-3261418453304656308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231726523702888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ad7d8f39abba64b905bdd322a9b0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRange: 2
