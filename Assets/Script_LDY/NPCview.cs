@@ -93,13 +93,6 @@ public class NPCVision : MonoBehaviour
                     }
                 }
 
-                if (alertUI != null && !hasAlertedPolice)
-                {
-                    alertUI.SetActive(true);
-                    CancelInvoke(nameof(HideAlertUI));
-                    Invoke(nameof(HideAlertUI), alertUIDuration);
-                }
-
                 return;
             }
 
