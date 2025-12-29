@@ -80,6 +80,7 @@ public class NPCVision : MonoBehaviour
             // =================================================
             if (isInPrivateArea && hitObj.CompareTag("Player"))
             {
+                Debug.Log("See Player");
                 // 确保引用了 AlertController
                 if (alertController != null)
                 {

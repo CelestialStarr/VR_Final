@@ -127,6 +127,8 @@ public class AlertController : MonoBehaviour
     {
         isAlerted = true;
         Debug.Log("进入警戒状态！保持警惕30秒！");
+        if (PoliceManager.Instance != null)
+            PoliceManager.Instance.DispatchNearestPolice(transform.position);
         OnEnterAlert?.Invoke();
     }
 
