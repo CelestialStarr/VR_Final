@@ -14,11 +14,17 @@ public class CatchUIManager : MonoBehaviour
 
     [Header("时间设置")]
     [SerializeField] private float arrestedTextDuration = 3.0f;
-    [SerializeField] private float groupSwitchDelay = 2.0f;     // 第一组出现后等待多久出第二组
-    [SerializeField] private float fadeDuration = 0.5f;         // 渐显需要多少秒
+    [SerializeField] private float groupSwitchDelay = 2.0f;
+    [SerializeField] private float fadeDuration = 0.5f;
+
+    // [新增] 用于缓存 TimeGameplayManager
+    private TimeGameplayManager timeManager;
 
     void Start()
     {
+        // 1. 自动寻找场景里的 TimeGameplayManager
+        timeManager = FindFirstObjectByType<TimeGameplayManager>();
+
         if (arrestedTextObject != null) arrestedTextObject.SetActive(false);
         if (masterPanelObject != null) masterPanelObject.SetActive(false);
 
@@ -37,6 +43,9 @@ public class CatchUIManager : MonoBehaviour
 
     public void ShowCatchUI()
     {
+        // 如果之前有暂停游戏，这里确保界面能动，但如果你希望界面出现时游戏暂停，可以加 Time.timeScale = 0;
+        // 建议保持 Time.timeScale = 1 或者在 UI 动画播放时不暂停，视你需求而定。
+
         if (arrestedTextObject != null)
         {
             arrestedTextObject.SetActive(true);
@@ -90,11 +99,29 @@ public class CatchUIManager : MonoBehaviour
         if (arrestedTextObject != null) arrestedTextObject.SetActive(false);
     }
 
-    public void QuitGame()
+    // [修改核心] 将原来的 QuitGame 替换为这个方法
+    // 请记得在 Unity Inspector 里的 Button OnClick 事件重新绑定这个新方法！
+    public void GoSleepAndClose()
     {
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        Debug.Log("被抓获，强制送去睡觉...");
+
+        // 1. 执行睡觉逻辑
+        if (timeManager != null)
+        {
+            timeManager.PerformSleep();
+        }
+        else
+        {
+            // 防止没找到引用的保险措施
+            timeManager = FindFirstObjectByType<TimeGameplayManager>();
+            if (timeManager != null) timeManager.PerformSleep();
+        }
+
+        // 2. 关闭抓获的 UI 面板
+        if (masterPanelObject != null) masterPanelObject.SetActive(false);
+        if (arrestedTextObject != null) arrestedTextObject.SetActive(false);
+
+        // 3. 确保时间恢复流动 (如果你的抓获逻辑之前暂停了游戏，这里必须恢复)
+        Time.timeScale = 1f;
     }
 }

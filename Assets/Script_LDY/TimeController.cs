@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using System.Collections;
+using System; // 必须引用 System 才能用 Action
 
 public class TimeGameplayManager : MonoBehaviour
 {
@@ -8,16 +9,13 @@ public class TimeGameplayManager : MonoBehaviour
     public DayNightCycleURP_Final dayCycleScript;
 
     [Header("UI - Clock")]
-    [Tooltip("包含时间文字的Panel")]
     public GameObject clockPanel;
     private TextMeshProUGUI clockText;
     public bool updateEveryHalfHourOnly = true;
 
-    // [新增] UI - Day Status (常驻天数显示)
-    [Header("UI - Day Status (Persistent)")]
-    [Tooltip("常驻显示天数的Panel (类似于时钟)")]
+    [Header("UI - Day Status")]
     public GameObject dayStatusPanel;
-    private TextMeshProUGUI dayStatusText; // 自动获取
+    private TextMeshProUGUI dayStatusText;
 
     [Header("UI - Popups")]
     public GameObject dayPopupPanel;
@@ -26,20 +24,26 @@ public class TimeGameplayManager : MonoBehaviour
 
     [Header("UI - Fatigue / Work")]
     public GameObject workFatiguePopup;
-    // private TextMeshProUGUI workFatigueText; // 方案一：代码不控制文字内容
 
     [Header("Settings")]
-    public float fatigueThresholdHours = 16f;
+    public float fatigueThresholdHours = 16f; // 疲劳提示阈值
     public float sleepHours = 8f;
 
-    // 内部变量
-    private bool isClockVisible = false;
+    // [新增] 猝死阈值设置
+    [Tooltip("连续不睡觉导致死亡的小时数")]
+    public float deathThresholdHours = 72f;
 
+    // [新增] 死亡事件，通知裁判脚本
+    public event Action onFatigueDeath;
+
+    // 内部变量
     private float currentAwakeHours = 0f;
     private bool hasTriggeredFatiguePopup = false;
-
     private int lastDisplayedHour = -1;
     private int lastDisplayedMinute = -1;
+
+    // 防止死亡事件重复触发
+    private bool isDead = false;
 
     void Start()
     {
@@ -48,24 +52,13 @@ public class TimeGameplayManager : MonoBehaviour
 
         dayCycleScript.OnDayChanged += HandleDayChanged;
 
-        // --- 1. 自动查找组件 ---
         if (clockPanel != null) clockText = clockPanel.GetComponentInChildren<TextMeshProUGUI>();
-
-        // [新增] 查找常驻天数文字
         if (dayStatusPanel != null) dayStatusText = dayStatusPanel.GetComponentInChildren<TextMeshProUGUI>();
-
         if (dayPopupPanel != null) dayPopupText = dayPopupPanel.GetComponentInChildren<TextMeshProUGUI>();
-
-        // [注意] workFatigueText在方案一中不需要获取，因为我们不改它的字
-
-        // --- 2. 初始化UI状态 (默认隐藏) ---
-
 
         if (dayPopupPanel != null) dayPopupPanel.SetActive(false);
         if (workFatiguePopup != null) workFatiguePopup.SetActive(false);
 
-        // --- 3. 初始化数据显示 ---
-        // 游戏刚开始，也要显示当前是第几天
         UpdateDayStatusText(dayCycleScript.dayCount);
     }
 
@@ -76,6 +69,9 @@ public class TimeGameplayManager : MonoBehaviour
 
     void Update()
     {
+        // 如果已经死了，就不要再更新逻辑了
+        if (isDead) return;
+
         HandleInput();
         UpdateClockDisplay();
         UpdateFatigueLogic();
@@ -83,17 +79,16 @@ public class TimeGameplayManager : MonoBehaviour
 
     void HandleInput()
     {
-        // N键开关 HUD (时钟 + 天数)
-       
-
-        // K键睡觉
         if (Input.GetKeyDown(KeyCode.K))
         {
             PerformSleep();
         }
     }
 
-    void PerformSleep()
+    // ==========================================
+    // [核心修改] 这里加上了 public
+    // ==========================================
+    public void PerformSleep()
     {
         if (dayCycleScript == null) return;
         dayCycleScript.SkipTime(sleepHours);
@@ -101,16 +96,26 @@ public class TimeGameplayManager : MonoBehaviour
         hasTriggeredFatiguePopup = false;
         Debug.Log("玩家睡觉了，体力恢复，疲劳计时清零。");
     }
+    // ==========================================
 
     void UpdateFatigueLogic()
     {
         float gameHoursPassed = (Time.deltaTime / dayCycleScript.dayLengthSeconds) * 24f;
         currentAwakeHours += gameHoursPassed;
 
+        // 1. 疲劳提示 (16小时)
         if (currentAwakeHours >= fatigueThresholdHours && !hasTriggeredFatiguePopup)
         {
             TriggerFatiguePopup();
             hasTriggeredFatiguePopup = true;
+        }
+
+        // [新增] 2. 猝死判定 (72小时)
+        if (currentAwakeHours >= deathThresholdHours)
+        {
+            isDead = true;
+            Debug.Log("<color=red>玩家连续72小时未睡眠，触发猝死！</color>");
+            onFatigueDeath?.Invoke(); // 发送信号
         }
     }
 
@@ -147,23 +152,16 @@ public class TimeGameplayManager : MonoBehaviour
         }
     }
 
-    // --- 天数相关逻辑 ---
-
     void HandleDayChanged(int newDayCount)
     {
-        // 1. 触发中间的大弹窗 (DAY 2)
         StartCoroutine(ShowDayPopupRoutine(newDayCount));
-
-        // 2. [新增] 更新常驻的 UI 文字
         UpdateDayStatusText(newDayCount);
     }
 
-    // [新增] 专门用来更新常驻天数文字的方法
     void UpdateDayStatusText(int day)
     {
         if (dayStatusText != null)
         {
-            // 你可以在这里自定义格式，比如 "Day: 1" 或 "第 1 天"
             dayStatusText.text = $"Day {day}";
         }
     }
