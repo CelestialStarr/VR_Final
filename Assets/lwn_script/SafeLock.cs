@@ -50,27 +50,37 @@ public class SafeLock : MonoBehaviour
 
     void Update()
     {
-        if (isUnlocked) return;
-
-        float currentAngle = GetXAngleFromVector();
-        float diff = Mathf.Abs(Mathf.DeltaAngle(currentAngle, targetAngle));
-
-        if (diff <= rangeTolerance)
+        void Update()
         {
-            if (!isInCorrectRange)
+            if (isUnlocked) return;
+
+            float currentAngle = GetXAngleFromVector();
+            float diff = Mathf.Abs(Mathf.DeltaAngle(currentAngle, targetAngle));
+
+            // 【Debug】把这一行解除注释，看看每一帧的角度是多少
+            // Debug.Log($"当前角度: {currentAngle}, 目标差距: {diff}");
+
+            if (diff <= rangeTolerance)
             {
-                isInCorrectRange = true;
-                audioSource.Play();   // 只在“刚进入范围”时播一次
+                if (!isInCorrectRange)
+                {
+                    isInCorrectRange = true;
+
+                    // 【排查关键点】如果刚运行就打印这句话，说明你的旋钮一开始就摆对了位置！
+                    Debug.LogWarning($"检测到进入范围！触发播放。当前角度:{currentAngle}");
+
+                    audioSource.Play();
+                }
+
+                ProcessUnlock(diff);
             }
-
-            ProcessUnlock(diff);
-        }
-        else
-        {
-            if (isInCorrectRange)
+            else
             {
-                isInCorrectRange = false;
-                audioSource.Stop();   // 只在“刚离开范围”时停
+                if (isInCorrectRange)
+                {
+                    isInCorrectRange = false;
+                    audioSource.Stop();
+                }
             }
         }
 
