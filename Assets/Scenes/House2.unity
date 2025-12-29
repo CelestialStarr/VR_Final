@@ -155,6 +155,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1567770824411334033, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.815
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783847701192086262, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2270145678667276125, guid: cfc34518aae3b7746849297181a37903,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -205,6 +215,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2620940359546818858, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3152227815272037039, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.81499994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198421038561564064, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4436314169509766955, guid: cfc34518aae3b7746849297181a37903,
         type: 3}
       propertyPath: head
@@ -220,6 +245,16 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1878731780}
+    - target: {fileID: 6892229517223323264, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.81499994
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120978480798520323, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7213509703352173946, guid: cfc34518aae3b7746849297181a37903,
         type: 3}
       propertyPath: head
@@ -230,6 +265,11 @@ PrefabInstance:
       propertyPath: head
       value: 
       objectReference: {fileID: 2021939940}
+    - target: {fileID: 8897489692405482655, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.81499994
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2823,6 +2863,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1180450840582593758, guid: e046faa25448168449cfcb3d5ec8034a,
+        type: 3}
+      propertyPath: m_text
+      value: You can only get maximum 3 Parcle!
+      objectReference: {fileID: 0}
     - target: {fileID: 1205703907667105395, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
       propertyPath: m_Layer
@@ -3073,6 +3118,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789474634613817078, guid: e046faa25448168449cfcb3d5ec8034a,
+        type: 3}
+      propertyPath: unsellableItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c43dc1e1d3987c47a6e180dc464ae06,
+        type: 2}
+    - target: {fileID: 2789474634613817078, guid: e046faa25448168449cfcb3d5ec8034a,
+        type: 3}
+      propertyPath: maxTotalCapacity
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789474634613817078, guid: e046faa25448168449cfcb3d5ec8034a,
+        type: 3}
+      propertyPath: maxLimitedItemCount
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2789474634613817078, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}

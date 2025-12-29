@@ -7062,7 +7062,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8232145514407763821}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
         m_MethodName: SellAllItems
         m_Mode: 1
@@ -8680,6 +8680,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ending
       objectReference: {fileID: 0}
+    - target: {fileID: 1567770824411334033, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8230001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783847701192086262, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2270145678667276125, guid: cfc34518aae3b7746849297181a37903,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8730,6 +8740,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2620940359546818858, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3152227815272037039, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8230001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198421038561564064, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4436314169509766955, guid: cfc34518aae3b7746849297181a37903,
         type: 3}
       propertyPath: head
@@ -8745,6 +8770,16 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1854470793035768208}
+    - target: {fileID: 6892229517223323264, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8230001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120978480798520323, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7213509703352173946, guid: cfc34518aae3b7746849297181a37903,
         type: 3}
       propertyPath: head
@@ -8755,6 +8790,11 @@ PrefabInstance:
       propertyPath: head
       value: 
       objectReference: {fileID: 1854470793035768213}
+    - target: {fileID: 8897489692405482655, guid: cfc34518aae3b7746849297181a37903,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.823
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29280,8 +29320,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableDebugLogs: 1
-  safeItemData: {fileID: 11400000, guid: 25300bfafdfd56d4abc639ad6eaa7d9d, type: 2}
-  phoneSystem: {fileID: 0}
   targetGoldAmount: 50
 --- !u!1 &1064939830
 GameObject:
@@ -60116,26 +60154,26 @@ MonoBehaviour:
   dialogueText: {fileID: 906160608}
   continueButton: {fileID: 2137255519}
   lockpickItem: {fileID: 0}
-  normalLines:
-  - Welcome... Hmph. Stop staring around like a tourist. You think this is just a
-    regular cafe?
-  - Let me be straight with you. This is our Safe House. We do business here, and
-    we stay safe here.
-  - If you want to work for me, you better keep your eyes open and listen carefully.
-    I don't repeat myself.
-  - 'First lesson: Grab any valuable object to steal it. To move, just Point your
-    finger where you want to go to teleport.'
-  - Talk is cheap. Go out to the Streets now and test your nerve. Steal whatever
-    you can find.
-  - 'Two rules: Don''t get caught, and... don''t get greedy.'
-  - Bring the 'goods' back here when you're done. I'll give you a good price. Now
-    go, don't disappoint me.
-  - Earn 50 coins and you'll get a BIG deal.
-  finalRewardLines:
-  - Ha! I knew you could do it. You actually brought the necklace in the Safe back.
-  - You've earned this. Here are some Lockpicks. Use them to open locked doors and
-    chests.
-  - Now get out there. The real work begins now.
+  stage0_IntroLines:
+  - You arrive here, good. This place is not a cafe, it's a hideout.
+  - "If you want to work under me, then you\u2019d better learn the skills of a thief."
+  - Stealing is simple. Just pinch it with your left hand.
+  - "Don\u2019t get noticed. And don\u2019t get greedy."
+  - "Now go make yourself fifty coins. Once you\u2019ve got them, find your way back
+    and report to me."
+  - You can sell your goods here.
+  stage2_MoneyDoneLines:
+  - "Not bad. You\u2019ve earned fifty coins."
+  - "Now I\u2019ll teach you a few more things."
+  - Next, I want you to steal the necklace from the safe.
+  - "Come back to me once you\u2019re done."
+  stage3_RewardLines:
+  - Good work. You managed to steal what was inside the safe.
+  - "Now I\u2019ll show you how to pick a lock."
+  - "You can try opening other people\u2019s doors"
+  stage4_ReminderLines:
+  - Now you are a great thief.
+  - Well done.
 --- !u!114 &2137255519 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5289182684458692542, guid: e5db301629853dd4a99835fa70099d79,
@@ -72458,6 +72496,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5af65b5a7a1bc0c408708ea1033448ed, type: 3}
+--- !u!114 &8232145514407763821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6091189811276270233, guid: 5af65b5a7a1bc0c408708ea1033448ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 8232145514407763820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549746c6ddaefcf4d897fa48ccd828b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &8244672335529020734
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -18,6 +18,10 @@ public class PoliceAI : MonoBehaviour
     // 如果有多个身体部件，建议把它们放在同一个父物体下，然后拖那个父物体
     [SerializeField] private GameObject modelRoot;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource chaseAudio;
+
+
     private NavMeshAgent agent;
     private Animator animator;
     private Vector3 originalPosition;
@@ -68,6 +72,10 @@ public class PoliceAI : MonoBehaviour
 
         // 【核心修改】 接到命令，立刻显形！
         SetVisibility(true);
+        if (chaseAudio != null && !chaseAudio.isPlaying)
+        {
+            chaseAudio.Play();
+        }
     }
 
     // --- 内部逻辑 ---

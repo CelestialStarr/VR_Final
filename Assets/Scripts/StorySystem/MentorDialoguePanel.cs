@@ -14,62 +14,63 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
     public ItemData lockpickItem;
 
     [Header("Dialogue Lines")]
-    [TextArea] public string[] normalLines;
-    [TextArea] public string[] finalRewardLines;
+    [TextArea] public string[] stage0_IntroLines;      // Stage 0
+    [TextArea] public string[] stage2_MoneyDoneLines; // Stage 2 
+    [TextArea] public string[] stage3_RewardLines;    // Stage 3
+    [TextArea] public string[] stage4_ReminderLines;  // Stage 4
 
     private string[] activeLines;
     private int index = 0;
 
     void Start()
     {
-        // ★ 修改 1: Start 里只需要绑定按钮，剩下的交给 CheckStoryState
-        // 也就是“进游戏先检查一遍剧情”
         if (continueButton != null)
             continueButton.onClick.AddListener(Advance);
 
         CheckStoryState();
     }
 
-    // ★ 修改 2: 改成 public，这样如果你从外面（比如别的脚本）修改了 Stage，
-    // 可以喊一句这个函数，让面板重新根据新 Stage 弹出来！
+    //  核心：根据 Stage 选择“哪一组 Inspector 配的台词”
     public void CheckStoryState()
     {
         var gs = GameState.Instance;
         if (gs == null) return;
 
-        // 默认不显示面板，只有特定情况才打开
         bool shouldShowPanel = false;
 
-        // 情况 A：你是带着保险箱回来的 (Stage 3) -> 显示奖励对话
-        if (gs.storyStage == 3)
+        switch (gs.storyStage)
         {
-            activeLines = finalRewardLines;
-            shouldShowPanel = true;
-        }
-        // 情况 B：任务彻底完成 (Stage 4) -> 提醒你去用工具
-        else if (gs.storyStage == 4)
-        {
-            activeLines = new string[] { "Don't just stand there. Go try the lockpicks." };
-            shouldShowPanel = true;
-        }
-        // 情况 C：刚开始 (Stage 0) -> 可能你想显示个介绍？如果不想显示，这里也可以关掉
-        else if (gs.storyStage == 0)
-        {
-            activeLines = normalLines;
-            shouldShowPanel = true;
-        }
-        // 情况 D：赚钱中 (Stage 1) 或 刚接任务 (Stage 2) -> 师父不想理你
-        else
-        {
-            // ★★★ 关键修改：在这里直接关闭面板，不显示任何东西 ★★★
-            Debug.Log("当前阶段师父没有话要说，关闭面板。");
-            if (uiPanel != null) uiPanel.SetActive(false);
-            return; // 直接退出函数
+            case 0:
+                activeLines = stage0_IntroLines;
+                shouldShowPanel = true;
+                break;
+
+            case 2:
+                activeLines = stage2_MoneyDoneLines;
+                shouldShowPanel = true;
+                break;
+
+            case 3:
+                activeLines = stage3_RewardLines;
+                shouldShowPanel = true;
+                break;
+
+            case 4:
+                activeLines = stage4_ReminderLines;
+                shouldShowPanel = true;
+                break;
+
+            default:
+                // Stage 1 / 其他阶段：不显示
+                if (uiPanel != null) uiPanel.SetActive(false);
+                return;
         }
 
-        // --- 下面只处理需要显示的情况 ---
-
-        if (activeLines == null || activeLines.Length == 0) return;
+        if (activeLines == null || activeLines.Length == 0)
+        {
+            Debug.LogWarning($"Stage {gs.storyStage} 没有配置任何台词！");
+            return;
+        }
 
         if (uiPanel != null && shouldShowPanel)
             uiPanel.SetActive(true);
@@ -77,7 +78,6 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
         index = 0;
         ShowLine(0);
     }
-
 
     public void Advance()
     {
@@ -89,6 +89,7 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
             EndDialogue();
             return;
         }
+
         ShowLine(index);
     }
 
@@ -96,40 +97,29 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
     {
         if (dialogueText == null) return;
         if (i < 0 || i >= activeLines.Length) return;
+
         dialogueText.text = activeLines[i];
     }
 
     void EndDialogue()
     {
-        // 获取当前阶段
-        int currentStage = (GameState.Instance != null) ? GameState.Instance.storyStage : -1;
+        int currentStage = GameState.Instance != null ? GameState.Instance.storyStage : -1;
 
-        // 逻辑 A：如果是 Stage 3 (交任务)，给奖励并进阶到 4
-        if (currentStage == 3)
+        // Stage 0 → Stage 1
+        if (currentStage == 0)
+        {
+            GameState.Instance.storyStage = 1;
+            Debug.Log("【剧情推进】进入 Stage 1（赚钱阶段）");
+        }
+        // Stage 3 → Stage 4
+        else if (currentStage == 3)
         {
             GiveRewards();
-            // GiveRewards 里已经写了 storyStage = 4，所以这里不用重复写
         }
-
-        // ★★★ 逻辑 B (新增)：如果是 Stage 0 (刚开始)，进阶到 1 (赚钱阶段) ★★★
-        else if (currentStage == 0)
-        {
-            if (GameState.Instance != null)
-            {
-                GameState.Instance.storyStage = 1;
-                Debug.Log("【剧情推进】新手对话结束，进入 Stage 1 (赚钱阶段)");
-            }
-        }
-
-        // 2. Hide the UI
-        Debug.Log("Dialogue Finished. Closing UI.");
 
         if (uiPanel != null)
-        {
             uiPanel.SetActive(false);
-        }
     }
-
 
     void GiveRewards()
     {
@@ -141,12 +131,7 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
             InventoryManager.Instance.AddItem(lockpickItem);
         }
 
-        // ★ 修改 4: 给完东西立刻把 Stage 设为 4
-        // 这样下次对话就会变成 "Go use your new tools"，不会重复给奖励
-        if (GameState.Instance != null)
-        {
-            GameState.Instance.storyStage = 4;
-            Debug.Log("Story Updated: Stage set to 4.");
-        }
+        GameState.Instance.storyStage = 4;
+        Debug.Log("Story Updated: Stage set to 4.");
     }
 }
