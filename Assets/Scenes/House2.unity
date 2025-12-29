@@ -2066,17 +2066,17 @@ PrefabInstance:
     - target: {fileID: 1038926124949279690, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.537
+      value: -2.011
       objectReference: {fileID: 0}
     - target: {fileID: 1038926124949279690, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.711
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 1038926124949279690, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.209
+      value: 2.542
       objectReference: {fileID: 0}
     - target: {fileID: 1038926124949279690, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
@@ -29437,6 +29437,7 @@ GameObject:
   - component: {fileID: 6102494256760202190}
   - component: {fileID: 6102494256760202191}
   - component: {fileID: 6102494256760202192}
+  - component: {fileID: 6102494256760202193}
   m_Layer: 0
   m_Name: house2floor1
   m_TagString: Untagged
@@ -43457,6 +43458,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alertSystem: {fileID: 0}
+--- !u!114 &6102494256760202193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4018724819498998341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002e2775fd388e642b9e1be865ca04c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alertController: {fileID: 583584876}
+  alertUIPrefab: {fileID: 2119865370}
+  showUIThreshold: 30
+  uiOffset: {x: 0, y: 1.8, z: 0}
 --- !u!4 &6105580447785552898
 Transform:
   m_ObjectHideFlags: 0
@@ -49158,6 +49175,7 @@ GameObject:
   - component: {fileID: 7107034456386212526}
   - component: {fileID: 7107034456386212527}
   - component: {fileID: 7107034456386212528}
+  - component: {fileID: 7107034456386212529}
   m_Layer: 0
   m_Name: house2floor2
   m_TagString: Untagged
@@ -49248,6 +49266,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alertSystem: {fileID: 0}
+--- !u!114 &7107034456386212529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7107034456386212524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002e2775fd388e642b9e1be865ca04c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alertController: {fileID: 353654931}
+  alertUIPrefab: {fileID: 2119865370}
+  showUIThreshold: 30
+  uiOffset: {x: 0, y: 1.8, z: 0}
 --- !u!4 &7108370048711038817
 Transform:
   m_ObjectHideFlags: 0
@@ -61735,7 +61769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alertController: {fileID: 8931002198743326436}
-  alertUIPrefab: {fileID: 0}
+  alertUIPrefab: {fileID: 2119865370}
   showUIThreshold: 30
   uiOffset: {x: 0, y: 1.8, z: 0}
 --- !u!114 &8935650038681511246
