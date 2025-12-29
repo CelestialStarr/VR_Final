@@ -5,25 +5,30 @@ using System.Collections.Generic;
 public class InventoryUI : MonoBehaviour
 {
     [Header("UI 组件")]
-    public Transform contentContainer; // ScrollView 的 Content
-    public GameObject itemRowPrefab;   // Item Row 预制体
+    public Transform contentContainer;
+    public GameObject itemRowPrefab;
 
     private void Start()
     {
-        // 只负责监听数据变化
         if (InventoryManager.Instance != null)
         {
+            // 1. 订阅未来的变化
             InventoryManager.Instance.onInventoryChanged += UpdateUI;
-        }
 
-        // 不再控制 SetActive
-        // UI 是否显示由手势 / 其他脚本控制
+            // 2. ★★★ 关键修复：立刻刷新一次，显示当前已有的东西 ★★★
+            UpdateUI();
+        }
+        else
+        {
+            Debug.LogError("UI 报错：找不到 InventoryManager！请确保场景里有 GameManager 物体。");
+        }
     }
 
-    // 刷新 UI
     public void UpdateUI()
     {
-        // 清空旧内容
+        // 增加一行 Debug，帮你看看到底运行没运行
+        Debug.Log("UI 正在刷新显示...");
+
         foreach (Transform child in contentContainer)
         {
             Destroy(child.gameObject);
@@ -31,7 +36,6 @@ public class InventoryUI : MonoBehaviour
 
         if (InventoryManager.Instance == null) return;
 
-        // 根据背包数据生成 UI
         foreach (var slot in InventoryManager.Instance.backpackContent)
         {
             GameObject newRow = Instantiate(itemRowPrefab, contentContainer);
@@ -56,3 +60,4 @@ public class InventoryUI : MonoBehaviour
         }
     }
 }
+
