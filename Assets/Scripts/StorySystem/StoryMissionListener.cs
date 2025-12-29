@@ -91,21 +91,21 @@ public class StoryMissionListener : MonoBehaviour
                     // GameState.Instance.storyStage = 2;
                     // 显示电话
                     phoneSystem.ShowPhoneCall();
-                  //  Debug.LogError("【成功】已调用 phoneSystem.ShowPhoneCall()。请看屏幕！");
+                  Debug.LogError("【成功】已调用 phoneSystem.ShowPhoneCall()。请看屏幕！");
                 }
                 else
                 {
-                   // Debug.LogError("【配置错误】Phone System 没拖进 Inspector！电话无法显示！");
+                  Debug.LogError("【配置错误】Phone System 没拖进 Inspector！电话无法显示！");
                 }
             }
             else
             {
-              //  Debug.LogError($"【等待】钱还不够。还需要赚 {targetGoldAmount - currentGold} 金币。");
+              Debug.LogError($"【等待】钱还不够。还需要赚 {targetGoldAmount - currentGold} 金币。");
             }
         }
         else
         {
-            //Debug.LogError($"【跳过】剧情阶段不对。当前是 {GameState.Instance.storyStage}，但必须是 1 才能触发。");
+            Debug.LogError($"【跳过】剧情阶段不对。当前是 {GameState.Instance.storyStage}，但必须是 1 才能触发。");
         }
     }
 
@@ -118,14 +118,14 @@ public class StoryMissionListener : MonoBehaviour
         if (GameState.Instance == null || GameState.Instance.storyStage != 2)
         {
             // 如果你想调试，可以把下面这行注释打开，看看是不是阶段不对
-            // Debug.Log($"【等待】当前阶段是 {GameState.Instance.storyStage}，不是 2，不检查保险箱。");
+            Debug.Log($"【等待】当前阶段是 {GameState.Instance.storyStage}，不是 2，不检查保险箱。");
             return;
         }
 
         // 2. 检查必须配置了目标数据
         if (safeItemData == null)
         {
-           // Debug.LogError("【配置错误】Safe Item Data 没拖进 StoryMissionListener！");
+           Debug.LogError("【配置错误】Safe Item Data 没拖进 StoryMissionListener！");
             return;
         }
 
