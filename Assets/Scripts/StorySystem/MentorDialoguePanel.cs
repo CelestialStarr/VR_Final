@@ -37,49 +37,47 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
         var gs = GameState.Instance;
         if (gs == null) return;
 
-        Debug.Log("Checking Story State... Current Stage: " + gs.storyStage);
+        // 默认不显示面板，只有特定情况才打开
+        bool shouldShowPanel = false;
 
-        // --- 修正后的逻辑 ---
-
-        // 情况 A：你是带着保险箱回来的 (Stage 3)
-        // 这里的数字必须是 3！不能是 4！
+        // 情况 A：你是带着保险箱回来的 (Stage 3) -> 显示奖励对话
         if (gs.storyStage == 3)
         {
-            Debug.Log("检测到 Stage 3 -> 加载奖励对话");
             activeLines = finalRewardLines;
+            shouldShowPanel = true;
         }
-        // 情况 B：奖励已经领完了 (Stage 4)
-        // 必须加这个判断，否则你领完奖励再点师父，他又会说第一句话
+        // 情况 B：任务彻底完成 (Stage 4) -> 提醒你去用工具
         else if (gs.storyStage == 4)
         {
-            Debug.Log("检测到 Stage 4 -> 任务已完成");
-            // 这里可以写死一句话，或者你在 Inspector 里加一个 completedLines 数组
             activeLines = new string[] { "Don't just stand there. Go try the lockpicks." };
+            shouldShowPanel = true;
         }
-        // 情况 C：其他情况 (Stage 0, 1, 2)
+        // 情况 C：刚开始 (Stage 0) -> 可能你想显示个介绍？如果不想显示，这里也可以关掉
+        else if (gs.storyStage == 0)
+        {
+            activeLines = normalLines;
+            shouldShowPanel = true;
+        }
+        // 情况 D：赚钱中 (Stage 1) 或 刚接任务 (Stage 2) -> 师父不想理你
         else
         {
-            Debug.Log("检测到其他 Stage -> 加载默认对话");
-            activeLines = normalLines;
+            // ★★★ 关键修改：在这里直接关闭面板，不显示任何东西 ★★★
+            Debug.Log("当前阶段师父没有话要说，关闭面板。");
+            if (uiPanel != null) uiPanel.SetActive(false);
+            return; // 直接退出函数
         }
 
-        // --- 下面保持不变 ---
+        // --- 下面只处理需要显示的情况 ---
 
-        // Safety Check
-        if (activeLines == null || activeLines.Length == 0)
-        {
-            if (dialogueText != null) dialogueText.text = "...";
-            return;
-        }
+        if (activeLines == null || activeLines.Length == 0) return;
 
-        // 只要有话要说，就强制弹窗
-        if (uiPanel != null)
+        if (uiPanel != null && shouldShowPanel)
             uiPanel.SetActive(true);
 
-        // Start Dialogue
         index = 0;
         ShowLine(0);
     }
+
 
     public void Advance()
     {
