@@ -15381,6 +15381,7 @@ MonoBehaviour:
   chaseDuration: 30
   uiManager: {fileID: 7956428326677081964}
   modelRoot: {fileID: 162745440}
+  chaseAudio: {fileID: 0}
 --- !u!195 &162745444
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -47994,6 +47995,7 @@ MonoBehaviour:
   chaseDuration: 30
   uiManager: {fileID: 7956428326677081964}
   modelRoot: {fileID: 465838619}
+  chaseAudio: {fileID: 0}
 --- !u!195 &465838623
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -150511,6 +150513,7 @@ MonoBehaviour:
   chaseDuration: 30
   uiManager: {fileID: 7956428326677081964}
   modelRoot: {fileID: 1271730714}
+  chaseAudio: {fileID: 0}
 --- !u!195 &1271730718
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -179326,6 +179329,7 @@ MonoBehaviour:
   chaseDuration: 30
   uiManager: {fileID: 7956428326677081964}
   modelRoot: {fileID: 1485799052}
+  chaseAudio: {fileID: 0}
 --- !u!195 &1485799056
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -207632,8 +207636,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 149884, guid: f52305ebd52a6864b8b990637a290c75,
+        type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 1682967046}
   m_SourcePrefab: {fileID: 100100000, guid: f52305ebd52a6864b8b990637a290c75, type: 3}
+--- !u!1 &1682967045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 149884, guid: f52305ebd52a6864b8b990637a290c75,
+    type: 3}
+  m_PrefabInstance: {fileID: 1682967044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1682967046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682967045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ea88c501597ed439a4122d91fb5ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  safeData: {fileID: 11400000, guid: 25300bfafdfd56d4abc639ad6eaa7d9d, type: 2}
+  returnSceneName: GameCafe
 --- !u!1001 &1683103021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -227347,6 +227375,7 @@ MonoBehaviour:
   chaseDuration: 30
   uiManager: {fileID: 7956428326677081964}
   modelRoot: {fileID: 1804412203}
+  chaseAudio: {fileID: 0}
 --- !u!195 &1804412206
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -229920,6 +229949,7 @@ MonoBehaviour:
   chaseDuration: 30
   uiManager: {fileID: 7956428326677081964}
   modelRoot: {fileID: 1824252227}
+  chaseAudio: {fileID: 0}
 --- !u!195 &1824252231
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -241834,6 +241864,7 @@ MonoBehaviour:
   chaseDuration: 30
   uiManager: {fileID: 7956428326677081964}
   modelRoot: {fileID: 1898134230}
+  chaseAudio: {fileID: 0}
 --- !u!195 &1898134234
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -335460,6 +335491,7 @@ MonoBehaviour:
   chaseDuration: 30
   uiManager: {fileID: 7956428326677081964}
   modelRoot: {fileID: 8390227815391290189}
+  chaseAudio: {fileID: 0}
 --- !u!33 &5063784959033463417
 MeshFilter:
   m_ObjectHideFlags: 0
