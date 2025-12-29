@@ -2755,6 +2755,11 @@ PrefabInstance:
       objectReference: {fileID: 426384869}
     - target: {fileID: 2789474634613817078, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
+      propertyPath: currentGold
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789474634613817078, guid: e046faa25448168449cfcb3d5ec8034a,
+        type: 3}
       propertyPath: unsellableItem
       value: 
       objectReference: {fileID: 11400000, guid: 8c43dc1e1d3987c47a6e180dc464ae06,
@@ -7262,7 +7267,7 @@ RectTransform:
   m_GameObject: {fileID: 281803140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0036189472, y: 0.0036189472, z: 0.0036189472}
+  m_LocalScale: {x: 0.0072653987, y: 0.0072653987, z: 0.0072653987}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1105650052}
@@ -7317,7 +7322,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 352519334}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
         m_MethodName: SellAllItems
         m_Mode: 1
@@ -9398,6 +9403,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346196559}
   m_Mesh: {fileID: 4300000, guid: bf4814e4b8ebf4abdb8c75b7f2afeaef, type: 3}
+--- !u!114 &352519334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2789474634613817078, guid: e046faa25448168449cfcb3d5ec8034a,
+    type: 3}
+  m_PrefabInstance: {fileID: 119417603}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549746c6ddaefcf4d897fa48ccd828b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &355320793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12559,17 +12576,17 @@ PrefabInstance:
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.7852693
+      value: 8.67665
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 4.7852693
+      value: 8.67665
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.78527
+      value: 8.676652
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
@@ -60234,17 +60251,17 @@ PrefabInstance:
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.7852693
+      value: 7.7459154
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 4.7852693
+      value: 7.7459154
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.78527
+      value: 7.745917
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79,
         type: 3}
