@@ -20,14 +20,14 @@ public class InventoryManager : MonoBehaviour
     public event Action<int> onGoldChanged;
 
     [Header("限制/不可售卖设置")]
-    // ★ 修改点1：这里改成 ItemData 类型，你可以直接把 Parcle 的数据文件拖进来
-    public ItemData unsellableItem;
+    public ItemData unsellableItem; // 你的 Parcle 数据
     public int maxLimitedItemCount = 5;
 
     [Header("背包设置")]
     public int maxTotalCapacity = 30;
     public List<InventorySlot> backpackContent = new List<InventorySlot>();
 
+    // 事件定义
     public event Action onInventoryChanged;
     public event Action onToggleBag;
     public event Action onBagFull;
@@ -45,34 +45,31 @@ public class InventoryManager : MonoBehaviour
     }
 
     // ============================================
-    // ★ 一键出售逻辑
+    // ★ 新增：允许外部脚本触发 UI 事件的公共通道
     // ============================================
+    public void TriggerBagFullEvent()
+    {
+        // 这样外部脚本就能通过 Manager 间接触发 UI 提示了
+        onBagFull?.Invoke();
+    }
+
+    public void TriggerItemLimitEvent(string message)
+    {
+        onItemLimitReached?.Invoke(message);
+    }
+    // ============================================
+
+    // 一键出售逻辑 (保持不变)
     public void SellAllItems()
     {
-        // ★ 调试第一步：只要点击按钮，Console里必须出现这句话。如果没有，说明按钮绑定坏了。
         Debug.Log("正在尝试出售物品...");
-
         int totalEarnings = 0;
-        int soldCount = 0; // 记录卖了多少个格子
-
         for (int i = backpackContent.Count - 1; i >= 0; i--)
         {
             InventorySlot slot = backpackContent[i];
+            if (unsellableItem != null && slot.itemData == unsellableItem) continue;
 
-            // ★ 修改点2：直接对比数据引用，比对比名字更安全
-            // 如果你没在Inspector里拖拽 unsellableItem，这里可能会报错，记得要拖进去！
-            if (unsellableItem != null && slot.itemData == unsellableItem)
-            {
-                Debug.Log($"跳过不可售卖物品: {slot.itemData.itemName}");
-                continue;
-            }
-
-            // 计算价格
-            int value = slot.stackSize * slot.itemData.price;
-            totalEarnings += value;
-            soldCount++;
-
-            // 移除
+            totalEarnings += slot.stackSize * slot.itemData.price;
             backpackContent.RemoveAt(i);
         }
 
@@ -81,18 +78,25 @@ public class InventoryManager : MonoBehaviour
             currentGold += totalEarnings;
             onGoldChanged?.Invoke(currentGold);
             onInventoryChanged?.Invoke();
-
-            Debug.Log($"出售成功！卖出格子数: {soldCount}, 获得金币: {totalEarnings}");
-        }
-        else
-        {
-            Debug.Log("出售结束：没有可出售的物品，或者只剩下了不可卖的物品。");
+            Debug.Log($"出售成功！获得: {totalEarnings}");
         }
     }
 
-    // ============================================
-    // 添加物品逻辑 (也同步修改了判定逻辑)
-    // ============================================
+    // 开盲盒消耗逻辑 (保持不变)
+    public bool TryConsumeItem(ItemData itemToConsume)
+    {
+        InventorySlot slot = backpackContent.Find(x => x.itemData == itemToConsume);
+        if (slot != null)
+        {
+            slot.stackSize--;
+            if (slot.stackSize <= 0) backpackContent.Remove(slot);
+            onInventoryChanged?.Invoke();
+            return true;
+        }
+        return false;
+    }
+
+    // 添加物品逻辑 (保持不变)
     public bool AddItem(ItemData item)
     {
         int total = 0;
@@ -104,7 +108,6 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
 
-        // ★ 修改点3：这里的限制逻辑也同步改成用 item 对比
         if (unsellableItem != null && item == unsellableItem)
         {
             InventorySlot specificSlot = backpackContent.Find(s => s.itemData == item);
