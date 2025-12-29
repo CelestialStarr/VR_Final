@@ -2,41 +2,46 @@ using UnityEngine;
 
 public class RotatingAutoDoor : MonoBehaviour
 {
-    [Header("Door Settings")]
-    public Transform doorPivot;      // 门的旋转轴心（建议用空物体包裹门模型）
-    public float openAngle = 90f;    // 开启的角度
-    public float rotateSpeed = 150f; // 旋转速度（度/秒）
+    [Header("Rotation Settings")]
+    public float openAngle = 90f;          // 打开角度
+    public float rotateSpeed = 2f;         // 开关速度
+    public Vector3 rotationAxis = Vector3.up; // 绕哪个轴转（Y轴常用）
 
-    private Quaternion closedRot;
-    private Quaternion openRot;
+    private Quaternion closedRotation;
+    private Quaternion openRotation;
     private bool isOpen = false;
 
     void Start()
     {
-        if (doorPivot == null) doorPivot = transform;
+        // 记录关门角度
+        closedRotation = transform.localRotation;
 
-        // 记录初始旋转（关门状态）
-        closedRot = doorPivot.localRotation;
-
-        // 计算开门旋转（假设绕 Y 轴旋转）
-        // 如果方向反了，把 openAngle 改成 -openAngle
-        openRot = closedRot * Quaternion.Euler(0, openAngle, 0);
+        // 计算开门角度
+        openRotation = closedRotation * Quaternion.Euler(rotationAxis * openAngle);
     }
 
     void Update()
     {
-        // 目标旋转取决于 isOpen 状态
-        Quaternion targetRot = isOpen ? openRot : closedRot;
+        Quaternion target = isOpen ? openRotation : closedRotation;
 
-        // 使用 RotateTowards 稳定旋转，避免飞走或报错
-        doorPivot.localRotation = Quaternion.RotateTowards(
-            doorPivot.localRotation,
-            targetRot,
-            rotateSpeed * Time.deltaTime
+        transform.localRotation = Quaternion.Slerp(
+            transform.localRotation,
+            target,
+            Time.deltaTime * rotateSpeed
         );
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OpenDoor()
+    {
+        isOpen = true;
+    }
+
+    public void CloseDoor()
+    {
+        isOpen = false;
+    }
+
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -50,5 +55,5 @@ public class RotatingAutoDoor : MonoBehaviour
         {
             isOpen = false;
         }
-    }
+    }*/
 }
