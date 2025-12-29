@@ -2,7 +2,6 @@
 
 public class NPCVision : MonoBehaviour
 {
-
     [Header("Layers")]
     public LayerMask stealableLayer;
     public LayerMask playerLayer;
@@ -11,19 +10,20 @@ public class NPCVision : MonoBehaviour
     public float visionRadius = 0.3f;
 
     [Header("Alert Settings")]
-    public AlertController alertController; // 【新增】引用外部脚本
+    public AlertController alertController;
 
     [Header("Vision Settings")]
     public float detectRange = 10f;
-    public float alertIncreaseAmount = 30f; // 【新增】每次增加多少警戒值
-    public float alertInterval = 0.5f;      // 【新增】每隔多久增加一次（比如0.5秒）
-    private float currentAlertTimer = 0f;   // 内部计时器
+    public float alertIncreaseAmount = 30f;
+    public float alertInterval = 0.5f;
+    private float currentAlertTimer = 0f;
 
     [SerializeField] private bool isInPrivateArea = false;
 
-    // 新增：报警UI（比如头顶冒个感叹号，或者屏幕中间出现“被通缉”）
+    // ===== 世界空间 UI（场景里的，不是 Prefab）=====
     [Header("UI Feedback")]
-    public GameObject alertUIPrefab; // 可选：报警时的特效/UI
+    public GameObject alertUI;          // 场景中的 World Space UI（默认隐藏）
+    public float alertUIDuration = 2f;  // 显示多久
 
     // 防止一直连续报警
     private bool hasAlertedPolice = false;
@@ -32,26 +32,28 @@ public class NPCVision : MonoBehaviour
     {
         if (alertController == null)
             alertController = GetComponent<AlertController>();
+
+        // 确保一开始是隐藏的
+        if (alertUI != null)
+            alertUI.SetActive(false);
     }
 
     void Update()
     {
         if (eyesPoint == null) return;
-
-        // 如果正在报警冷却中（或者你希望每次看都报警，可以把这个逻辑去掉），可以加计时器重置 hasAlertedPolice
         CheckVision();
     }
-    // 【新增】检测 NPC 是否进入了 PrivateArea
+
+    // ===== Private Area 检测 =====
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PrivateArea"))
         {
             isInPrivateArea = true;
-            // 可选：在这里重置一下计时器
             currentAlertTimer = 0f;
         }
     }
-    // 【新增】检测 NPC 是否离开了 PrivateArea
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("PrivateArea"))
@@ -66,9 +68,6 @@ public class NPCVision : MonoBehaviour
         Vector3 direction = eyesPoint.forward;
         RaycastHit hit;
 
-        // 【修改关键点】
-        // 我们需要同时检测“可偷窃物品”和“玩家”。
-        // 所以将两个 LayerMask 进行“或”运算 (|) 组合在一起检测。
         LayerMask combinedMask = stealableLayer | playerLayer;
 
         if (Physics.SphereCast(startPos, visionRadius, direction, out hit, detectRange, combinedMask))
@@ -76,77 +75,79 @@ public class NPCVision : MonoBehaviour
             GameObject hitObj = hit.collider.gameObject;
 
             // =================================================
-            // 情况 A：检测是否在私人区域看到玩家 (Private Area Logic)
+            // A. 私人区域看到玩家
             // =================================================
             if (isInPrivateArea && hitObj.CompareTag("Player"))
             {
                 Debug.Log("See Player");
-                // 确保引用了 AlertController
-                if (alertController != null)
+
+                if (alertController != null && !alertController.isAlerted)
                 {
-                    // 只有当没有进入“完全战斗状态(isAlerted)”时，才慢慢增加条
-                    // (如果已经 Alerted 了，通常直接开打或报警，不需要再增加条了)
-                    if (!alertController.isAlerted)
+                    currentAlertTimer += Time.deltaTime;
+
+                    if (currentAlertTimer >= alertInterval)
                     {
-                        currentAlertTimer += Time.deltaTime;
-
-                        if (currentAlertTimer >= alertInterval)
-                        {
-                            // 调用 AlertController 增加警戒值
-                            alertController.IncreaseAlert(alertIncreaseAmount);
-                            Debug.Log("私人区域发现玩家！警戒值增加！");
-
-                            // 重置计时器
-                            currentAlertTimer = 0f;
-                        }
+                        alertController.IncreaseAlert(alertIncreaseAmount);
+                        Debug.Log("私人区域发现玩家！警戒值增加！");
+                        currentAlertTimer = 0f;
                     }
                 }
-                return; // 如果看到了玩家，优先处理玩家逻辑，不再处理物品
+
+                if (alertUI != null && !hasAlertedPolice)
+                {
+                    alertUI.SetActive(true);
+                    CancelInvoke(nameof(HideAlertUI));
+                    Invoke(nameof(HideAlertUI), alertUIDuration);
+                }
+
+                return;
             }
 
             // =================================================
-            // 情况 B：检测偷窃 (Stealing Logic - 原有逻辑)
+            // B. 抓到偷窃
             // =================================================
-            // 尝试获取 StealableObject 组件 (防止射线打到玩家身上报错，加个判空)
             StealableObject target = hitObj.GetComponentInParent<StealableObject>();
 
-            if (target != null)
+            if (target != null && target.IsBeingStolen)
             {
-                if (target.IsBeingStolen)
+                Debug.LogError("NPC: 抓到你了！执行强制打断！");
+                target.HandleFailure(true);
+
+                // 1. UI 反馈（世界 UI）
+                if (alertUI != null && !hasAlertedPolice)
                 {
-                    Debug.LogError("NPC: 抓到你了！执行强制打断！");
-                    target.HandleFailure(true);
+                    alertUI.SetActive(true);
+                    CancelInvoke(nameof(HideAlertUI));
+                    Invoke(nameof(HideAlertUI), alertUIDuration);
+                }
 
-                    // 1. UI 反馈
-                    if (alertUIPrefab != null && !hasAlertedPolice)
-                    {
-                        Instantiate(alertUIPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
-                    }
+                // 2. 呼叫警察
+                if (!hasAlertedPolice)
+                {
+                    Debug.Log("NPC: 来人啊！抓小偷！");
 
-                    // 2. 呼叫警察
-                    if (!hasAlertedPolice)
-                    {
-                        Debug.Log("NPC: 来人啊！抓小偷！");
-                        // 假设 PoliceManager 存在
-                        if (PoliceManager.Instance != null)
-                            PoliceManager.Instance.DispatchNearestPolice(transform.position);
+                    if (PoliceManager.Instance != null)
+                        PoliceManager.Instance.DispatchNearestPolice(transform.position);
 
-                        hasAlertedPolice = true;
+                    hasAlertedPolice = true;
 
-                        // 这里也应该瞬间拉满警戒值（逻辑上抓现行了）
-                        if (alertController != null)
-                            alertController.IncreaseAlert(alertController.maxAlertValue);
+                    if (alertController != null)
+                        alertController.IncreaseAlert(alertController.maxAlertValue);
 
-                        Invoke(nameof(ResetAlert), 5f);
-                    }
+                    Invoke(nameof(ResetAlert), 5f);
                 }
             }
         }
         else
         {
-            // 如果视线丢失了玩家，重置一下计时器，这样下次看到会有个微小的延迟，比较真实
             currentAlertTimer = 0f;
         }
+    }
+
+    void HideAlertUI()
+    {
+        if (alertUI != null)
+            alertUI.SetActive(false);
     }
 
     void ResetAlert()
@@ -159,7 +160,6 @@ public class NPCVision : MonoBehaviour
         if (eyesPoint != null)
         {
             Gizmos.color = Color.yellow;
-            // 画出球形射线的范围
             Gizmos.DrawWireSphere(eyesPoint.position, visionRadius);
             Gizmos.DrawRay(eyesPoint.position, eyesPoint.forward * detectRange);
         }

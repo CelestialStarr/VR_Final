@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.UI;
 
 public class AlertUIController : MonoBehaviour
@@ -6,14 +6,20 @@ public class AlertUIController : MonoBehaviour
     [Header("References")]
     public AlertController alertController;
 
-    [Header("UI Prefab")]
-    public GameObject alertUIPrefab;
+    [Header("UI Prefabs")]
+    public GameObject alertUIPrefab;      // Ë≠¶ÊàíÊù° Canvas
+    public GameObject warningUIPrefab;    // Warning CanvasÔºà‚ùóÔºâ
 
-    [Header("UI Settings")]
-    public float showUIThreshold = 30f;
-    public Vector3 uiOffset = new Vector3(0, 1.8f, 0);
+    [Header("Threshold Settings")]
+    public float showAlertBarThreshold = 30f; // ÂºÄÂßãÊòæÁ§∫Ë≠¶ÊàíÊù°
+    public float warningThreshold = 100f;     // Êª°Ë≠¶ÊàíÊòæÁ§∫ Warning
+
+    [Header("UI Offsets")]
+    public Vector3 alertUIOffset = new Vector3(0, 1.8f, 0);
+    public Vector3 warningUIOffset = new Vector3(0, 2.4f, 0);
 
     private GameObject alertUIInstance;
+    private GameObject warningUIInstance;
     private Image alertFillImage;
 
     void Start()
@@ -21,63 +27,91 @@ public class AlertUIController : MonoBehaviour
         if (alertController == null)
             alertController = GetComponent<AlertController>();
 
-        // ◊‘∂Ø…˙≥… UI
-        if (alertUIPrefab != null && alertController != null)
+        // ===== Ë≠¶ÊàíÊù° =====
+        if (alertUIPrefab != null)
         {
             alertUIInstance = Instantiate(alertUIPrefab, transform);
-            alertUIInstance.transform.localPosition = uiOffset;
+            alertUIInstance.transform.localPosition = alertUIOffset;
+            alertUIInstance.SetActive(false);
 
             alertFillImage = alertUIInstance.GetComponentInChildren<Image>();
-            alertUIInstance.SetActive(false);
         }
 
-        // º‡Ã˝æØΩ‰◊¥Ã¨ ¬º˛£®ø…—°£¨µ´∫‹”≈—≈£©
-        alertController.OnEnterAlert.AddListener(OnEnterAlert);
-        alertController.OnExitAlert.AddListener(OnExitAlert);
+        // ===== Warning =====
+        if (warningUIPrefab != null)
+        {
+            warningUIInstance = Instantiate(warningUIPrefab, transform);
+            warningUIInstance.transform.localPosition = warningUIOffset;
+            warningUIInstance.SetActive(false);
+        }
     }
 
     void Update()
     {
-        UpdateAlertUI();
+        UpdateUI();
     }
 
-    void UpdateAlertUI()
+    void UpdateUI()
     {
-        if (alertUIInstance == null || alertController == null) return;
+        if (alertController == null) return;
 
         float alertValue = alertController.currentAlertValue;
         float maxValue = alertController.maxAlertValue;
 
-        // —≤¬ﬂ / µÕæØΩ‰ °˙ ≤ªœ‘ æ
-        if (alertValue < showUIThreshold)
+        // ===== ‰Ωé‰∫éÊòæÁ§∫ÈòàÂÄºÔºöÂÖ®ÈÉ®ÈöêËóè =====
+        if (alertValue < showAlertBarThreshold)
         {
-            if (alertUIInstance.activeSelf)
-                alertUIInstance.SetActive(false);
+            HideAllUI();
             return;
         }
+
+        // ===== ÊòæÁ§∫Ë≠¶ÊàíÊù°Ôºà>= showAlertBarThresholdÔºâ=====
+        ShowAlertBar(alertValue, maxValue);
+
+        // ===== Êª°Ë≠¶ÊàíÔºöÈ¢ùÂ§ñÊòæÁ§∫ Warning =====
+        if (alertValue >= warningThreshold)
+        {
+            ShowWarning();
+        }
+        else
+        {
+            HideWarning();
+        }
+    }
+
+    void ShowAlertBar(float alertValue, float maxValue)
+    {
+        if (alertUIInstance == null) return;
 
         if (!alertUIInstance.activeSelf)
             alertUIInstance.SetActive(true);
 
-        float t = alertValue / maxValue;
-        alertFillImage.fillAmount = t;
-
-        // —’…´±‰ªØ
-        if (t < 0.7f)
-            alertFillImage.color = Color.yellow;
-        else
-            alertFillImage.color = Color.red;
+        if (alertFillImage != null && maxValue > 0f)
+        {
+            float t = Mathf.Clamp01(alertValue / maxValue);
+            alertFillImage.fillAmount = t;
+            alertFillImage.color = (t < 0.7f) ? Color.yellow : Color.red;
+        }
     }
 
-    void OnEnterAlert()
+    void ShowWarning()
     {
-        // ’‚¿Ôø…“‘◊ˆ UI Ãÿ–ß / …¡À∏ / Õº±Í±‰ªØ
-        // Debug.Log("UI: Ω¯»ÎæØΩ‰◊¥Ã¨");
+        if (warningUIInstance != null && !warningUIInstance.activeSelf)
+            warningUIInstance.SetActive(true);
     }
 
-    void OnExitAlert()
+    void HideWarning()
+    {
+        if (warningUIInstance != null && warningUIInstance.activeSelf)
+            warningUIInstance.SetActive(false);
+    }
+
+    void HideAllUI()
     {
         if (alertUIInstance != null)
             alertUIInstance.SetActive(false);
+
+        if (warningUIInstance != null)
+            warningUIInstance.SetActive(false);
     }
 }
