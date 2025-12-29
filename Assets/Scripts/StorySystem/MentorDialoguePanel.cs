@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class MentorDialoguePanel_Legacy : MonoBehaviour
 {
     [Header("UI Main")]
-    // ★ NEW: Drag your entire UI Panel (the parent object) here
     public GameObject uiPanel;
 
     [Header("UI Elements")]
@@ -23,41 +22,59 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
 
     void Start()
     {
-        // ★ Ensure the panel is visible when game starts
-        if (uiPanel != null)
-            uiPanel.SetActive(true);
-
+        // ★ 修改 1: Start 里只需要绑定按钮，剩下的交给 CheckStoryState
+        // 也就是“进游戏先检查一遍剧情”
         if (continueButton != null)
             continueButton.onClick.AddListener(Advance);
 
         CheckStoryState();
     }
 
-    void CheckStoryState()
+    // ★ 修改 2: 改成 public，这样如果你从外面（比如别的脚本）修改了 Stage，
+    // 可以喊一句这个函数，让面板重新根据新 Stage 弹出来！
+    public void CheckStoryState()
     {
         var gs = GameState.Instance;
         if (gs == null) return;
 
-        // Check Stage
+        Debug.Log("Checking Story State... Current Stage: " + gs.storyStage);
+
+        // --- 修正后的逻辑 ---
+
+        // 情况 A：你是带着保险箱回来的 (Stage 3)
+        // 这里的数字必须是 3！不能是 4！
         if (gs.storyStage == 3)
         {
+            Debug.Log("检测到 Stage 3 -> 加载奖励对话");
             activeLines = finalRewardLines;
         }
+        // 情况 B：奖励已经领完了 (Stage 4)
+        // 必须加这个判断，否则你领完奖励再点师父，他又会说第一句话
         else if (gs.storyStage == 4)
         {
-            activeLines = new string[] { "Go use your new tools." };
+            Debug.Log("检测到 Stage 4 -> 任务已完成");
+            // 这里可以写死一句话，或者你在 Inspector 里加一个 completedLines 数组
+            activeLines = new string[] { "Don't just stand there. Go try the lockpicks." };
         }
+        // 情况 C：其他情况 (Stage 0, 1, 2)
         else
         {
+            Debug.Log("检测到其他 Stage -> 加载默认对话");
             activeLines = normalLines;
         }
 
-        // Safety Check (Prevention for IndexOutOfRange)
+        // --- 下面保持不变 ---
+
+        // Safety Check
         if (activeLines == null || activeLines.Length == 0)
         {
             if (dialogueText != null) dialogueText.text = "...";
             return;
         }
+
+        // 只要有话要说，就强制弹窗
+        if (uiPanel != null)
+            uiPanel.SetActive(true);
 
         // Start Dialogue
         index = 0;
@@ -80,10 +97,7 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
     void ShowLine(int i)
     {
         if (dialogueText == null) return;
-
-        // Safety check
         if (i < 0 || i >= activeLines.Length) return;
-
         dialogueText.text = activeLines[i];
     }
 
@@ -95,22 +109,12 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
             GiveRewards();
         }
 
-        // 2. ★ Hide the UI
+        // 2. Hide the UI
         Debug.Log("Dialogue Finished. Closing UI.");
 
         if (uiPanel != null)
         {
-            // Option A: Hide the whole panel (Recommended)
             uiPanel.SetActive(false);
-        }
-        else
-        {
-            // Option B: Fallback - Hide individual elements if panel is not assigned
-            if (dialogueText != null) dialogueText.gameObject.SetActive(false);
-            if (continueButton != null) continueButton.gameObject.SetActive(false);
-
-            // Option C: Hide this entire object (if the script is on the panel itself)
-            // gameObject.SetActive(false);
         }
     }
 
@@ -124,6 +128,12 @@ public class MentorDialoguePanel_Legacy : MonoBehaviour
             InventoryManager.Instance.AddItem(lockpickItem);
         }
 
-        GameState.Instance.storyStage = 4;
+        // ★ 修改 4: 给完东西立刻把 Stage 设为 4
+        // 这样下次对话就会变成 "Go use your new tools"，不会重复给奖励
+        if (GameState.Instance != null)
+        {
+            GameState.Instance.storyStage = 4;
+            Debug.Log("Story Updated: Stage set to 4.");
+        }
     }
 }
