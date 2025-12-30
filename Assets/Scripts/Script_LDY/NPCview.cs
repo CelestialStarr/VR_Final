@@ -83,6 +83,7 @@ public class NPCVision : MonoBehaviour
 
                 if (alertController != null && !alertController.isAlerted)
                 {
+                    Debug.Log("CheckTimer");
                     currentAlertTimer += Time.deltaTime;
 
                     if (currentAlertTimer >= alertInterval)

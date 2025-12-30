@@ -7,7 +7,7 @@ public class BlindBoxController : MonoBehaviour
     public Transform spawnPoint;
 
     [Header("Box Settings")]
-    public Transform boxRoot;           // 整个盒子
+    public Transform boxRoot;
     public float liftHeight = 0.5f;
     public float liftSpeed = 5f;
 
@@ -17,10 +17,7 @@ public class BlindBoxController : MonoBehaviour
     public float openAngle = 110f;
     public float openSpeed = 5f;
 
-    [Header("Scale Settings (关键修改)")]
-    public Vector3 finalRewardScale = Vector3.one;
-    [Range(0.1f, 1f)]
-    public float insideBoxScale = 0.1f;
+    // ★★★ 已删除 Scale Settings (不再控制大小) ★★★
 
     [Header("Drop Settings")]
     public float rotateDuration = 1.5f;
@@ -42,13 +39,11 @@ public class BlindBoxController : MonoBehaviour
     private float currentRotateTime = 0f;
     private bool hasDropped = false;
 
-    // ★ 修改 1：使用 Awake 进行一次性的数据计算
-    // 这些数据（比如盖子打开的角度、盒子的原始位置）永远不会变，所以只算一次
     void Awake()
     {
-        if (boxRoot == null) boxRoot = transform; // 防止空引用
+        if (boxRoot == null) boxRoot = transform;
 
-        boxStartPos = boxRoot.localPosition; // 建议用 localPosition 以防父物体移动
+        boxStartPos = boxRoot.localPosition;
         boxTargetPos = boxStartPos + Vector3.up * liftHeight;
 
         if (leftLid != null)
@@ -64,41 +59,33 @@ public class BlindBoxController : MonoBehaviour
         }
     }
 
-    // ★ 修改 2：使用 OnEnable 代替 Start
-    // 每次 SetActive(true) 时，这个函数都会运行，相当于“重置键”
     void OnEnable()
     {
-        ResetBoxState();     // 1. 重置所有变量和位置
-        SpawnRandomReward(); // 2. 生成新奖励
-        OpenBox();           // 3. 开始流程
+        ResetBoxState();
+        SpawnRandomReward();
+        OpenBox();
     }
 
-    // ★ 新增：专门用来重置状态的函数
     void ResetBoxState()
     {
-        // 重置布尔值
         hasDropped = false;
         isLifting = false;
         isOpening = false;
         isRewardShowing = false;
         currentRotateTime = 0f;
 
-        // 重置盒子位置和旋转
         if (boxRoot != null)
         {
-            boxRoot.gameObject.SetActive(true); // 确保盒子本身是显示的
+            boxRoot.gameObject.SetActive(true);
             boxRoot.localPosition = boxStartPos;
-            boxRoot.localRotation = Quaternion.identity; // 重置旋转
+            boxRoot.localRotation = Quaternion.identity;
         }
 
-        // 重置盖子角度
         if (leftLid != null) leftLid.localRotation = leftClosedRot;
         if (rightLid != null) rightLid.localRotation = rightClosedRot;
 
-        // 清理旧的奖励 (防止上次没掉出去卡在里面)
         if (currentReward != null)
         {
-            // 如果它还在这个脚本控制下（还没掉出去），就销毁它
             if (currentReward.transform.parent == spawnPoint)
             {
                 Destroy(currentReward);
@@ -115,7 +102,11 @@ public class BlindBoxController : MonoBehaviour
 
         currentReward = Instantiate(propPrefabs[randomIndex], spawnPoint.position, spawnPoint.rotation);
         currentReward.transform.SetParent(spawnPoint);
-        currentReward.transform.localScale = finalRewardScale * insideBoxScale;
+
+        // ★★★ 重点：完全删除了缩放代码，保持Prefab原始大小 ★★★
+
+        // 生成瞬间隐藏
+        currentReward.SetActive(false);
 
         Rigidbody rb = currentReward.GetComponent<Rigidbody>();
         if (rb == null) rb = currentReward.AddComponent<Rigidbody>();
@@ -131,10 +122,9 @@ public class BlindBoxController : MonoBehaviour
     {
         if (hasDropped) return;
 
-        // --- Step 1: 升起 ---
+        // Step 1: 升起
         if (isLifting)
         {
-            // 使用 localPosition 处理
             boxRoot.localPosition = Vector3.Lerp(boxRoot.localPosition, boxTargetPos, Time.deltaTime * liftSpeed);
             if (Vector3.Distance(boxRoot.localPosition, boxTargetPos) < 0.05f)
             {
@@ -144,7 +134,7 @@ public class BlindBoxController : MonoBehaviour
             }
         }
 
-        // --- Step 2: 开盖 ---
+        // Step 2: 开盖
         if (isOpening)
         {
             if (leftLid != null) leftLid.localRotation = Quaternion.Lerp(leftLid.localRotation, leftOpenRot, Time.deltaTime * openSpeed);
@@ -156,7 +146,7 @@ public class BlindBoxController : MonoBehaviour
             }
         }
 
-        // --- Step 3: 盒子整体旋转 ---
+        // Step 3: 盒子整体旋转
         if (isRewardShowing)
         {
             float rotateSpeed = 360f / rotateDuration;
@@ -177,8 +167,12 @@ public class BlindBoxController : MonoBehaviour
 
         if (currentReward != null)
         {
+            // ★★★ 动画播完，在这里显示物体 ★★★
+            currentReward.SetActive(true);
+
             currentReward.transform.SetParent(null);
-            currentReward.transform.localScale = finalRewardScale;
+
+            // ★★★ 重点：这里也删除了任何缩放代码 ★★★
 
             Rigidbody rb = currentReward.GetComponent<Rigidbody>();
             if (rb != null)
@@ -188,27 +182,12 @@ public class BlindBoxController : MonoBehaviour
                 rb.AddForce(boxRoot.forward * 2f + Random.insideUnitSphere * throwForce, ForceMode.Impulse);
             }
 
-            // 重要：让 currentReward 脱离变量控制，以免 ResetBoxState 误删它
             currentReward = null;
         }
 
-        // 隐藏盒子（如果是通过 UI 控制父物体显隐，这里可以不需要隐藏 boxRoot，
-        // 但既然你原本逻辑是隐藏，我保留这个逻辑）
         if (boxRoot != null)
         {
-            // 注意：如果你是整个物体 SetActive(false)，这里其实不需要手动隐 boxRoot
-            // 但为了视觉效果，先隐藏盒子
             boxRoot.gameObject.SetActive(false);
-
-            // 实际上，这里隐藏了 boxRoot 可能会导致下次 OnEnable 时看不到盒子
-            // 所以我在 ResetBoxState 里加了一句 boxRoot.gameObject.SetActive(true) 来修复它
         }
-
-        // ★ 关键补充：
-        // 既然开包完成了，通常我们需要通知 UI 脚本“这波结束了”，
-        // 或者单纯等待玩家关闭 UI。
-        // 由于你的 UI 是通过“按按钮 -> SetActive(true)”来控制的，
-        // 只要这脚本挂在那个被激活的物体上，下次 UI 把它关掉再打开，
-        // OnEnable 就会自动重置一切。
     }
 }

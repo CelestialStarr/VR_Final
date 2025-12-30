@@ -36,7 +36,7 @@ public class NPCInfo : MonoBehaviour
         {
             // 如果你在面板里填了东西，我就什么都不做
             // 直接保留你填的那些特质
-            Debug.Log($"{Chartag} 使用了手动设置的性格: {activeTraits.Count} 个");
+            //Debug.Log($"{Chartag} 使用了手动设置的性格: {activeTraits.Count} 个");
         }
     }
 
@@ -55,7 +55,7 @@ public class NPCInfo : MonoBehaviour
         }
 
         activeTraits.AddRange(chosenTraits);
-        Debug.Log($"{Chartag} 自动生成了性格: {string.Join(", ", activeTraits)}");
+       //Debug.Log($"{Chartag} 自动生成了性格: {string.Join(", ", activeTraits)}");
     }
 
     public bool HasTrait(NPCTrait traitToCheck)
