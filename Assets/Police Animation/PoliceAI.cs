@@ -113,6 +113,8 @@ public class PoliceAI : MonoBehaviour
 
             // 【核心修改】 回到岗位，重新隐身
             SetVisibility(false);
+            StopChaseAudio();
+
         }
     }
 
@@ -122,6 +124,7 @@ public class PoliceAI : MonoBehaviour
         currentState = PoliceState.Returning;
         agent.SetDestination(originalPosition);
         // 注意：回程的时候还是显形的，直到回到原点才消失
+        StopChaseAudio();
     }
 
     void PerformArrest()
@@ -138,6 +141,7 @@ public class PoliceAI : MonoBehaviour
         // 这里我选择暂时不消失，让玩家看到是谁抓了他
         // 如果想抓到瞬间消失，取消下面这行的注释：
         // SetVisibility(false); 
+        StopChaseAudio();
     }
 
     // --- 辅助方法：控制显隐 ---
@@ -165,4 +169,12 @@ public class PoliceAI : MonoBehaviour
             }
         }
     }
+    private void StopChaseAudio()
+    {
+        if (chaseAudio != null && chaseAudio.isPlaying)
+        {
+            chaseAudio.Stop();
+        }
+    }
+
 }

@@ -8,6 +8,10 @@ public class PoliceCatchManager : MonoBehaviour
     public int maxCatchCount = 3;
     public int currentCatchCount = 0;
 
+    [Header("Ending Audio")]
+    [SerializeField] private AudioSource prisonEndingAudio;
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -37,6 +41,11 @@ public class PoliceCatchManager : MonoBehaviour
     void TriggerPrisonEnding()
     {
         Debug.Log("¡¾Ending¡¿´¥·¢ Ìú´°Àá / ¼àÓü½á¾Ö");
+
+        if (prisonEndingAudio != null)
+        {
+            prisonEndingAudio.Play();
+        }
 
         if (EndingUIManager.Instance != null)
         {

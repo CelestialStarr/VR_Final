@@ -7598,18 +7598,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2464368265806697145}
   m_SourcePrefab: {fileID: 100100000, guid: 4ccd1af04a6669e439c01b6ebcae0415, type: 3}
---- !u!114 &143703925109373963 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8482453975317545129, guid: 4ccd1af04a6669e439c01b6ebcae0415,
-    type: 3}
-  m_PrefabInstance: {fileID: 8379284689921129634}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &379383561748761644 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8145573914361622670, guid: 4ccd1af04a6669e439c01b6ebcae0415,
@@ -7661,16 +7649,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b84266c500e4c1469c116a9f0bf71ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 5747525130952692094}
   headCamera: {fileID: 1854470793118206614}
-  teleportProvider: {fileID: 143703925109373963}
   wallLayers:
     serializedVersion: 2
     m_Bits: 1
-  bodyRadius: 0.2
-  stepHeight: 0.35
   gravity: -9.81
-  stickToGroundForce: -2
+  bodyRadius: 0.2
 --- !u!4 &1038926124949279690 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8800652464327470952, guid: 4ccd1af04a6669e439c01b6ebcae0415,
@@ -7757,12 +7741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b9cf54c47f40ee9c3eb30ea8eb89b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!143 &5747525130952692094 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 4290378622173113820, guid: 4ccd1af04a6669e439c01b6ebcae0415,
-    type: 3}
-  m_PrefabInstance: {fileID: 8379284689921129634}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9197675041471526340 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 859492361275492710, guid: 4ccd1af04a6669e439c01b6ebcae0415,
