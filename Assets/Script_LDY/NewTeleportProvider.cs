@@ -9,12 +9,8 @@ public class UniversalTeleport : TeleportationProvider
     protected override void Update()
     {
         // 1. 如果没有传送请求，直接退出
-        if (!validRequest)
-        {
-            // 没收到请求时，什么都不做，也不打印，防止刷屏
-            return;
-        }
-        Debug.Log("【成功】收到传送请求！准备移动...");
+        if (!validRequest) return;
+
         // 2. 直接找场景里的 XR Origin
         // 我们不通过 System 或 Mediator 找了，直接找核心组件，这样最稳
         XROrigin xrOrigin = FindObjectOfType<XROrigin>();
