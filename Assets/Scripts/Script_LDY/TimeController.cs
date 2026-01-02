@@ -110,7 +110,7 @@ public class TimeGameplayManager : MonoBehaviour
             hasTriggeredFatiguePopup = true;
         }
 
-        // [新增] 2. 猝死判定 (72小时)
+        // 2. 猝死判定 (72小时)
         if (currentAwakeHours >= deathThresholdHours)
         {
             isDead = true;

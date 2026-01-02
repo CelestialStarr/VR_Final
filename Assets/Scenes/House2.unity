@@ -173,18 +173,6 @@ MonoBehaviour:
   m_GesturePerformed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1609281892}
-        m_TargetAssemblyTypeName: HandGestureModeController, Assembly-CSharp
-        m_MethodName: OnPalm
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 675591181}
         m_TargetAssemblyTypeName: HandForwardMoveByGesture, Assembly-CSharp
         m_MethodName: StartMove
@@ -199,13 +187,24 @@ MonoBehaviour:
         m_CallState: 2
   m_GestureEnded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 675591181}
+        m_TargetAssemblyTypeName: HandForwardMoveByGesture, Assembly-CSharp
+        m_MethodName: StopMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_MinimumHoldTime: 0.2
   m_GestureDetectionInterval: 0.1
   m_StaticGestures:
   - {fileID: 1609281896}
   - {fileID: 1609281895}
-  - {fileID: 1609281894}
   - {fileID: 64356733}
   m_Highlight: {fileID: 0}
 --- !u!1001 &197648162
@@ -3469,13 +3468,18 @@ PrefabInstance:
     - target: {fileID: 2596286464029702559, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
       propertyPath: m_StaticGestures.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2596286464029702559, guid: e046faa25448168449cfcb3d5ec8034a,
+        type: 3}
+      propertyPath: m_StaticGestures.Array.data[2]
+      value: 
+      objectReference: {fileID: 64356733}
     - target: {fileID: 2596286464029702559, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
       propertyPath: m_StaticGestures.Array.data[3]
       value: 
-      objectReference: {fileID: 64356733}
+      objectReference: {fileID: 0}
     - target: {fileID: 2630261105675587335, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
       propertyPath: m_Layer
@@ -3731,13 +3735,18 @@ PrefabInstance:
     - target: {fileID: 3939911867455637840, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
       propertyPath: m_StaticGestures.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3939911867455637840, guid: e046faa25448168449cfcb3d5ec8034a,
+        type: 3}
+      propertyPath: m_StaticGestures.Array.data[2]
+      value: 
+      objectReference: {fileID: 64356733}
     - target: {fileID: 3939911867455637840, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
       propertyPath: m_StaticGestures.Array.data[3]
       value: 
-      objectReference: {fileID: 64356733}
+      objectReference: {fileID: 0}
     - target: {fileID: 3939911867455637840, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
       propertyPath: m_GesturePerformed.m_PersistentCalls.m_Calls.Array.size
@@ -4564,6 +4573,7 @@ PrefabInstance:
     - {fileID: 1729891766236036553, guid: e046faa25448168449cfcb3d5ec8034a, type: 3}
     - {fileID: 2530387560450282552, guid: e046faa25448168449cfcb3d5ec8034a, type: 3}
     - {fileID: 6576381780493928412, guid: e046faa25448168449cfcb3d5ec8034a, type: 3}
+    - {fileID: 8582786386022051723, guid: e046faa25448168449cfcb3d5ec8034a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9123724568705779107, guid: e046faa25448168449cfcb3d5ec8034a,
         type: 3}
@@ -4611,36 +4621,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1271953139}
   m_SourcePrefab: {fileID: 100100000, guid: e046faa25448168449cfcb3d5ec8034a, type: 3}
---- !u!114 &1609281892 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 18628841607303919, guid: e046faa25448168449cfcb3d5ec8034a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1609281891}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf38585fa116aab4e9643bdc72d8728e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1609281893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2002793369566880404, guid: e046faa25448168449cfcb3d5ec8034a,
     type: 3}
   m_PrefabInstance: {fileID: 1609281891}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1609281894 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 645495881903025911, guid: e046faa25448168449cfcb3d5ec8034a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1609281891}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf93899325d5df74eb9176e097ee3d4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1609281895 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3939911867455637840, guid: e046faa25448168449cfcb3d5ec8034a,

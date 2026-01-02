@@ -50811,7 +50811,6 @@ MonoBehaviour:
   m_StaticGestures:
   - {fileID: 475211627}
   - {fileID: 1933383382}
-  - {fileID: 753698781}
   - {fileID: 1490988451}
   m_Highlight: {fileID: 0}
 --- !u!4 &475211628
@@ -54426,7 +54425,7 @@ PrefabInstance:
     - target: {fileID: 542295473074697800, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
       propertyPath: m_StaticGestures.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 542295473074697800, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
@@ -54506,7 +54505,7 @@ PrefabInstance:
     - target: {fileID: 2725713492258798563, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
       propertyPath: m_StaticGestures.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2725713492258798563, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
@@ -54556,7 +54555,7 @@ PrefabInstance:
     - target: {fileID: 2890675046749851592, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
       propertyPath: m_StaticGestures.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2890675046749851592, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
@@ -54621,7 +54620,7 @@ PrefabInstance:
     - target: {fileID: 3003409183604412147, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
       propertyPath: m_StaticGestures.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3003409183604412147, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
@@ -54676,7 +54675,7 @@ PrefabInstance:
     - target: {fileID: 3840371529397471880, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
       propertyPath: m_StaticGestures.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3840371529397471880, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
@@ -54881,7 +54880,7 @@ PrefabInstance:
     - target: {fileID: 5630991403030839645, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
       propertyPath: m_StaticGestures.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5630991403030839645, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
@@ -54936,7 +54935,7 @@ PrefabInstance:
     - target: {fileID: 6021740946411775880, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
       propertyPath: m_StaticGestures.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6021740946411775880, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
@@ -54986,7 +54985,7 @@ PrefabInstance:
     - target: {fileID: 6074657325858265980, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
       propertyPath: m_StaticGestures.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6074657325858265980, guid: 34191920c29de404ca7262670e35c2f0,
         type: 3}
@@ -57146,7 +57145,6 @@ Transform:
   - {fileID: 475211628}
   - {fileID: 1490988452}
   - {fileID: 1933383383}
-  - {fileID: 753698780}
   m_Father: {fileID: 1116520277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &525766499 stripped
@@ -59098,15 +59096,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497163794777640, guid: cfbe0363d716937458115184d26e77bf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.824
+      value: -33.92
       objectReference: {fileID: 0}
     - target: {fileID: 4497163794777640, guid: cfbe0363d716937458115184d26e77bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.87
+      value: -1.04
       objectReference: {fileID: 0}
     - target: {fileID: 4497163794777640, guid: cfbe0363d716937458115184d26e77bf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.853
+      value: 12.49
       objectReference: {fileID: 0}
     - target: {fileID: 4497163794777640, guid: cfbe0363d716937458115184d26e77bf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -86012,92 +86010,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 8340e8586e8556c4b82f331a034bae19, type: 3}
---- !u!1 &753698779
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 753698780}
-  - component: {fileID: 753698781}
-  m_Layer: 0
-  m_Name: Palmup Function
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &753698780
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753698779}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.23025398, y: -0.15134132, z: -0.32191432}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 525661538}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &753698781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753698779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf93899325d5df74eb9176e097ee3d4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HandTrackingEvents: {fileID: 152108388}
-  m_HandShapeOrPose: {fileID: 11400000, guid: e7b5bfc4e711f9049b4ad03ade500a21, type: 2}
-  m_TargetTransform: {fileID: 0}
-  m_Background: {fileID: 1427350807}
-  m_GesturePerformed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 868049635}
-        m_TargetAssemblyTypeName: HandGestureModeController, Assembly-CSharp
-        m_MethodName: OnPalm
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 864216931}
-        m_TargetAssemblyTypeName: HandForwardMoveByGesture, Assembly-CSharp
-        m_MethodName: StopMove
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  m_GestureEnded:
-    m_PersistentCalls:
-      m_Calls: []
-  m_MinimumHoldTime: 0.2
-  m_GestureDetectionInterval: 0.1
-  m_StaticGestures:
-  - {fileID: 475211627}
-  - {fileID: 1933383382}
-  - {fileID: 753698781}
-  - {fileID: 1490988451}
-  m_Highlight: {fileID: 0}
 --- !u!1 &753756894 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1990216340993278, guid: 5afed722cc07f0045bfb9c283f384e9c,
@@ -99190,7 +99102,7 @@ MonoBehaviour:
   handTransform: {fileID: 119081562}
   cameraTransform: {fileID: 1554496614}
   moveSpeed: 0.8
-  lockY: 1
+  lockY: 0
 --- !u!1 &864399504 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1711961066214792, guid: 5238866b30afab24e98ae578d9effdfd,
@@ -125099,7 +125011,7 @@ PrefabInstance:
     - target: {fileID: 8800652464327470952, guid: 4ccd1af04a6669e439c01b6ebcae0415,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.44
+      value: -12.43
       objectReference: {fileID: 0}
     - target: {fileID: 8800652464327470952, guid: 4ccd1af04a6669e439c01b6ebcae0415,
         type: 3}
@@ -125109,7 +125021,7 @@ PrefabInstance:
     - target: {fileID: 8800652464327470952, guid: 4ccd1af04a6669e439c01b6ebcae0415,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.76
+      value: 11.4
       objectReference: {fileID: 0}
     - target: {fileID: 8800652464327470952, guid: 4ccd1af04a6669e439c01b6ebcae0415,
         type: 3}
@@ -184828,13 +184740,24 @@ MonoBehaviour:
         m_CallState: 2
   m_GestureEnded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 864216931}
+        m_TargetAssemblyTypeName: HandForwardMoveByGesture, Assembly-CSharp
+        m_MethodName: StopMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_MinimumHoldTime: 0.2
   m_GestureDetectionInterval: 0.1
   m_StaticGestures:
   - {fileID: 1490988451}
   - {fileID: 1933383382}
-  - {fileID: 753698781}
   - {fileID: 1490988451}
   m_Highlight: {fileID: 0}
 --- !u!4 &1490988452
@@ -191753,7 +191676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 1
   smoothTime: 0.3
-  lockYAxis: 1
+  lockYAxis: 0
   heightOffset: 0
 --- !u!1001 &1543529435
 PrefabInstance:
@@ -253068,6 +252991,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 864216931}
+        m_TargetAssemblyTypeName: HandForwardMoveByGesture, Assembly-CSharp
+        m_MethodName: StopMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_GestureEnded:
     m_PersistentCalls:
       m_Calls: []
@@ -253076,7 +253011,6 @@ MonoBehaviour:
   m_StaticGestures:
   - {fileID: 475211627}
   - {fileID: 1933383382}
-  - {fileID: 753698781}
   - {fileID: 1490988451}
   m_Highlight: {fileID: 0}
 --- !u!4 &1933383383
@@ -256730,6 +256664,11 @@ PrefabInstance:
       propertyPath: dayPopupPanel
       value: 
       objectReference: {fileID: 2041219191}
+    - target: {fileID: 2515194959110700608, guid: d81c88e2cea741e4cb74b707ddf1605d,
+        type: 3}
+      propertyPath: dayCycleScript
+      value: 
+      objectReference: {fileID: 833119409}
     - target: {fileID: 2515194959110700608, guid: d81c88e2cea741e4cb74b707ddf1605d,
         type: 3}
       propertyPath: dayStatusPanel
