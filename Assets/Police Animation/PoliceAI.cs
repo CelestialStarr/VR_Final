@@ -1,21 +1,21 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.AI;
 
 public class PoliceAI : MonoBehaviour
 {
     public enum PoliceState { Idle, Chasing, Returning }
 
-    [Header("×´Ì¬¼à¿Ø")]
+    [Header("è¢¨æ€“æ½¼è«·")]
     public PoliceState currentState = PoliceState.Idle;
 
-    [Header("ÉèÖÃ")]
+    [Header("æ‰¢ç¦»")]
     [SerializeField] private float catchDistance = 2f;
     [SerializeField] private float chaseDuration = 30f;
     [SerializeField] private CatchUIManager uiManager;
 
-    [Header("ÊÓ¾õ¿ØÖÆ (ºËĞÄĞŞ¸Ä)")]
-    // Çë°Ñ¾¯²ì½ÇÉ«Ä£ĞÍ£¨´øMeshRendererµÄÄÇ¸ö×ÓÎïÌå£©ÍÏµ½ÕâÀï
-    // Èç¹ûÓĞ¶à¸öÉíÌå²¿¼ş£¬½¨Òé°ÑËüÃÇ·ÅÔÚÍ¬Ò»¸ö¸¸ÎïÌåÏÂ£¬È»ºóÍÏÄÇ¸ö¸¸ÎïÌå
+    [Header("å¼æ©‡è«·ç§¶ (ç„é™‘å…šèœŠ)")]
+    // ï˜åƒåŠ‘èˆ·è¤’ä¼è€€å€°ã„—æ¹MeshRendererè…”é¥’è·ºèµ½æ˜œæã„˜è¿å–„æ¶´çˆµ
+    // ï ±å½†è¡„å—£è·ºæ—¯æçª’ç’ƒã„›è†˜ç¥œåƒå³è …æº«å©“è‚®ç¨è·ºè™œæ˜œæç‹Ÿã„›ï …ç¶´è¿é¥’è·ºè™œæ˜œæ
     [SerializeField] private GameObject modelRoot;
 
     [Header("Audio")]
@@ -38,7 +38,7 @@ public class PoliceAI : MonoBehaviour
         originalPosition = transform.position;
         originalRotation = transform.rotation;
 
-        // ¡¾ºËĞÄĞŞ¸Ä¡¿ ÓÎÏ·¿ªÊ¼Ê±£¬ÏÈÒşÉí
+        // â–½ç„é™‘å…šèœŠâ–¼ èš”ç‰ç¾²å®å¥€ã„›ç‚ç¬æ—¯
         SetVisibility(false);
     }
 
@@ -47,8 +47,8 @@ public class PoliceAI : MonoBehaviour
         switch (currentState)
         {
             case PoliceState.Idle:
-                // ´ı»úÊ±£¬È·±£»¤ÎÀÊÇÒşÉíµÄ£¨·ÀÖ¹ÒâÍâ£©
-                // Èç¹ûÄãÏëÈÃËûÒşÉíÑ²Âß£¬¿ÉÒÔÔÚÕâÀïĞ´Ñ²ÂßÂß¼­£¬µ«±£³Ö SetVisibility(false)
+                // æ¸¾å„‚å¥€ã„›ï æ‚µèª˜æ€¹å²†ç¬æ—¯è…”ã„—æ»…ç ¦ç ©ä¿‹ã„˜
+                // ï ±å½†æ–•ç ‘ï å»ç¬æ—¯æŒè»€ã„›è¤«çœ•å©“æ¶´çˆµè¿¡æŒè»€è»€æ†®ã„›ç­æ‚µå¥ SetVisibility(false)
                 break;
 
             case PoliceState.Chasing:
@@ -61,7 +61,7 @@ public class PoliceAI : MonoBehaviour
         }
     }
 
-    // --- ¹© PoliceManager µ÷ÓÃ ---
+    // --- é¼ PoliceManager è¦ƒèšš ---
     public void StartChasing(Transform player)
     {
         currentTarget = player;
@@ -70,7 +70,7 @@ public class PoliceAI : MonoBehaviour
 
         agent.isStopped = false;
 
-        // ¡¾ºËĞÄĞŞ¸Ä¡¿ ½Óµ½ÃüÁî£¬Á¢¿ÌÏÔĞÎ£¡
+        // â–½ç„é™‘å…šèœŠâ–¼ è«‰å–„éŸœé”ã„›è•¾è¦¦ç†å€›ã„
         SetVisibility(true);
         if (chaseAudio != null && !chaseAudio.isPlaying)
         {
@@ -78,7 +78,7 @@ public class PoliceAI : MonoBehaviour
         }
     }
 
-    // --- ÄÚ²¿Âß¼­ ---
+    // --- å›€çª’è»€æ†® ---
 
     void HandleChasing()
     {
@@ -87,14 +87,14 @@ public class PoliceAI : MonoBehaviour
         agent.SetDestination(currentTarget.position);
         chaseTimer -= Time.deltaTime;
 
-        // ¼ì²é×¥²¶
+        // æ½°è„¤èš°çœ¸
         float distance = Vector3.Distance(transform.position, currentTarget.position);
         if (distance <= catchDistance)
         {
             PerformArrest();
         }
 
-        // ¼ì²é³¬Ê±
+        // æ½°è„¤é–‰å¥€
         if (chaseTimer <= 0)
         {
             GiveUpChase();
@@ -103,15 +103,15 @@ public class PoliceAI : MonoBehaviour
 
     void HandleReturning()
     {
-        // ×ß»ØÔ­µã
-        // ÕâÀï¼ÓÒ»µãÈİ²î£¬·ÀÖ¹¸¡µãÊıÎó²îµ¼ÖÂÒ»Ö±ÔÚÄÇ¶¶¶¯
+        // è»—éš™åŸ»è¸
+        // æ¶´çˆµæ¨“ç¨è¸ï §èˆ¹ã„›æ»…ç ¦è…¹è¸æ…æ˜«èˆ¹çµ³ç¥¡ç¨çœ»å©“é¥’é †é›„
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            // µ½¼ÒÁË
+            // å–„æ¨¡è³¸
             currentState = PoliceState.Idle;
             transform.rotation = originalRotation;
 
-            // ¡¾ºËĞÄĞŞ¸Ä¡¿ »Øµ½¸ÚÎ»£¬ÖØĞÂÒşÉí
+            // â–½ç„é™‘å…šèœŠâ–¼ éš™å–„è©£å¼‡ã„›ç¬­é™”ç¬æ—¯
             SetVisibility(false);
             StopChaseAudio();
 
@@ -120,10 +120,10 @@ public class PoliceAI : MonoBehaviour
 
     void GiveUpChase()
     {
-        Debug.Log("¾¯²ì£ºÊ±¼äµ½£¬³·ÍË¡£");
+        Debug.Log("åŠ‘èˆ·ã„©å¥€æ½”å–„ã„›é›ªè±–ï¹");
         currentState = PoliceState.Returning;
         agent.SetDestination(originalPosition);
-        // ×¢Òâ£º»Ø³ÌµÄÊ±ºò»¹ÊÇÏÔĞÎµÄ£¬Ö±µ½»Øµ½Ô­µã²ÅÏûÊ§
+        // è›ç ©ã„©éš™æœ€è…”å¥€ç·Šéœå²†ç†å€›è…”ã„›çœ»å–„éš™å–„åŸ»è¸ç¬¦ç§å›®
         StopChaseAudio();
     }
 
@@ -135,16 +135,25 @@ public class PoliceAI : MonoBehaviour
 
         if (animator) animator.SetTrigger("Catch");
 
+        // [æ–°å¢] è°ƒç”¨å…¨å±€æŠ“æ•è®¡æ•°å™¨
+        // å…ˆæ£€æŸ¥ Instance æ˜¯å¦å­˜åœ¨ï¼Œé˜²æ­¢åœ¨æ²¡æœ‰Managerçš„åœºæ™¯æŠ¥é”™
+        if (PoliceCatchManager.Instance != null)
+        {
+            PoliceCatchManager.Instance.RegisterCatch();
+        }
+        else
+        {
+            Debug.LogWarning("å½“å‰åœºæ™¯æœªæ‰¾åˆ° PoliceCatchManagerï¼ŒæŠ“æ•æ¬¡æ•°æœªè®°å½•ï¼");
+        }
+
+        //åŸæœ¬çš„UIé€»è¾‘ä¿ç•™ï¼ˆæ˜¾ç¤º"ä½ è¢«æŠ“äº†"çš„ä¸´æ—¶å¼¹çª—ï¼‰
         if (uiManager != null) uiManager.ShowCatchUI();
 
-        // ×¥µ½ÈËºó£¬Äã¿ÉÒÔÑ¡ÔñÈÃËûÁ¢¿ÌÏûÊ§£¬»òÕßÍ£ÁôÔÚÔ­µØ°ÚPose
-        // ÕâÀïÎÒÑ¡ÔñÔİÊ±²»ÏûÊ§£¬ÈÃÍæ¼Ò¿´µ½ÊÇË­×¥ÁËËû
-        // Èç¹ûÏë×¥µ½Ë²¼äÏûÊ§£¬È¡ÏûÏÂÃæÕâĞĞµÄ×¢ÊÍ£º
-        // SetVisibility(false); 
+        // åœæ­¢è¿½é€éŸ³ä¹
         StopChaseAudio();
     }
 
-    // --- ¸¨Öú·½·¨£º¿ØÖÆÏÔÒş ---
+    // --- è½ç¿‘æºæ¥Šã„©è«·ç§¶ç†ç¬ ---
     private void SetVisibility(bool isVisible)
     {
         if (modelRoot != null)
@@ -153,15 +162,15 @@ public class PoliceAI : MonoBehaviour
         }
         else
         {
-            // Èç¹ûÄãÍüÁËÍÏ modelRoot£¬³¢ÊÔ×Ô¶¯Ñ°ÕÒËùÓĞµÄäÖÈ¾Æ÷À´¿ª¹Ø
-            // ÕâÊÇÒ»ÖÖ±¸ÓÃ·½°¸
+            // ï ±å½†æ–•å’­è³¸è¿ modelRootã„›éƒ­å½¸èµ»é›„æ‰†æ¢‘å€è¡„è…”é¦ºï ˆïœ‡æ‡‚ç¾²å£½
+            // æ¶´å²†ç¨ç¬±æ˜èššæºå¶
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
             foreach (var r in renderers)
             {
                 r.enabled = isVisible;
             }
 
-            // Í¬Ê±Ò²¿ª¹Ø Canvas (Èç¹ûÍ·¶¥ÓĞÑªÌõÖ®ÀàµÄ)
+            // è‚®å¥€ç©ç¾²å£½ Canvas (ï ±å½†èŠ›éšè¡„æ‚›æ²­çœ³æ¿¬è…”)
             Canvas[] canvases = GetComponentsInChildren<Canvas>();
             foreach (var c in canvases)
             {
