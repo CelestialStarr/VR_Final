@@ -12,10 +12,9 @@ public class InventoryUI : MonoBehaviour
     {
         if (InventoryManager.Instance != null)
         {
-            // 1. 订阅未来的变化
             InventoryManager.Instance.onInventoryChanged += UpdateUI;
 
-            // 2. ★★★ 关键修复：立刻刷新一次，显示当前已有的东西 ★★★
+
             UpdateUI();
         }
         else
@@ -26,7 +25,7 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        // 增加一行 Debug，帮你看看到底运行没运行
+
         Debug.Log("UI 正在刷新显示...");
 
         foreach (Transform child in contentContainer)

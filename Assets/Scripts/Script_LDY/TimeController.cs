@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using System.Collections;
-using System; // 必须引用 System 才能用 Action
+using System;
 
 public class TimeGameplayManager : MonoBehaviour
 {
@@ -26,23 +26,18 @@ public class TimeGameplayManager : MonoBehaviour
     public GameObject workFatiguePopup;
 
     [Header("Settings")]
-    public float fatigueThresholdHours = 16f; // 疲劳提示阈值
+    public float fatigueThresholdHours = 16f;
     public float sleepHours = 8f;
 
-    // [新增] 猝死阈值设置
-    [Tooltip("连续不睡觉导致死亡的小时数")]
+    [Tooltip("Hours of continuous wakefulness leading to death")]
     public float deathThresholdHours = 72f;
 
-    // [新增] 死亡事件，通知裁判脚本
     public event Action onFatigueDeath;
 
-    // 内部变量
     private float currentAwakeHours = 0f;
     private bool hasTriggeredFatiguePopup = false;
     private int lastDisplayedHour = -1;
     private int lastDisplayedMinute = -1;
-
-    // 防止死亡事件重复触发
     private bool isDead = false;
 
     void Start()
@@ -69,7 +64,6 @@ public class TimeGameplayManager : MonoBehaviour
 
     void Update()
     {
-        // 如果已经死了，就不要再更新逻辑了
         if (isDead) return;
 
         HandleInput();
@@ -85,37 +79,31 @@ public class TimeGameplayManager : MonoBehaviour
         }
     }
 
-    // ==========================================
-    // [核心修改] 这里加上了 public
-    // ==========================================
     public void PerformSleep()
     {
         if (dayCycleScript == null) return;
         dayCycleScript.SkipTime(sleepHours);
         currentAwakeHours = 0f;
         hasTriggeredFatiguePopup = false;
-        Debug.Log("玩家睡觉了，体力恢复，疲劳计时清零。");
+        Debug.Log("Player slept. Fatigue reset.");
     }
-    // ==========================================
 
     void UpdateFatigueLogic()
     {
         float gameHoursPassed = (Time.deltaTime / dayCycleScript.dayLengthSeconds) * 24f;
         currentAwakeHours += gameHoursPassed;
 
-        // 1. 疲劳提示 (16小时)
         if (currentAwakeHours >= fatigueThresholdHours && !hasTriggeredFatiguePopup)
         {
             TriggerFatiguePopup();
             hasTriggeredFatiguePopup = true;
         }
 
-        // 2. 猝死判定 (72小时)
         if (currentAwakeHours >= deathThresholdHours)
         {
             isDead = true;
-            Debug.Log("<color=red>玩家连续72小时未睡眠，触发猝死！</color>");
-            onFatigueDeath?.Invoke(); // 发送信号
+            Debug.Log("<color=red>Player reached threshold without sleep. Sudden death triggered!</color>");
+            onFatigueDeath?.Invoke();
         }
     }
 

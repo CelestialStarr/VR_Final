@@ -20,12 +20,10 @@ public class NPCVision : MonoBehaviour
 
     [SerializeField] private bool isInPrivateArea = false;
 
-    // ===== 世界空间 UI（场景里的，不是 Prefab）=====
     [Header("UI Feedback")]
-    public GameObject alertUI;          // 场景中的 World Space UI（默认隐藏）
-    public float alertUIDuration = 2f;  // 显示多久
+    public GameObject alertUI;
+    public float alertUIDuration = 2f;
 
-    // 防止一直连续报警
     private bool hasAlertedPolice = false;
 
     private void Start()
@@ -33,7 +31,6 @@ public class NPCVision : MonoBehaviour
         if (alertController == null)
             alertController = GetComponent<AlertController>();
 
-        // 确保一开始是隐藏的
         if (alertUI != null)
             alertUI.SetActive(false);
     }
@@ -44,7 +41,6 @@ public class NPCVision : MonoBehaviour
         CheckVision();
     }
 
-    // ===== Private Area 检测 =====
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PrivateArea"))
@@ -74,9 +70,6 @@ public class NPCVision : MonoBehaviour
         {
             GameObject hitObj = hit.collider.gameObject;
 
-            // =================================================
-            // A. 私人区域看到玩家
-            // =================================================
             if (isInPrivateArea && hitObj.CompareTag("Player"))
             {
                 Debug.Log("See Player");
@@ -89,7 +82,7 @@ public class NPCVision : MonoBehaviour
                     if (currentAlertTimer >= alertInterval)
                     {
                         alertController.IncreaseAlert(alertIncreaseAmount);
-                        Debug.Log("私人区域发现玩家！警戒值增加！");
+                        Debug.Log("Player detected in private area! Increasing alert!");
                         currentAlertTimer = 0f;
                     }
                 }
@@ -97,17 +90,13 @@ public class NPCVision : MonoBehaviour
                 return;
             }
 
-            // =================================================
-            // B. 抓到偷窃
-            // =================================================
             StealableObject target = hitObj.GetComponentInParent<StealableObject>();
 
             if (target != null && target.IsBeingStolen)
             {
-                Debug.LogError("NPC: 抓到你了！执行强制打断！");
+                Debug.LogError("NPC: Caught you! Executing forced interrupt!");
                 target.HandleFailure(true);
 
-                // 1. UI 反馈（世界 UI）
                 if (alertUI != null && !hasAlertedPolice)
                 {
                     alertUI.SetActive(true);
@@ -115,10 +104,9 @@ public class NPCVision : MonoBehaviour
                     Invoke(nameof(HideAlertUI), alertUIDuration);
                 }
 
-                // 2. 呼叫警察
                 if (!hasAlertedPolice)
                 {
-                    Debug.Log("NPC: 来人啊！抓小偷！");
+                    Debug.Log("NPC: Stop thief!");
 
                     if (PoliceManager.Instance != null)
                         PoliceManager.Instance.DispatchNearestPolice(transform.position);
